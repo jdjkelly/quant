@@ -7,7 +7,7 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
-
+  require 'email_spec'
   require 'capybara/rspec'
   require 'capybara/rails'
 
@@ -23,6 +23,9 @@ Spork.prefork do
     # config.mock_with :mocha
     # config.mock_with :flexmock
     # config.mock_with :rr
+
+    config.include(EmailSpec::Helpers)
+    config.include(EmailSpec::Matchers)
 
     config.mock_with :rspec
 
@@ -44,6 +47,16 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
+
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+    end
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
   end
 end
 

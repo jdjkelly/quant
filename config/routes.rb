@@ -1,14 +1,19 @@
 Bodyimage::Application.routes.draw do
+
   root :to => 'home#index'
+
+  devise_for :users
 
   resource :home,
     :only => [:index]
-
+  resources :users,
+    :only => [:show]
   resources :measurements
   resources :fat_percentages
   resources :fat_masses
   resources :lean_masses
   resources :weights
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

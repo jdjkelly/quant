@@ -6,6 +6,11 @@ gem 'pry'
 gem 'annotate', ">=2.5.0"
 gem 'rails_config'
 gem 'oauth'
+gem 'devise'
+
+group :development, :test do
+  gem 'factory_girl_rails'
+end
 
 group :development do
   gem 'rspec-rails'
@@ -23,8 +28,9 @@ group :test do
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
   gem 'fabrication'
+  gem 'database_cleaner'
+  gem 'email_spec'
 end
 
 # Gems used only for assets and not required
