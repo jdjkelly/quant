@@ -1,0 +1,1 @@
+Fabricator(:lean_mass)

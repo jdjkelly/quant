@@ -1,0 +1,2 @@
+module WithingsAccountHelper
+end

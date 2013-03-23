@@ -1,0 +1,1 @@
+Fabricator(:fat_mass)
