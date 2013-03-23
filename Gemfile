@@ -4,15 +4,19 @@ gem 'rails', '3.2.12'
 gem 'mysql2'
 gem 'pry'
 gem 'annotate', ">=2.5.0"
-gem 'clearance', '~> 1.0.0.rc2'
 gem 'rails_config'
 gem 'oauth'
-gem 'simplificator-withings', github: 'simplificator/simplificator-withings'
+gem 'devise'
+
+group :development, :test do
+  gem 'factory_girl_rails'
+end
 
 group :development do
   gem 'rspec-rails'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'guard-bundler'
   gem 'foreman'
 end
 
@@ -24,8 +28,9 @@ group :test do
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
   gem 'fabrication'
+  gem 'database_cleaner'
+  gem 'email_spec'
 end
 
 # Gems used only for assets and not required

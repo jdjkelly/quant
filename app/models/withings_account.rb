@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: withings_accounts
+#
+#  id         :integer          not null, primary key
+#  uid        :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class WithingsAccount < ActiveRecord::Base
   attr_accessible :uid
 
