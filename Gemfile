@@ -7,6 +7,7 @@ gem 'annotate', ">=2.5.0"
 gem 'rails_config'
 gem 'oauth'
 gem 'devise'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'factory_girl_rails'
