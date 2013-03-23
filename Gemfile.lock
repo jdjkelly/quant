@@ -114,6 +114,7 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.6.1)
     mysql2 (0.3.11)
+    newrelic_rpm (3.5.8.72)
     nokogiri (1.5.6)
     oauth (0.4.7)
     orm_adapter (0.4.0)
@@ -225,6 +226,7 @@ DEPENDENCIES
   guard-spork
   jquery-rails
   mysql2
+  newrelic_rpm
   oauth
   pry
   rails (= 3.2.12)
