@@ -13,8 +13,6 @@
 #
 
 class User < ActiveRecord::Base
-  include Clearance::User
-
   scope :published, where(:published => true)
 
   has_many :measurements

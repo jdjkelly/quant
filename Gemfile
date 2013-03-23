@@ -4,15 +4,14 @@ gem 'rails', '3.2.12'
 gem 'mysql2'
 gem 'pry'
 gem 'annotate', ">=2.5.0"
-gem 'clearance', '~> 1.0.0.rc2'
 gem 'rails_config'
 gem 'oauth'
-gem 'simplificator-withings', github: 'simplificator/simplificator-withings'
 
 group :development do
   gem 'rspec-rails'
   gem 'guard'
   gem 'guard-rspec'
+  gem 'guard-bundler'
   gem 'foreman'
 end
 
