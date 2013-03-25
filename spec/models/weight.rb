@@ -11,4 +11,8 @@
 #  recorded_at :datetime
 #
 
-Fabricator(:lean_mass)
+require 'spec_helper'
+
+describe Weight do
+  #
+end

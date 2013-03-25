@@ -8,12 +8,10 @@ Bodyimage::Application.routes.draw do
     :only => [:index]
   resources :users,
     :only => [:show]
-  resources :measurements
-  resources :fat_percentages
-  resources :fat_masses
-  resources :lean_masses
-  resources :weights
 
+  namespace :body do
+    resources :measurements, :weights
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
