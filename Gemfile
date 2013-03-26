@@ -8,10 +8,6 @@ gem 'rails_config'
 gem 'oauth'
 gem 'devise'
 
-group :development, :test do
-  gem 'factory_girl_rails'
-end
-
 group :development do
   gem 'rspec-rails'
   gem 'guard'

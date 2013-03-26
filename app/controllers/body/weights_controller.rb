@@ -45,7 +45,7 @@ module Body
 
       respond_to do |format|
         if @weight.save
-          format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
+          format.html { redirect_to body_weight_path(@weight), notice: 'Weight was successfully created.' }
           format.json { render json: @weight, status: :created, location: @weight }
         else
           format.html { render action: "new" }
@@ -61,7 +61,7 @@ module Body
 
       respond_to do |format|
         if @weight.update_attributes(params[:weight])
-          format.html { redirect_to @weight, notice: 'Weight was successfully updated.' }
+          format.html { redirect_to body_weight_path(@weight), notice: 'Weight was successfully updated.' }
           format.json { head :no_content }
         else
           format.html { render action: "edit" }
@@ -77,7 +77,7 @@ module Body
       @weight.destroy
 
       respond_to do |format|
-        format.html { redirect_to weights_url }
+        format.html { redirect_to body_weights_url }
         format.json { head :no_content }
       end
     end
