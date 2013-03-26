@@ -1,2 +1,3 @@
 withings_oauth_key: <%= ENV["withings_oauth_key"] %>
 withings_oauth_secret: <%= ENV["withings_oauth_secret"] %>
+coveralls_repo_token: <%= ENV["coveralls_repo_token"] %>

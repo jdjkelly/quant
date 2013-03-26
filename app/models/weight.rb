@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: measurements
+# Table name: weight
 #
 #  id          :integer          not null, primary key
 #  value       :float
@@ -11,12 +11,15 @@
 #  recorded_at :datetime
 #
 
-require 'spec_helper'
+class Weight < ActiveRecord::Base
+  attr_accessible :value, :recorded_at
 
-describe Weight do
-  describe ".self" do
-    it "inherts from Measurement" do
-      Weight.new.is_a? Measurement
-    end
+  belongs_to :user
+
+  validates :value, :presence => true, :numericality => true
+  validates :recorded_at, :presence => true
+
+  def self.current
+    order("recorded_at DESC").first
   end
 end

@@ -1,5 +1,0 @@
-=== getbodyimage.com
-
-== What is this?
-
-The source for a dashboard application I'm working on. More info to come - or just read the source.

@@ -7,11 +7,6 @@ gem 'annotate', ">=2.5.0"
 gem 'rails_config'
 gem 'oauth'
 gem 'devise'
-gem 'newrelic_rpm'
-
-group :development, :test do
-  gem 'factory_girl_rails'
-end
 
 group :development do
   gem 'rspec-rails'
@@ -19,6 +14,7 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'foreman'
+  gem 'coveralls', require: false
 end
 
 group :test do
