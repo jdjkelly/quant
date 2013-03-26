@@ -22,16 +22,13 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name
   scope :published, where(:published => true)
 
   has_many :measurements
-  has_many :fat_masses
-  has_many :fat_percentages
-  has_many :lean_masses
   has_many :weights
   has_one :withings_account
 
@@ -40,14 +37,14 @@ class User < ActiveRecord::Base
   end
 
   def fat_mass
-    self.fat_masses.current
+    weight.fat_mass_value
   end
 
   def fat_percentage
-    self.fat_percentages.current
+    weight.fat_percentage
   end
 
   def lean_mass
-    self.lean_masses.current
+    weight.lean_mass_value
   end
 end

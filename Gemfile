@@ -8,16 +8,13 @@ gem 'rails_config'
 gem 'oauth'
 gem 'devise'
 
-group :development, :test do
-  gem 'factory_girl_rails'
-end
-
 group :development do
   gem 'rspec-rails'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'foreman'
+  gem 'coveralls', require: false
 end
 
 group :test do

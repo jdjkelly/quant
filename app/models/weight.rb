@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: measurements
+# Table name: weight
 #
 #  id          :integer          not null, primary key
 #  value       :float
@@ -11,7 +11,7 @@
 #  recorded_at :datetime
 #
 
-class Measurement < ActiveRecord::Base
+class Weight < ActiveRecord::Base
   attr_accessible :value, :recorded_at
 
   belongs_to :user

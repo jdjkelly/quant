@@ -11,15 +11,11 @@
 #  recorded_at :datetime
 #
 
-class Measurement < ActiveRecord::Base
-  attr_accessible :value, :recorded_at
+require 'spec_helper'
 
-  belongs_to :user
-
-  validates :value, :presence => true, :numericality => true
-  validates :recorded_at, :presence => true
-
-  def self.current
-    order("recorded_at DESC").first
-  end
+describe Weight do
+  it { should validate_presence_of :value }
+  it { should validate_numericality_of :value }
+  it { should belong_to(:user) }
+  it { should validate_presence_of :recorded_at }
 end
