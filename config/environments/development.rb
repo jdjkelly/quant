@@ -16,7 +16,7 @@ Bodyimage::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { :host => Settings.action_mailer.default_url_options.host }
+  config.action_mailer.default_url_options = { :host => Settings.smtp_domain }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
