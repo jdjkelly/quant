@@ -6,6 +6,3 @@ smtp_port: <%= ENV["smtp_port"] %>
 smtp_domain: <%= ENV["smtp_domain"] %>
 smtp_user_name: <%= ENV["smtp_user_name"] %>
 smtp_password: <%= ENV["smtp_password"] %>
-action_mailer:
-  default_url_options:
-    host: <%= ENV["action_mailer_default_url_options_host"] %>
