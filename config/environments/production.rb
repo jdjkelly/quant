@@ -51,7 +51,17 @@ Bodyimage::Application.configure do
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { :host => 'getbodyimage.com' }
+  config.action_mailer.default_url_options = { :host => Settings.action_mailer_default_url_options_host }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => Settings.smtp_address,
+    :port                 => Settings.smtp_port,
+    :domain               => Settings.smtp_domain,
+    :user_name            => Settings.smtp_user_name,
+    :password             => Settings.smtp_password,
+    :authentication       => Settings.smtp_authentication,
+    :enable_starttls_auto => true  }
 
   # Enable threaded mode
   # config.threadsafe!
