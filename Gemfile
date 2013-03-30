@@ -7,8 +7,6 @@ gem 'annotate', ">=2.5.0"
 gem 'rails_config'
 gem 'oauth'
 gem 'devise'
-gem 'chef'
-gem 'knife-solo'
 
 group :development do
   gem 'rspec-rails'
