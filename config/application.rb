@@ -17,7 +17,7 @@ end
 
 module Bodyimage
   class Application < Rails::Application
-    VERSION = "0.0.6"
+    VERSION = "0.0.7"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -79,5 +79,7 @@ module Bodyimage
         g.javascripts = false
         g.helper = false
     end
+
+    config.logger = Logger.new(STDOUT)
   end
 end
