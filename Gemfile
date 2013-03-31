@@ -28,6 +28,7 @@ group :test do
   gem 'fabrication'
   gem 'database_cleaner'
   gem 'email_spec'
+  gem 'faker'
 end
 
 group :production do
