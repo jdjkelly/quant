@@ -10,11 +10,15 @@
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0)
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  unconfirmed_email      :string(255)
+#  failed_attempts        :integer          default(0)
+#  unlock_token           :string(255)
+#  locked_at              :datetime
+#  name                   :string(255)
+#  height                 :decimal(, )
 #
 
 require 'spec_helper'
@@ -22,18 +26,19 @@ require 'spec_helper'
 describe User do
   it { should have_many(:measurements) }
   it { should have_many(:weights) }
+  let(:user) { Fabricate(:user) }
+  let(:user_with_weights) {
+    2.times do
+      user.weights.create(recorded_at: Time.now, value: 1.0, user_id: user.id)
+    end
+  }
 
-  describe ".weight" do
-    let(:user) {
-      Fabricate(:user) do
-        weights(count: 3) { |attrs, i| Fabricate(:weight, recorded_at: Time.now + i, value: i.to_f) }
-      end
-    }
+  describe "#weight" do
     it "returns the last recorded Weight" do
       user.weight.should eq(user.weights.order("recorded_at DESC").first)
     end
 
-    it "returns the same value as .current" do
+    it "returns the same value as #current" do
       user.weight.should eq(user.weights.current)
     end
   end
