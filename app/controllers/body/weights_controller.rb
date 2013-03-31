@@ -1,7 +1,7 @@
 module Body
   class WeightsController < ApplicationController
-    # GET /weights
-    # GET /weights.json
+    # GET /body/weights
+    # GET /body/weights.json
     def index
       @weights = Weight.all
 
@@ -11,8 +11,8 @@ module Body
       end
     end
 
-    # GET /weights/1
-    # GET /weights/1.json
+    # GET /body/weights/1
+    # GET /body/weights/1.json
     def show
       @weight = Weight.find(params[:id])
 
@@ -22,8 +22,8 @@ module Body
       end
     end
 
-    # GET /weights/new
-    # GET /weights/new.json
+    # GET /body/weights/new
+    # GET /body/weights/new.json
     def new
       @weight = Weight.new
 
@@ -33,13 +33,13 @@ module Body
       end
     end
 
-    # GET /weights/1/edit
+    # GET /body/weights/1/edit
     def edit
       @weight = Weight.find(params[:id])
     end
 
-    # POST /weights
-    # POST /weights.json
+    # POST /body/weights
+    # POST /body/weights.json
     def create
       @weight = Weight.new(params[:weight])
 
@@ -54,8 +54,8 @@ module Body
       end
     end
 
-    # PUT /weights/1
-    # PUT /weights/1.json
+    # PUT /body/weights/1
+    # PUT /body/weights/1.json
     def update
       @weight = Weight.find(params[:id])
 
@@ -70,8 +70,8 @@ module Body
       end
     end
 
-    # DELETE /weights/1
-    # DELETE /weights/1.json
+    # DELETE /body/weights/1
+    # DELETE /body/weights/1.json
     def destroy
       @weight = Weight.find(params[:id])
       @weight.destroy
