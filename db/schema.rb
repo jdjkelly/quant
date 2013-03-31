@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130324040455) do
+ActiveRecord::Schema.define(:version => 20130330165127) do
 
   create_table "measurements", :force => true do |t|
     t.float    "value"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130324040455) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "name"
+    t.decimal  "height"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
