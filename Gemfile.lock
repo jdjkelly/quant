@@ -74,6 +74,8 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fabrication (2.6.2)
+    faker (1.1.2)
+      i18n (~> 0.5)
     ffi (1.4.0)
     foreman (0.61.0)
       thor (>= 0.13.6)
@@ -232,6 +234,7 @@ DEPENDENCIES
   devise
   email_spec
   fabrication
+  faker
   foreman
   growl
   guard
