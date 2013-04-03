@@ -1,10 +1,17 @@
 Bodyimage::Application.routes.draw do
 
+
+  authenticated :user do
+    root :to => "dashboard#index"
+  end
+
   root :to => 'home#index'
 
   devise_for :users
 
-  resource :home,
+  resources :dashboard,
+    :only => [:index]
+  resources :home,
     :only => [:index]
   resources :users,
     :only => [:show]

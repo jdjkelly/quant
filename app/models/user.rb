@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_one :withings_account
 
   def weight
-    self.weights.current
+    self.weights.current || self.weights.new(recorded_at: Time.now, value: 0.0, fat_mass_value: 0.0, fat_percentage: 0.0, lean_mass_value: 0.0)
   end
 
   def fat_mass
@@ -50,5 +50,9 @@ class User < ActiveRecord::Base
 
   def lean_mass
     weight.lean_mass_value
+  end
+
+  def bmi
+    weight.bmi
   end
 end

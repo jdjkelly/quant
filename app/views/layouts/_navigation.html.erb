@@ -1,20 +1,43 @@
-<ul class="nav">
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Login', new_user_session_path %>
-    </li>
-  <% end %>
-  <% if user_signed_in? %>
-    <li>
-    <%= link_to 'Edit account', edit_user_registration_path %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    </li>
-  <% end %>
-</ul>
+<div class="contain-to-grid">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1>
+          <%= link_to 'Quantify.io', root_path %>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <% if user_signed_in? %>
+      <section class="top-bar-section">
+        <ul class="left">
+          <li>
+            <%= link_to "Show weights", body_weights_path %>
+          </li>
+          <li>
+            <%= link_to "Add weight", new_body_weight_path %>
+          </li>
+        </ul>
+      </section>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="has-dropdown"><%= link_to "Joshua Kelly", user_path(current_user) %></a>
+
+            <ul class="dropdown">
+              <li><label>User Settings</label></li>
+
+              <li><a href="#">Edit settings</a></li>
+              <li class="divider"></li>
+
+              <li><label>Data Sources Settings</label></li>
+              <li><a href="#">Edit sources</a></li>
+              <li><a href="#">Sync sources</a></li>
+              <li class="divider"></li>
+              <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    <% end %>
+  </nav>
+</div>

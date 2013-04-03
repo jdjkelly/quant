@@ -15,6 +15,25 @@ Spork.prefork do
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+  # Don't need passwords in test DB to be secure, but we would like 'em to be
+  # fast -- and the stretches mechanism is intended to make passwords
+  # computationally expensive.
+  module Devise
+    module Models
+      module DatabaseAuthenticatable
+        protected
+
+        def password_digest(password)
+          password
+        end
+      end
+    end
+  end
+  Devise.setup do |config|
+    config.stretches = 0
+  end
+
+  counter = -1
   RSpec.configure do |config|
     # ## Mock Framework
     #
@@ -23,6 +42,20 @@ Spork.prefork do
     # config.mock_with :mocha
     # config.mock_with :flexmock
     # config.mock_with :rr
+
+    config.after(:each) do
+      counter += 1
+      if counter > 9
+        GC.enable
+        GC.start
+        GC.disable
+        counter = 0
+      end
+    end
+
+    config.after(:suite) do
+      counter = 0
+    end
 
     config.include(EmailSpec::Helpers)
     config.include(EmailSpec::Matchers)

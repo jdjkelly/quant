@@ -1,27 +1,37 @@
-<h1>Listing weights</h1>
+<div class="row">
+  <div class="columns large-12">
+    <h1>All weights</h1>
+  </div>
+</div>
 
-<table>
-  <tr>
-    <th>id</th>
-    <th>type</th>
-    <th>value</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row">
+  <div class="columns large-12">
+    <table>
+      <tr>
+        <th>date</th>
+        <th>value</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
 
-<% @weights.each do |weight| %>
-  <tr>
-    <td><%= weight.id %></td>
-    <td><%= weight.type.present? ? weight.type.human : nil %></td>
-    <td><%= weight.value %></td>
-    <td><%= link_to 'Show', weight %></td>
-    <td><%= link_to 'Edit', edit_body_weight_path(weight) %></td>
-    <td><%= link_to 'Destroy', weight, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <% @weights.each do |weight| %>
+      <tr>
+        <td><%= weight.recorded_at %></td>
+        <td><%= weight.value %></td>
+        <td><%= link_to 'Show', body_weight_path(weight) %></td>
+        <td><%= link_to 'Edit', edit_body_weight_path(weight) %></td>
+        <td><%= link_to 'Destroy', body_weight_path(weight), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
 
-<br />
+    <br />
+  </div>
+</div>
 
-<%= link_to 'New Weight', new_body_weight_path %>
+<div class="row">
+  <div class="columns large-12">
+    <%= link_to 'New Weight', new_body_weight_path %>
+  </div>
+</div>

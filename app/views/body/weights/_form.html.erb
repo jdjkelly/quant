@@ -1,22 +1,35 @@
-<%= form_for(@weight) do |f| %>
-  <% if @weight.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@weight.errors.count, "error") %> prohibited this weight from being saved:</h2>
+<div class="row">
+  <%= form_for @weight, :url => body_weights_path(@weight) do |f| %>
+    <% if @weight.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@weight.errors.count, "error") %> prohibited this weight from being saved:</h2>
 
-      <ul>
-      <% @weight.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @weight.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <fieldset>
+
+      <div class="row">
+        <div class="large-2 columns">
+          <%= f.label :value %>
+          <%= f.text_field :value %>
+        </div>
+
+        <div class="large-2 columns">
+          <%= f.label :recorded_at %>
+          <%= date_select("weight", "recorded_at", :discard_year => true) %>
+        </div>
+      </div>
+
+    </fieldset>
+
+    <div class="actions">
+      <%= f.submit class: "button radius" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :value %><br />
-    <%= f.text_field :value %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

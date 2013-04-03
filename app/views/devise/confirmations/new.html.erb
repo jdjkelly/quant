@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="columns large-6 push-3">
+    <h2>Resend confirmation</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns large-6 push-3">
+    <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => "custom" }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="panel">
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :email %>
+            <%= f.email_field :email, :autofocus => true %>
+          </div>
+        </div>
+
+        <div class="row">
+          <%= f.submit "Resend confirmation email", class: "button radius columns large-6 push-3" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "devise/shared/links" %>
