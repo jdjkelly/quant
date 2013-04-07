@@ -36,7 +36,6 @@ describe User do
     end
 
     it "returns the last recorded Weight" do
-      binding.pry
       user.weight.should eq(user.weights.order("recorded_at DESC").first)
     end
 

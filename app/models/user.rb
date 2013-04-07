@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_one :withings_account
 
   def weight
-    self.weights.current || self.weights.new(recorded_at: Time.now, value: 0.0, fat_mass_value: 0.0, fat_percentage: 0.0, lean_mass_value: 0.0)
+    self.weights.current
   end
 
   def fat_mass

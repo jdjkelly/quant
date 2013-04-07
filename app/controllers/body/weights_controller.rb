@@ -1,5 +1,7 @@
 module Body
   class WeightsController < ApplicationController
+    before_filter :authenticate_user!
+
     # GET /body/weights
     # GET /body/weights.json
     def index

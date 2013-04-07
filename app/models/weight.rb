@@ -27,7 +27,7 @@ class Weight < ActiveRecord::Base
   before_save :calculate_all_known_values
 
   def self.current
-    order("recorded_at DESC").first
+    order("recorded_at DESC").first || self.new(recorded_at: Time.now, value: 0.0, fat_mass_value: 0.0, fat_percentage: 0.0, lean_mass_value: 0.0)
   end
 
   def calculate_bmi
