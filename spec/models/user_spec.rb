@@ -27,13 +27,14 @@ describe User do
   it { should have_many(:measurements) }
   it { should have_many(:weights) }
   let(:user) { Fabricate(:user) }
-  let(:user_with_weights) {
-    2.times do
-      user.weights.create(recorded_at: Time.now, value: 1.0, user_id: user.id)
-    end
-  }
 
   describe "#weight" do
+    before(:each) do
+      2.times do
+        user.weights.create(recorded_at: Time.now, value: 1.0)
+      end
+    end
+
     it "returns the last recorded Weight" do
       user.weight.should eq(user.weights.order("recorded_at DESC").first)
     end

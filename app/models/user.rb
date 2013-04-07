@@ -51,4 +51,8 @@ class User < ActiveRecord::Base
   def lean_mass
     weight.lean_mass_value
   end
+
+  def bmi
+    weight.bmi
+  end
 end
