@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height
   scope :published, where(:published => true)
 
+  validates :height, :numericality => true, :presence => true
+
   has_many :measurements
   has_many :weights
   has_one :withings_account

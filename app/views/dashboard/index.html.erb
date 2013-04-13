@@ -7,29 +7,39 @@
 <div class="row">
   <div class="columns large-3">
     <div class="unit-panel">
-       <h2 class="center"><%= current_user.weight.value %></h2>
-       <h5>units</h5>
+      <h5>Weight</h5>
+      <h1><%= current_user.weight.value %></h1>
+      <h5>pounds</h5>
     </div>
   </div>
 
-  <div class="columns large-3">
-     <div class="unit-panel">
-       <h2 class="center"><%= current_user.weight.value %></h2>
-       <h5>units</h5>
+  <% if current_user.fat_percentage %>
+    <div class="columns large-3">
+       <div class="unit-panel">
+        <h5>Body Fat</h5>
+        <h2 class="center"><%= current_user.fat_percentage %></h2>
+        <h5>percent</h5>
+      </div>
     </div>
-  </div>
+  <% end %>
 
-  <div class="columns large-3">
-     <div class="unit-panel">
-       <h2 class="center"><%= current_user.weight.value %></h2>
-       <h5>units</h5>
+  <% if current_user.fat_percentage %>
+    <div class="columns large-3">
+       <div class="unit-panel">
+        <h5>Lean Mass</h5>
+        <h2 class="center"><%= current_user.lean_mass %></h2>
+        <h5>pounds</h5>
+      </div>
     </div>
-  </div>
+  <% end %>
 
-  <div class="columns large-3">
-     <div class="unit-panel">
-       <h2 class="center"><%= current_user.weight.value %></h2>
-       <h5>units</h5>
+  <% if current_user.fat_percentage %>
+    <div class="columns large-3">
+       <div class="unit-panel">
+        <h5>BMI</h5>
+        <h2 class="center"><%= current_user.bmi %></h2>
+        <h5>points</h5>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
