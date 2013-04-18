@@ -26,11 +26,11 @@
             <ul class="dropdown">
               <li><label>User Settings</label></li>
 
-              <li><a href="#">Edit settings</a></li>
+              <li><%= link_to "Edit settings", edit_user_registration_path %></li>
               <li class="divider"></li>
 
               <li><label>Data Sources Settings</label></li>
-              <li><a href="#">Edit sources</a></li>
+              <li><Edit sources</a></li>
               <li><a href="#">Sync sources</a></li>
               <li class="divider"></li>
               <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>

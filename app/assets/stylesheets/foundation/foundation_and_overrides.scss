@@ -1,5 +1,5 @@
 // Required global settings and mixins for Foundation
-@import "foundation/foundation-global";
+@import "foundation/components/global";
 
 @import "foundation/flatui/globals";
 
@@ -348,12 +348,12 @@ $button-radius: $global-radius;
 // We use this to control alert padding.
 // $alert-padding-top: emCalc(11px);
 $alert-padding-left: 0px;
-// $alert-padding-right: $alert-padding-top + emCalc(10px);
+$alert-padding-right: 0px;
 // $alert-padding-bottom: $alert-padding-top + emCalc(1px);
 
 // We use these to control text style.
-// $alert-font-weight: bold;
-// $alert-font-size: emCalc(14px);
+$alert-font-weight: normal;
+$alert-font-size: 1em;
 // $alert-font-color: #fff;
 // $alert-font-color-alt: darken($secondary-color, 60%);
 
@@ -368,7 +368,7 @@ $alert-bottom-margin: 0px;
 
 // We use these to style the close buttons
 // $alert-close-color: #333;
-// $alert-close-position: emCalc(5px);
+$alert-close-position: 0em;
 // $alert-close-font-size: emCalc(22px);
 // $alert-close-opacity: 0.3;
 // $alert-close-opacity-hover: 0.5;
@@ -970,11 +970,11 @@ $alert-bottom-margin: 0px;
 //
 
 // Background color for the top bar
-$topbar-bg: #34495E;
+$topbar-bg: $black;
 
 // Height and margin
 // $topbar-height: 45px;
-// $topbar-margin-bottom: emCalc(30px);
+$topbar-margin-bottom: emCalc(0px);
 
 // Control Input height for top bar
 // $topbar-input-height: 2.45em;
@@ -984,12 +984,13 @@ $topbar-bg: #34495E;
 // $topbar-title-font-size: emCalc(17px);
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: #fff;
+$topbar-link-color: #fff;
 // $topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13px);
+$topbar-link-hover-lightness: 0%;
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: #333;
+$topbar-dropdown-bg: $black-dark;
 // $topbar-dropdown-link-color: #fff;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: #fff;

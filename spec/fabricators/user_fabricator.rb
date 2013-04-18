@@ -23,6 +23,7 @@
 
 Fabricator(:user) do
   name { Faker::Name.name }
+  height 10.0
   email { |attrs| "#{attrs[:name].parameterize}@local.dev" }
   password 'changeme'
   password_confirmation 'changeme'
