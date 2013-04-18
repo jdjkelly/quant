@@ -21,6 +21,11 @@
         </div>
 
         <div class="large-2 columns">
+          <%= f.label :fat_percentage %>
+          <%= f.text_field :fat_percentage %>
+        </div>
+
+        <div class="large-2 columns">
           <%= f.label :recorded_at %>
           <%= date_select("weight", "recorded_at", :discard_year => true) %>
         </div>
