@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/zurb/foundation.git
+  revision: ef1e33ff5383cd7d4b56185d0234262a6b82fcbe
+  specs:
+    zurb-foundation (4.1.2)
+      sass (>= 3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,13 +35,11 @@ GEM
     activesupport (3.2.12)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    addressable (2.3.3)
+    addressable (2.3.4)
     annotate (2.5.0)
       rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bourne (1.1.2)
-      mocha (= 0.10.5)
     builder (3.0.4)
     capybara (1.1.4)
       mime-types (>= 1.16)
@@ -45,6 +50,7 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
+    chunky_png (1.2.8)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -52,82 +58,96 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.1)
+    coffee-script-source (1.6.2)
     colorize (0.5.8)
-    coveralls (0.6.3)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
+    coveralls (0.6.6)
       colorize
       multi_json (~> 1.3)
       rest-client
       simplecov (>= 0.7)
       thor
+    d3_rails (3.1.4)
+      railties (>= 3.1.0)
     database_cleaner (0.9.1)
     devise (2.2.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
-    diff-lcs (1.2.1)
+    diff-lcs (1.2.3)
+    dotenv (0.7.0)
     email_spec (1.4.0)
       launchy (~> 2.1)
       mail (~> 2.2)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    fabrication (2.6.2)
+    fabrication (2.6.5)
     faker (1.1.2)
       i18n (~> 0.5)
-    ffi (1.4.0)
-    foreman (0.61.0)
+    ffi (1.7.0)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
       thor (>= 0.13.6)
+    formatador (0.2.4)
+    fssm (0.2.10)
     growl (1.0.3)
-    guard (1.6.2)
+    guard (1.7.0)
+      formatador (>= 0.2.4)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
       pry (>= 0.9.10)
-      terminal-table (>= 1.4.3)
       thor (>= 0.14.6)
     guard-bundler (1.0.0)
       bundler (~> 1.0)
       guard (~> 1.1)
-    guard-rspec (2.5.0)
+    guard-rspec (2.5.3)
       guard (>= 1.1)
       rspec (~> 2.11)
     guard-spork (1.5.0)
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
-    hike (1.2.1)
+    hike (1.2.2)
     i18n (0.6.4)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (1.0.0)
+      railties (>= 3.1.0)
+      turbolinks
     json (1.7.7)
-    kgio (2.7.4)
-    launchy (2.2.0)
+    kgio (2.8.0)
+    launchy (2.3.0)
       addressable (~> 2.3)
     listen (0.7.3)
-    lumberjack (1.0.2)
+    lumberjack (1.0.3)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaclass (0.0.1)
     method_source (0.8.1)
-    mime-types (1.21)
-    mocha (0.10.5)
-      metaclass (~> 0.0.1)
-    multi_json (1.6.1)
-    newrelic_rpm (3.5.8.72)
-    nokogiri (1.5.6)
+    mime-types (1.22)
+    multi_json (1.7.2)
+    newrelic_rpm (3.6.0.83)
+    nokogiri (1.5.9)
     oauth (0.4.7)
     orm_adapter (0.4.0)
-    pg (0.14.1)
+    pg (0.15.1)
     polyglot (0.3.3)
     pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    quiet_assets (1.0.2)
+      railties (>= 3.1, < 5.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -153,7 +173,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
-    rake (10.0.3)
+    rake (10.0.4)
     rb-fsevent (0.9.3)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -163,10 +183,10 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
-    rspec-core (2.13.0)
+    rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
-    rspec-mocks (2.13.0)
+    rspec-mocks (2.13.1)
     rspec-rails (2.13.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
@@ -180,19 +200,18 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.31.0)
+    selenium-webdriver (2.32.1)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
-    shoulda-matchers (1.4.2)
+    shoulda-matchers (2.0.0)
       activesupport (>= 3.0.0)
-      bourne (~> 1.1.2)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
-    slop (3.4.3)
+    slop (3.4.4)
     spork (1.0.0rc3)
     spork-rails (3.2.1)
       rails (>= 3.0.0, < 3.3.0)
@@ -202,17 +221,18 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    terminal-table (1.4.5)
-    thor (0.17.0)
-    tilt (1.3.5)
+    thor (0.18.1)
+    tilt (1.3.7)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.36)
-    uglifier (1.3.0)
+    turbolinks (1.1.1)
+      coffee-rails
+    tzinfo (0.3.37)
+    uglifier (2.0.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
-    unicorn (4.5.0)
+    unicorn (4.6.2)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -229,7 +249,9 @@ DEPENDENCIES
   annotate (>= 2.5.0)
   capybara (~> 1.1.4)
   coffee-rails (~> 3.2.1)
+  compass-rails
   coveralls
+  d3_rails
   database_cleaner
   devise
   email_spec
@@ -242,10 +264,12 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   jquery-rails
+  jquery-turbolinks
   newrelic_rpm
   oauth
   pg
   pry
+  quiet_assets
   rails (= 3.2.12)
   rails_config
   rb-fsevent
@@ -254,5 +278,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   shoulda-matchers
   spork-rails
+  turbolinks
   uglifier (>= 1.0.3)
   unicorn
+  zurb-foundation!

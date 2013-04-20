@@ -26,8 +26,8 @@ describe Weight do
   let(:weight) {Fabricate(:weight)}
   let(:weight_with_height) {
     Fabricate(:weight) do
-      user    { Fabricate(:user) { height 1 } }
-      value   10
+      user    { Fabricate(:user) { height 165 } }
+      value   70
     end
   }
 
@@ -39,15 +39,16 @@ describe Weight do
     end
     context "when user has a height" do
       it "returns a value" do
-        weight_with_height.calculate_bmi.should eq(10.0)
+        weight_with_height.calculate_bmi.should eq(25.71)
       end
     end
   end
 
   describe "#calculate_all_known_values" do
     context "when user doesn't have lean_mass_value, fat_mass_value, or fat_percentage" do
-      it "returns nil" do
-        weight.calculate_all_known_values.should be_nil
+      it "isn't changed" do
+        weight.calculate_all_known_values
+        weight.changed?.should be_false
       end
     end
     context "when user has a lean_mass_value" do

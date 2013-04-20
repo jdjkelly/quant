@@ -1,9 +1,11 @@
 module Body
   class WeightsController < ApplicationController
+    before_filter :authenticate_user!
+
     # GET /body/weights
     # GET /body/weights.json
     def index
-      @weights = Weight.all
+      @weights = current_user.weights
 
       respond_to do |format|
         format.html # index.html.erb
@@ -14,7 +16,7 @@ module Body
     # GET /body/weights/1
     # GET /body/weights/1.json
     def show
-      @weight = Weight.find(params[:id])
+      @weight = current_user.weights.find(params[:id])
 
       respond_to do |format|
         format.html # show.html.erb
@@ -25,7 +27,7 @@ module Body
     # GET /body/weights/new
     # GET /body/weights/new.json
     def new
-      @weight = Weight.new
+      @weight = current_user.weights.new
 
       respond_to do |format|
         format.html # new.html.erb
@@ -35,13 +37,13 @@ module Body
 
     # GET /body/weights/1/edit
     def edit
-      @weight = Weight.find(params[:id])
+      @weight = current_user.weights.find(params[:id])
     end
 
     # POST /body/weights
     # POST /body/weights.json
     def create
-      @weight = Weight.new(params[:weight])
+      @weight = current_user.weights.new(params[:weight])
 
       respond_to do |format|
         if @weight.save
@@ -57,7 +59,7 @@ module Body
     # PUT /body/weights/1
     # PUT /body/weights/1.json
     def update
-      @weight = Weight.find(params[:id])
+      @weight = current_user.weights.find(params[:id])
 
       respond_to do |format|
         if @weight.update_attributes(params[:weight])
@@ -73,7 +75,7 @@ module Body
     # DELETE /body/weights/1
     # DELETE /body/weights/1.json
     def destroy
-      @weight = Weight.find(params[:id])
+      @weight = current_user.weights.find(params[:id])
       @weight.destroy
 
       respond_to do |format|

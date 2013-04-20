@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="columns large-3">
+    <h1>Dashboard</h1>
+  </div>
+</div>
+
+
+<div class="row">
+  <% if current_user.current_weight %>
+
+    <div class="columns large-3">
+      <div class="unit-panel">
+        <h5>Weight</h5>
+        <h1><%= current_user.weight %></h1>
+        <h5>pounds</h5>
+      </div>
+    </div>
+
+    <div class="columns large-3">
+      <div class="unit-panel">
+        <h5>Body Fat</h5>
+        <h1>
+          <% if current_user.fat_percentage %>
+            <%= current_user.fat_percentage %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
+        <h5>percent</h5>
+      </div>
+    </div>
+
+    <div class="columns large-3">
+      <div class="unit-panel">
+        <h5>Lean Mass</h5>
+        <h1>
+          <% if current_user.lean_mass %>
+            <%= current_user.lean_mass %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
+        <h5>pounds</h5>
+      </div>
+    </div>
+
+    <div class="columns large-3">
+      <div class="unit-panel">
+        <h5>BMI</h5>
+        <h1>
+          <% if current_user.bmi %>
+            <%= current_user.bmi %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
+        <h5>points</h5>
+      </div>
+    </div>
+  <% end %>
+</div>

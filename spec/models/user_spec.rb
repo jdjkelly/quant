@@ -18,7 +18,7 @@
 #  unlock_token           :string(255)
 #  locked_at              :datetime
 #  name                   :string(255)
-#  height                 :decimal(, )
+#  height                 :float
 #
 
 require 'spec_helper'
@@ -26,20 +26,28 @@ require 'spec_helper'
 describe User do
   it { should have_many(:measurements) }
   it { should have_many(:weights) }
+  it { should validate_numericality_of :height }
   let(:user) { Fabricate(:user) }
-  let(:user_with_weights) {
-    2.times do
-      user.weights.create(recorded_at: Time.now, value: 1.0, user_id: user.id)
-    end
-  }
 
   describe "#weight" do
+    before(:each) do
+      2.times do
+        user.weights.create(recorded_at: Time.now, value: 1.0)
+      end
+    end
+
     it "returns the last recorded Weight" do
-      user.weight.should eq(user.weights.order("recorded_at DESC").first)
+      user.current_weight.should eq(user.weights.order("recorded_at DESC").first)
     end
 
     it "returns the same value as #current" do
-      user.weight.should eq(user.weights.current)
+      user.current_weight.should eq(user.weights.current)
+    end
+
+    context "when the user has a height" do
+      it "returns valid bmi" do
+        user.bmi.should eq(100.0)
+      end
     end
   end
 end

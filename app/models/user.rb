@@ -30,25 +30,43 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height
+
   scope :published, where(:published => true)
+
+  validates_numericality_of :height, :allow_nil => true
+  validates_presence_of :name
 
   has_many :measurements
   has_many :weights
+
   has_one :withings_account
 
-  def weight
+  def current_weight
     self.weights.current
   end
 
+  def weight
+    return unless current_weight
+    current_weight.value
+  end
+
   def fat_mass
-    weight.fat_mass_value
+    return unless current_weight
+    current_weight.fat_mass_value
   end
 
   def fat_percentage
-    weight.fat_percentage
+    return unless current_weight
+    current_weight.fat_percentage
   end
 
   def lean_mass
-    weight.lean_mass_value
+    return unless current_weight
+    current_weight.lean_mass_value
+  end
+
+  def bmi
+    return unless current_weight
+    current_weight.bmi
   end
 end
