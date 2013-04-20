@@ -43,18 +43,22 @@ class User < ActiveRecord::Base
   end
 
   def fat_mass
+    return unless weight
     weight.fat_mass_value
   end
 
   def fat_percentage
+    return unless weight
     weight.fat_percentage
   end
 
   def lean_mass
+    return unless weight
     weight.lean_mass_value
   end
 
   def bmi
+    return unless weight
     weight.bmi
   end
 end

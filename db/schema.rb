@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20130330165127) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "name"
-    t.decimal  "height"
+    t.float    "height"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
