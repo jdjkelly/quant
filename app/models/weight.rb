@@ -38,21 +38,25 @@ class Weight < ActiveRecord::Base
    def calculate_bmi
     return unless self.user && self.user.height
     self.bmi = self.value / Unit.new(self.user.height, :centimeters).to(:meters) ** 2
+    self.bmi.round(2)
   end
 
   def calculate_lean_mass_value
     return unless self.lean_mass_value.nil? && self.fat_mass_value.present? || self.fat_percentage.present?
     self.lean_mass_value = self.fat_mass_value.present? ? self.value - self.fat_mass_value : self.value - (self.value * (self.fat_percentage / 100))
+    self.lean_mass_value.round(2)
   end
 
   def calculate_fat_mass_value
     return unless self.fat_mass_value.nil? && self.lean_mass_value.present? || self.fat_percentage.present?
     self.fat_mass_value = self.lean_mass_value.present? ? self.value - self.lean_mass_value : self.value - (self.value * (self.fat_percentage / 100))
+    self.fat_mass_value.round(2)
   end
 
   def calculate_fat_percentage_value
     return unless self.fat_percentage.nil? && self.lean_mass_value.present? || self.fat_mass_value.present?
     self.fat_percentage = self.lean_mass_value.present? ? ((self.value - self.lean_mass_value) / self.value) * 100 : (self.fat_mass_value / self.value) * 100
+    self.fat_percentage.round(2)
   end
 
 end

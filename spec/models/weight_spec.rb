@@ -39,7 +39,7 @@ describe Weight do
     end
     context "when user has a height" do
       it "returns a value" do
-        weight_with_height.calculate_bmi.should eq(25.711662075298435)
+        weight_with_height.calculate_bmi.should eq(25.71)
       end
     end
   end

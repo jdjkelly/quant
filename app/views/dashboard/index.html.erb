@@ -4,45 +4,57 @@
   </div>
 </div>
 
-<div class="row">
 
+<div class="row">
+  <% if current_user.current_weight %>
     <div class="columns large-3">
-      <% if current_user.weight %>
-        <div class="unit-panel">
-          <h5>Weight</h5>
-          <h1><%= current_user.weight.value.round(2) %></h1>
-          <h5>pounds</h5>
-        </div>
-      <% end %>
+      <div class="unit-panel">
+        <h5>Weight</h5>
+        <h1><%= current_user.weight %></h1>
+        <h5>pounds</h5>
+      </div>
     </div>
 
     <div class="columns large-3">
-      <% if current_user.fat_percentage %>
-       <div class="unit-panel">
+      <div class="unit-panel">
         <h5>Body Fat</h5>
-        <h1><%= current_user.fat_percentage.round(2) %></h1>
+        <h1>
+          <% if current_user.fat_percentage %>
+            <%= current_user.fat_percentage %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
         <h5>percent</h5>
       </div>
-      <% end %>
     </div>
 
     <div class="columns large-3">
-      <% if current_user.lean_mass %>
-        <div class="unit-panel">
-          <h5>Lean Mass</h5>
-          <h1><%= current_user.lean_mass.round(2) %></h1>
-          <h5>pounds</h5>
-        </div>
-      <% end %>
+      <div class="unit-panel">
+        <h5>Lean Mass</h5>
+        <h1>
+          <% if current_user.lean_mass %>
+            <%= current_user.lean_mass %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
+        <h5>pounds</h5>
+      </div>
     </div>
 
     <div class="columns large-3">
-      <% if current_user.bmi %>
-        <div class="unit-panel">
-          <h5>BMI</h5>
-          <h1><%= current_user.bmi.round(2) %></h1>
-          <h5>points</h5>
-        </div>
-      <% end %>
+      <div class="unit-panel">
+        <h5>BMI</h5>
+        <h1>
+          <% if current_user.bmi %>
+            <%= current_user.bmi %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
+        <h5>points</h5>
+      </div>
     </div>
+  <% end %>
 </div>
