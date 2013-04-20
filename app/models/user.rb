@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   scope :published, where(:published => true)
 
   validates_numericality_of :height, :allow_nil => true
+  validates_presence_of :name
 
   has_many :measurements
   has_many :weights

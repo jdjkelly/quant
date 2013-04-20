@@ -47,6 +47,7 @@ group :assets do
   gem 'turbolinks'
   gem 'jquery-turbolinks'
   gem 'jquery-rails'
+  gem 'd3_rails'
 end
 
 

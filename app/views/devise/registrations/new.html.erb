@@ -1,19 +1,31 @@
 <div class="row">
-  <div class="columns large-6 push-3">
-    <h2>Sign up</h2>
+  <div class="columns large-4 push-4">
+    <h3 class="text-center">Sign up</h3>
   </div>
 </div>
 
 <div class="row">
-  <div class="columns large-6 push-3">
+  <div class="columns large-4 push-4">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "custom" }) do |f| %>
       <div class="panel">
-        <%= devise_error_messages! %>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            <% if resource.errors[:name].present? %>
+              <small class="error"><%= resource.errors[:name].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
 
         <div class="row">
           <div class="large-12 columns">
             <%= f.label :email %>
             <%= f.email_field :email, :autofocus => true %>
+            <% if resource.errors[:email].present? %>
+              <small class="error"><%= resource.errors[:email].join(", ") %></small>
+            <% end %>
           </div>
         </div>
 
@@ -21,6 +33,9 @@
           <div class="large-12 columns">
             <%= f.label :password %>
             <%= f.password_field :password %>
+            <% if resource.errors[:password].present? %>
+              <small class="error"><%= resource.errors[:password].join(", ") %></small>
+            <% end %>
           </div>
         </div>
 
@@ -28,14 +43,20 @@
           <div class="large-12 columns">
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation %>
+            <% if resource.errors[:password_confirmation].present? %>
+              <small class="error"><%= resource.errors[:password_confirmation].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns large-12">
+            <%= f.submit "Sign up", class: "button radius large-12 small-12" %>
           </div>
         </div>
 
       </div>
 
-      <div class="row">
-        <%= f.submit "Sign up", class: "button radius columns large-6 push-3" %>
-      </div>
     <% end %>
   </div>
 </div>

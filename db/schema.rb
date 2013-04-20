@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130330165127) do
+ActiveRecord::Schema.define(:version => 20130420171616) do
 
   create_table "measurements", :force => true do |t|
     t.float    "value"

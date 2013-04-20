@@ -229,7 +229,7 @@ $input-border-width: 2px;
 // $input-prefix-font-color-alt: #fff;
 
 // We use these to style the error states for inputs and labels
-// $input-error-message-padding: emCalc(6px) emCalc(4px);
+$input-error-message-padding: emCalc(8px) emCalc(16px);
 // $input-error-message-top: -($form-spacing) - emCalc(5px);
 // $input-error-message-font-size: emCalc(12px);
 // $input-error-message-font-weight: bold;
@@ -974,7 +974,7 @@ $topbar-bg: $black;
 
 // Height and margin
 // $topbar-height: 45px;
-$topbar-margin-bottom: emCalc(0px);
+$topbar-margin-bottom: emCalc(15px);
 
 // Control Input height for top bar
 // $topbar-input-height: 2.45em;
@@ -985,6 +985,7 @@ $topbar-margin-bottom: emCalc(0px);
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: #fff;
+$topbar-link-hover-color: black;
 // $topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13px);
 $topbar-link-hover-lightness: 0%;

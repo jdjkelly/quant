@@ -21,7 +21,7 @@
       </section>
       <section class="top-bar-section">
         <ul class="right">
-          <li class="has-dropdown"><%= link_to "Joshua Kelly", user_path(current_user) %></a>
+          <li class="has-dropdown"><%= link_to current_user.name, user_path(current_user) %></a>
 
             <ul class="dropdown">
               <li><label>User Settings</label></li>
