@@ -18,7 +18,7 @@
 #  unlock_token           :string(255)
 #  locked_at              :datetime
 #  name                   :string(255)
-#  height                 :decimal(, )
+#  height                 :float
 #
 
 Fabricator(:user) do

@@ -18,7 +18,7 @@
 #  unlock_token           :string(255)
 #  locked_at              :datetime
 #  name                   :string(255)
-#  height                 :decimal(, )
+#  height                 :float
 #
 
 require 'spec_helper'
@@ -37,11 +37,17 @@ describe User do
     end
 
     it "returns the last recorded Weight" do
-      user.weight.should eq(user.weights.order("recorded_at DESC").first)
+      user.current_weight.should eq(user.weights.order("recorded_at DESC").first)
     end
 
     it "returns the same value as #current" do
-      user.weight.should eq(user.weights.current)
+      user.current_weight.should eq(user.weights.current)
+    end
+
+    context "when the user has a height" do
+      it "returns valid bmi" do
+        user.bmi.should eq(100.0)
+      end
     end
   end
 end
