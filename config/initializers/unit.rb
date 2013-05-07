@@ -8,9 +8,14 @@ class Unit
       meters: 1.0,
       centimeters: 100
     },
-
     centimeters: {
       meters: 0.01
+    },
+    kilograms: {
+      pounds: 2.2046
+    },
+    pounds: {
+      kilograms: 0.453592
     }
   }
 
