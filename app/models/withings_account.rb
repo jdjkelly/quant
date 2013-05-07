@@ -20,9 +20,9 @@ class WithingsAccount < ActiveRecord::Base
   def get_user_data
     Withings::User.authenticate(userid, oauth_token, oauth_token_secret).measurement_groups.each do |measurement|
       user.weights.create(
-        value: Unit.new(measurement.weight, :kilograms).to(:pounds).round(1),
+        value: Unit.new(measurement.weight, :kilograms).to(:pounds),
         recorded_at: measurement.taken_at,
-        fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds).round(1)
+        fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds)
       )
     end
   end
