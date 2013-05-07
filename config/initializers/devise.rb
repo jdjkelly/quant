@@ -239,4 +239,6 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
   config.allow_unconfirmed_access_for = 14.days
+
+  config.omniauth :withings, Settings.withings_oauth_key, Settings.withings_oauth_secret
 end

@@ -9,18 +9,21 @@
 #
 
 class WithingsAccount < ActiveRecord::Base
-  attr_accessible :uid
+  attr_accessible :userid, :oauth_token, :oauth_verifier, :oauth_token_secret
 
   belongs_to :user
+
+  before_create :get_user_data
+
+  # protected
+
+  def get_user_data
+    Withings::User.authenticate(userid, oauth_token, oauth_token_secret).measurement_groups.each do |measurement|
+      user.weights.create(
+        value: Unit.new(measurement.weight, :kilograms).to(:pounds).round(1),
+        recorded_at: measurement.taken_at,
+        fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds).round(1)
+      )
+    end
+  end
 end
-
-
-@callback_url = "http://127.0.0.1:3000/oauth/callback"
-@consumer = OAuth::Consumer.new(Settings.withings_oauth_key, Settings.withings_oauth_secret, {
-  :site => "https://oauth.withings.com/",
-  :request_token_path => '/oauth/request_token',
-  :authorize_path     => '/oauth/authorize',
-  :access_token_path  => '/oauth/access_token',
-  :http_method   => :get
-})
-

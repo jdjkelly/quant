@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130420171616) do
+ActiveRecord::Schema.define(:version => 20130507025853) do
 
   create_table "measurements", :force => true do |t|
     t.float    "value"
@@ -64,9 +64,15 @@ ActiveRecord::Schema.define(:version => 20130420171616) do
   add_index "weights", ["user_id"], :name => "index_weights_on_user_id"
 
   create_table "withings_accounts", :force => true do |t|
-    t.string   "uid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "userid"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "oauth_token"
+    t.string   "oauth_verifier"
+    t.integer  "user_id"
+    t.string   "oauth_token_secret"
   end
+
+  add_index "withings_accounts", ["user_id"], :name => "index_withings_accounts_on_user_id"
 
 end
