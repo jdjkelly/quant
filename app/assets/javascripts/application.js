@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require_tree .
 //= require turbolinks
+//= require foundation
+//  This should select only the necessary ones
 //= require jquery.turbolinks
 
 $(document).foundation();
