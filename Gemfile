@@ -7,6 +7,9 @@ gem 'annotate', ">=2.5.0"
 gem 'rails_config'
 gem 'oauth'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
+gem 'withings', github: 'jdjkelly/withings'
 
 group :development do
   gem 'rspec-rails'

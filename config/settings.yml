@@ -1,4 +1,4 @@
-withings_oauth_key: <%= ENV["withings_oauth_key"] %>
+withings_oauth_key: <%= ENV["bi_withings_oauth_key"] %>
 withings_oauth_secret: <%= ENV["bi_withings_oauth_secret"] %>
 coveralls_repo_token: <%= ENV["bi_coveralls_repo_token"] %>
 smtp_address: <%= ENV["bi_smtp_address"] %>
