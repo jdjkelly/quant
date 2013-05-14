@@ -10,6 +10,9 @@ Spork.prefork do
   require 'email_spec'
   require 'capybara/rspec'
   require 'capybara/rails'
+  require 'omniauth'
+
+  OmniAuth.config.test_mode = true
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.

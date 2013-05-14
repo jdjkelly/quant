@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/jdjkelly/withings.git
-  revision: befdd6941c3d5c9cc3d80340b902236a88c09d2c
+  revision: 74a4308e05c10214c181b8fc2cc837bc6844704f
   specs:
     withings (1.0)
       httparty

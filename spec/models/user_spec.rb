@@ -46,8 +46,16 @@ describe User do
 
     context "when the user has a height" do
       it "returns valid bmi" do
-        user.bmi.should eq(100.0)
+        user.bmi.should eq(45.3592)
       end
     end
+  end
+
+  describe "#has_withings_auth?" do
+    #pending
+  end
+
+  describe "#has_scale_auth?" do
+    #pending
   end
 end

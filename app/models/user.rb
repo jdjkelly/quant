@@ -36,6 +36,8 @@ class User < ActiveRecord::Base
   validates_numericality_of :height, :allow_nil => true
   validates_presence_of :name
 
+  after_save :update_weights_bmi, :if => :height_changed?
+
   has_many :measurements
   has_many :weights
 
@@ -68,5 +70,19 @@ class User < ActiveRecord::Base
   def bmi
     return unless current_weight
     current_weight.bmi
+  end
+
+  def has_withings_auth?
+    withings_account
+  end
+
+  def has_scale_auth?
+    has_withings_auth?
+  end
+
+  protected
+
+  def update_weights_bmi
+    Weight.update_bmi_for_user(id)
   end
 end

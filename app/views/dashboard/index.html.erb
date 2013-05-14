@@ -11,7 +11,7 @@
     <div class="columns large-3">
       <div class="unit-panel">
         <h5>Weight</h5>
-        <h1><%= current_user.weight %></h1>
+        <h1><%= current_user.weight.round(1) %></h1>
         <h5>pounds</h5>
       </div>
     </div>
@@ -21,7 +21,7 @@
         <h5>Body Fat</h5>
         <h1>
           <% if current_user.fat_percentage %>
-            <%= current_user.fat_percentage %>
+            <%= current_user.fat_percentage.round(1) %>
           <% else %>
             N/A
           <% end %>
@@ -35,7 +35,7 @@
         <h5>Lean Mass</h5>
         <h1>
           <% if current_user.lean_mass %>
-            <%= current_user.lean_mass %>
+            <%= current_user.lean_mass.round(1) %>
           <% else %>
             N/A
           <% end %>
@@ -49,7 +49,7 @@
         <h5>BMI</h5>
         <h1>
           <% if current_user.bmi %>
-            <%= current_user.bmi %>
+            <%= current_user.bmi.round(1) %>
           <% else %>
             N/A
           <% end %>

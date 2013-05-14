@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130507025853) do
+ActiveRecord::Schema.define(:version => 20130514040006) do
 
   create_table "measurements", :force => true do |t|
     t.float    "value"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130507025853) do
     t.datetime "recorded_at"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.integer  "grpid"
   end
 
   add_index "weights", ["user_id"], :name => "index_weights_on_user_id"

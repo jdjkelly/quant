@@ -51,3 +51,8 @@ TBD. GPL is likely. Open an issue to have input.
 * recorded_at
 * bicep, calf, chest, forearm, hips, neck, thigh, waist
 * weight, fat, bmi, muscle mass (aliases)
+
+
+### To Do
+* Tests for Withings Omniauth (omniauths_callback_controller_spec, withings_account_controller_spec)
+* Tests for user#has_withings_auth?, user#has_scale_auth?, user#update_bmi_for_user
