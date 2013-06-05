@@ -12,7 +12,7 @@ the quantified self hacker, yet both store your data in their respective, siloed
 What happens when one of them goes bust? Or decides to pivot towards an ad-based business
 model?
 
-This project includes a Rails + MySQL RESTful API to store your data.
+This project includes a Rails + Postgres RESTful API to store your data.
 
 ### License
 
