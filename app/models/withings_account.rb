@@ -18,7 +18,7 @@ class WithingsAccount < ActiveRecord::Base
   # protected
 
   def get_user_data
-    Withings::User.authenticate(userid, oauth_token, oauth_token_secret).measurement_groups.each do |measurement|
+    WithingsAccount.authenticated_user(id).measurement_groups.each do |measurement|
       user.weights.create(
         grpid: measurement.grpid,
         value: Unit.new(measurement.weight, :kilograms).to(:pounds),
@@ -26,5 +26,10 @@ class WithingsAccount < ActiveRecord::Base
         fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds)
       )
     end
+  end
+
+  def self.authenticated_user id
+    user = WithingsAccount.find id
+    Withings::User.authenticate(user.userid, user.oauth_token, user.oauth_token_secret)
   end
 end
