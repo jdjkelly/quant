@@ -9,7 +9,9 @@ gem 'oauth'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
+gem 'omniauth-fitbit'
 gem 'withings', github: 'jdjkelly/withings'
+gem 'fitgem'
 
 group :development do
   gem 'rspec-rails'

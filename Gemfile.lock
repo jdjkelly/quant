@@ -107,6 +107,8 @@ GEM
     faker (1.1.2)
       i18n (~> 0.5)
     ffi (1.8.1)
+    fitgem (0.7.0)
+      oauth
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
@@ -165,6 +167,9 @@ GEM
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
+    omniauth-fitbit (1.0.0)
+      multi_xml
+      omniauth-oauth (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -291,6 +296,7 @@ DEPENDENCIES
   email_spec
   fabrication
   faker
+  fitgem
   foreman
   growl
   guard
@@ -302,6 +308,7 @@ DEPENDENCIES
   newrelic_rpm
   oauth
   omniauth
+  omniauth-fitbit
   omniauth-withings!
   pg
   pry

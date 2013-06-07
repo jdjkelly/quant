@@ -241,4 +241,6 @@ Devise.setup do |config|
   config.allow_unconfirmed_access_for = 14.days
 
   config.omniauth :withings, Settings.withings_oauth_key, Settings.withings_oauth_secret
+
+  config.omniauth :fitbit, Settings.fitbit_oauth_key, Settings.fitbit_oauth_secret
 end

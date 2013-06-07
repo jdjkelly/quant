@@ -18,7 +18,7 @@
 #  unlock_token           :string(255)
 #  locked_at              :datetime
 #  name                   :string(255)
-#  height                 :decimal(, )
+#  height                 :float
 #
 
 class User < ActiveRecord::Base
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:withings]
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:withings, :fitbit]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height
@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   has_many :weights
 
   has_one :withings_account
+  has_one :fitbit_account
 
   def current_weight
     self.weights.current
@@ -74,6 +75,10 @@ class User < ActiveRecord::Base
 
   def has_withings_auth?
     withings_account
+  end
+
+  def has_fitbit_auth?
+    fitbit_account
   end
 
   def has_scale_auth?
