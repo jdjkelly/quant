@@ -13,6 +13,7 @@
 #  recorded_at     :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  grpid           :integer
 #
 
 require 'spec_helper'

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130514040006) do
+ActiveRecord::Schema.define(:version => 20130605043956) do
+
+  create_table "fitbit_accounts", :force => true do |t|
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.string   "oauth_token_secret"
+    t.integer  "user_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "fitbit_accounts", ["user_id"], :name => "index_fitbit_accounts_on_user_id"
 
   create_table "measurements", :force => true do |t|
     t.float    "value"
