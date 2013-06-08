@@ -19,7 +19,6 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'foreman'
-  gem 'coveralls', require: false
   gem 'quiet_assets'
 end
 
@@ -52,7 +51,6 @@ group :assets do
   gem 'turbolinks'
   gem 'jquery-turbolinks'
   gem 'jquery-rails'
-  gem 'd3_rails'
 end
 
 
