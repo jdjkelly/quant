@@ -12,14 +12,10 @@
 #  oauth_token_secret :string(255)
 #
 
-class WithingsAccount < ActiveRecord::Base
-  attr_accessible :userid, :oauth_token, :oauth_verifier, :oauth_token_secret
+class WithingsAccount < DataProvider
+  attr_accessible :userid, :oauth_token, :oauth_token_secret
 
-  belongs_to :user
-
-  before_create :get_user_data
-
-  # protected
+  validates_presence_of :userid, :oauth_token, :oauth_token_secret
 
   def get_user_data
     WithingsAccount.authenticated_user(id).measurement_groups.each do |measurement|

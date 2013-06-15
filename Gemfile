@@ -34,6 +34,7 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'faker'
+  gem 'webmock'
 end
 
 group :production do
