@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130608214958) do
+ActiveRecord::Schema.define(:version => 20130615174058) do
 
   create_table "fitbit_accounts", :force => true do |t|
     t.string   "uid"
@@ -71,8 +71,10 @@ ActiveRecord::Schema.define(:version => 20130608214958) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "grpid"
+    t.hstore   "meta"
   end
 
+  add_index "weights", ["meta"], :name => "index_weights_on_meta"
   add_index "weights", ["user_id"], :name => "index_weights_on_user_id"
 
   create_table "withings_accounts", :force => true do |t|

@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
-gem 'pg'
 gem 'pry'
-gem 'annotate', ">=2.5.0"
 gem 'rails_config'
 gem 'oauth'
 gem 'devise'
@@ -12,6 +10,13 @@ gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
 gem 'omniauth-fitbit'
 gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem'
+
+gem 'activerecord-postgres-hstore'
+gem 'annotate', ">=2.5.0"
+
+group :database do
+  gem 'pg'
+end
 
 group :development do
   gem 'rspec-rails'
