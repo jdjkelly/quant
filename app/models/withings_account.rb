@@ -20,10 +20,13 @@ class WithingsAccount < DataProvider
   def get_user_data
     WithingsAccount.authenticated_user(id).measurement_groups.each do |measurement|
       user.weights.create(
-        grpid: measurement.grpid,
         value: Unit.new(measurement.weight, :kilograms).to(:pounds),
         recorded_at: measurement.taken_at,
-        fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds)
+        fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds),
+        source: "WithingsAccount",
+        meta: {
+          grpid: measurement.grpid.to_s
+        }
       )
     end
   end

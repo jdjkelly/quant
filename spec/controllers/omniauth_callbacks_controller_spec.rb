@@ -45,12 +45,6 @@ describe OmniauthCallbacksController do
     before do
       request.env["devise.mapping"] = Devise.mappings[:user]
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:fitbit]
-
-      # stub_request(:get, /.*wbsapi.withings.net\/user\?action=getbyuserid.*/).
-      #   to_return(:status => 200, :body => "{\"status\":0,\"body\":{\"users\":[{\"id\":0,\"firstname\":\"Test\",\"lastname\":\"User\",\"shortname\":\"TES\",\"gender\":0,\"fatmethod\":131,\"birthdate\":598467600,\"ispublic\":5}]}}", :headers => {})
-
-      # stub_request(:get, /.*wbsapi.withings.net\/measure\?action=getmeas.*/).
-      #   to_return(:status => 200, :body => "{\"status\":0,\"body\":{\"updatetime\":1370730432,\"more\":370,\"measuregrps\":[{\"grpid\":123986552,\"attrib\":0,\"date\":1370691572,\"category\":1,\"measures\":[{\"value\":64400,\"type\":1,\"unit\":-3},{\"value\":54519,\"type\":5,\"unit\":-3},{\"value\":15344,\"type\":6,\"unit\":-3},{\"value\":9881,\"type\":8,\"unit\":-3}]}]}}", :headers => {})
     end
 
     context "when a user is signed in" do
@@ -79,5 +73,3 @@ describe OmniauthCallbacksController do
   end
 
 end
-
-
