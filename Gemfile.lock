@@ -177,6 +177,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-rails (0.2.2)
+      pry (>= 0.9.10)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -304,7 +306,7 @@ DEPENDENCIES
   omniauth-fitbit
   omniauth-withings!
   pg
-  pry
+  pry-rails
   quiet_assets
   rails (= 3.2.12)
   rails_config

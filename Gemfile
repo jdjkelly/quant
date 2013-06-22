@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
-gem 'pry'
 gem 'rails_config'
 gem 'oauth'
 gem 'devise'
@@ -25,6 +24,7 @@ group :development do
   gem 'guard-bundler'
   gem 'foreman'
   gem 'quiet_assets'
+  gem 'pry-rails'
 end
 
 group :test do
