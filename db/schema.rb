@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130622044752) do
+ActiveRecord::Schema.define(:version => 20130622161730) do
 
   create_table "fitbit_accounts", :force => true do |t|
     t.string   "uid"
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(:version => 20130622044752) do
     t.datetime "recorded_at"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.integer  "grpid"
     t.hstore   "meta"
     t.string   "source"
   end
