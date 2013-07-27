@@ -1,5 +1,9 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
+  def failure
+    flash[:alert] = "There was an error connecting your accounts"
+  end
+
   def withings
     if user_signed_in?
       if current_user.has_withings_auth?

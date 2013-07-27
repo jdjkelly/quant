@@ -29,7 +29,7 @@ class WithingsAccount < DataProvider
 
   def sync_measurement_groups(measurement_groups)
     measurement_groups.each do |measurement|
-      return if User.weight.where("meta @> 'grpid=>#{measurement.grpid.to_s}'").first
+      return if user.weights.where("meta @> 'grpid=>#{measurement.grpid.to_s}'").first
       user.weights.create(
         value: Unit.new(measurement.weight, :kilograms).to(:pounds),
         recorded_at: measurement.taken_at,
