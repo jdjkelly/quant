@@ -18,21 +18,24 @@ ready = ->
             }
           ]
         }
-        
-        new Chart(ctx).Line data, 
+
+        new Chart(ctx).Line data,
           scaleShowLabels : false,
           scaleShowGridLines : false,
           scaleLineColor : "rgba(0,0,0,0)",
           scaleFontSize : 16,
           scaleFontColor : "#444"
       )()
-      when "doughnut" then (=> 
+      when "doughnut" then (=>
+        data = $(@).data("chart-data")
+        return unless typeof data == "number"
+
         data = [
-          value: 30,
-          color:"#F7464A"
+          value: 100 - data,
+          color: "#D4CCC5"
         ,
-          value: 90,
-          color:"#D4CCC5"
+          value: data,
+          color: "#3498DB"
         ]
 
         new Chart(ctx).Doughnut data

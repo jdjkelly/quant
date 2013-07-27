@@ -17,7 +17,7 @@
             <h5>pounds</h5>
           </div>
           <div class="columns large-6">
-            <canvas class="chart" data-chart-type="line" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="115"></canvas>
+            <canvas class="chart" data-chart-type="line" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="102"></canvas>
           </div>
         </div>
       </div>
@@ -39,7 +39,15 @@
 
     <div class="columns large-3">
       <div class="unit-panel">
-        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="115"></canvas>
+        <h5>HEIGHT</h5>
+        <h1>
+          <% if current_user.height %>
+            <%= current_user.height.round(1) %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
+        <h5>centimeters</h5>
       </div>
     </div>
 
@@ -63,7 +71,7 @@
 
     <div class="columns large-3">
       <div class="unit-panel">
-        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="115"></canvas>
+        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.fat_percentage.round(1) %>" width="178" height="102"></canvas>
       </div>
     </div>
 
@@ -83,7 +91,7 @@
 
     <div class="columns large-3">
       <div class="unit-panel">
-        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="115"></canvas>
+        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.lean_mass_percentage.round(1) %>" width="178" height="102"></canvas>
       </div>
     </div>
 
