@@ -5,7 +5,7 @@ module Body
     # GET /body/weights
     # GET /body/weights.json
     def index
-      @weights = current_user.weights
+      @weights = current_user.weights.order("recorded_at DESC")
 
       respond_to do |format|
         format.html # index.html.erb

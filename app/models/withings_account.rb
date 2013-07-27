@@ -18,7 +18,18 @@ class WithingsAccount < DataProvider
   validates_presence_of :userid, :oauth_token, :oauth_token_secret
 
   def get_user_data
-    WithingsAccount.authenticated_user(id).measurement_groups.each do |measurement|
+    if synced_at
+      sync_measurement_groups WithingsAccount.authenticated_user(id).send(:measurement_groups, { start_at: synced_at })
+    else
+      sync_measurement_groups WithingsAccount.authenticated_user(id).send(:measurement_groups)
+    end
+
+    update_attribute :synced_at, Time.now
+  end
+
+  def sync_measurement_groups(measurement_groups)
+    measurement_groups.each do |measurement|
+      return if User.weight.where("meta @> 'grpid=>#{measurement.grpid.to_s}'").first
       user.weights.create(
         value: Unit.new(measurement.weight, :kilograms).to(:pounds),
         recorded_at: measurement.taken_at,

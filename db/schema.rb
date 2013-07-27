@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130622161730) do
+ActiveRecord::Schema.define(:version => 20130622203100) do
 
   create_table "fitbit_accounts", :force => true do |t|
     t.string   "uid"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20130622161730) do
     t.string   "oauth_token"
     t.integer  "user_id"
     t.string   "oauth_token_secret"
+    t.datetime "synced_at"
   end
 
   add_index "withings_accounts", ["user_id"], :name => "index_withings_accounts_on_user_id"
