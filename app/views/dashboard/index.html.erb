@@ -5,16 +5,47 @@
 </div>
 
 
-<div class="row">
-  <% if current_user.current_weight %>
+<% if current_user.current_weight %>
+  <div class="row">
+
+    <div class="columns large-6">
+      <div class="unit-panel">
+        <div class="row">
+          <div class="columns large-6">
+            <h5>Weight</h5>
+            <h1><%= current_user.weight.round(1) %></h1>
+            <h5>pounds</h5>
+          </div>
+          <div class="columns large-6">
+            <canvas class="chart" data-chart-type="line" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="115"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="columns large-3">
       <div class="unit-panel">
-        <h5>Weight</h5>
-        <h1><%= current_user.weight.round(1) %></h1>
-        <h5>pounds</h5>
+        <h5>BMI</h5>
+        <h1>
+          <% if current_user.bmi %>
+            <%= current_user.bmi.round(1) %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
+        <h5>points</h5>
       </div>
     </div>
+
+    <div class="columns large-3">
+      <div class="unit-panel">
+        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="115"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
 
     <div class="columns large-3">
       <div class="unit-panel">
@@ -27,6 +58,12 @@
           <% end %>
         </h1>
         <h5>percent</h5>
+      </div>
+    </div>
+
+    <div class="columns large-3">
+      <div class="unit-panel">
+        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="115"></canvas>
       </div>
     </div>
 
@@ -46,16 +83,9 @@
 
     <div class="columns large-3">
       <div class="unit-panel">
-        <h5>BMI</h5>
-        <h1>
-          <% if current_user.bmi %>
-            <%= current_user.bmi.round(1) %>
-          <% else %>
-            N/A
-          <% end %>
-        </h1>
-        <h5>points</h5>
+        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="115"></canvas>
       </div>
     </div>
-  <% end %>
-</div>
+
+  </div>
+<% end %>

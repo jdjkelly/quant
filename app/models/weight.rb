@@ -35,6 +35,10 @@ class Weight < ActiveRecord::Base
     order("recorded_at DESC").first
   end
 
+  def self.most_recent(count)
+    order("recorded_at DESC").limit(count)
+  end
+
   def calculate_all_known_values
     %w(lean_mass_value fat_mass_value fat_percentage_value bmi).each do |measurement|
       self.try("calculate_#{measurement}")
