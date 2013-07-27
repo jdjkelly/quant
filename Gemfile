@@ -9,9 +9,9 @@ gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
 gem 'omniauth-fitbit'
 gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem'
-
 gem 'activerecord-postgres-hstore'
 gem 'annotate', ">=2.5.0"
+gem 'active_model_serializers'
 
 group :database do
   gem 'pg'
@@ -25,6 +25,7 @@ group :development do
   gem 'foreman'
   gem 'quiet_assets'
   gem 'pry-rails'
+  gem 'thin'
 end
 
 group :test do

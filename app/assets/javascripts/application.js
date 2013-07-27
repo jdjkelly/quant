@@ -14,8 +14,7 @@
 //= require jquery_ujs
 //= require_tree .
 //= require turbolinks
-//= require foundation
-//  This should select only the necessary ones
 //= require jquery.turbolinks
+//= require chart
 
-$(document).foundation();
+$.setReadyEvent('page:change')
