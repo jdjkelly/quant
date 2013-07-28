@@ -1,9 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
-gem 'pg'
-gem 'pry'
-gem 'annotate', ">=2.5.0"
 gem 'rails_config'
 gem 'oauth'
 gem 'devise'
@@ -12,6 +9,13 @@ gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
 gem 'omniauth-fitbit'
 gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem'
+gem 'activerecord-postgres-hstore'
+gem 'annotate', ">=2.5.0"
+gem 'active_model_serializers'
+
+group :database do
+  gem 'pg'
+end
 
 group :development do
   gem 'rspec-rails'
@@ -19,8 +23,9 @@ group :development do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'foreman'
-  gem 'coveralls', require: false
   gem 'quiet_assets'
+  gem 'pry-rails'
+  gem 'thin'
 end
 
 group :test do
@@ -35,6 +40,7 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
   gem 'faker'
+  gem 'webmock'
 end
 
 group :production do
@@ -52,7 +58,6 @@ group :assets do
   gem 'turbolinks'
   gem 'jquery-turbolinks'
   gem 'jquery-rails'
-  gem 'd3_rails'
 end
 
 

@@ -12,12 +12,10 @@ Bodyimage::Application.routes.draw do
     omniauth_callbacks: "omniauth_callbacks"
   }
 
-  resources :dashboard,
-    :only => [:index]
-  resources :home,
-    :only => [:index]
-  resources :users,
-    :only => [:show]
+  resources :dashboard, :only => [:index]
+  resources :home, :only => [:index]
+  resources :users
+  resource :sync, :only => [:update]
 
   namespace :body do
     resources :measurements, :weights

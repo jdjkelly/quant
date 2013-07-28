@@ -1,14 +1,17 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
+  def failure
+    flash[:alert] = "There was an error connecting your accounts"
+  end
+
   def withings
     if user_signed_in?
       if current_user.has_withings_auth?
         flash[:success] = "You've already synchronized your scale"
       else
         current_user.create_withings_account(
-          userid: params["userid"],
+          userid: request.env["omniauth.auth"]["uid"],
           oauth_token: request.env["omniauth.auth"]["credentials"]["token"],
-          oauth_verifier: params["oauth_verifier"],
           oauth_token_secret: request.env["omniauth.auth"]["credentials"]["secret"]
         )
 

@@ -14,5 +14,8 @@
 require 'spec_helper'
 
 describe FitbitAccount do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_presence_of :uid }
+  it { should validate_presence_of :oauth_token }
+  it { should validate_presence_of :oauth_token_secret }
+  it { should belong_to(:user) }
 end

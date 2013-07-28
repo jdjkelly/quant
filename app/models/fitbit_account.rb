@@ -11,14 +11,12 @@
 #  updated_at         :datetime         not null
 #
 
-class FitbitAccount < ActiveRecord::Base
+class FitbitAccount < DataProvider
   attr_accessible :uid, :oauth_token, :oauth_token_secret
 
-  belongs_to :user
-
-  before_create :get_user_data
+  validates_presence_of :uid, :oauth_token, :oauth_token_secret
 
   def get_user_data
-    # NotImplemented
+
   end
 end

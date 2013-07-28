@@ -12,22 +12,32 @@
 #  oauth_token_secret :string(255)
 #
 
-class WithingsAccount < ActiveRecord::Base
-  attr_accessible :userid, :oauth_token, :oauth_verifier, :oauth_token_secret
+class WithingsAccount < DataProvider
+  attr_accessible :userid, :oauth_token, :oauth_token_secret
 
-  belongs_to :user
-
-  before_create :get_user_data
-
-  # protected
+  validates_presence_of :userid, :oauth_token, :oauth_token_secret
 
   def get_user_data
-    WithingsAccount.authenticated_user(id).measurement_groups.each do |measurement|
+    if synced_at
+      sync_measurement_groups WithingsAccount.authenticated_user(id).send(:measurement_groups, { start_at: synced_at })
+    else
+      sync_measurement_groups WithingsAccount.authenticated_user(id).send(:measurement_groups)
+    end
+
+    update_attribute :synced_at, Time.now
+  end
+
+  def sync_measurement_groups(measurement_groups)
+    measurement_groups.each do |measurement|
+      return if user.weights.where("meta @> 'grpid=>#{measurement.grpid.to_s}'").first
       user.weights.create(
-        grpid: measurement.grpid,
         value: Unit.new(measurement.weight, :kilograms).to(:pounds),
         recorded_at: measurement.taken_at,
-        fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds)
+        fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds),
+        source: "WithingsAccount",
+        meta: {
+          grpid: measurement.grpid.to_s
+        }
       )
     end
   end
