@@ -46,6 +46,10 @@ GEM
       activesupport (= 3.2.12)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-postgres-earthdistance (0.2.0)
+      pg
+      rails (>= 3.1)
+      rake
     activerecord-postgres-hstore (0.7.6)
       activerecord (>= 3.1)
       pg-hstore (>= 1.1.5)
@@ -290,6 +294,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  activerecord-postgres-earthdistance
   activerecord-postgres-hstore
   annotate (>= 2.5.0)
   capybara (~> 1.1.4)

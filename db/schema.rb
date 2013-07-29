@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130622203100) do
+ActiveRecord::Schema.define(:version => 20130728222738) do
 
   create_table "fitbit_accounts", :force => true do |t|
     t.string   "uid"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(:version => 20130622203100) do
 
   add_index "fitbit_accounts", ["user_id"], :name => "index_fitbit_accounts_on_user_id"
 
+  create_table "locations", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "recorded_at"
+    t.decimal  "lat"
+    t.decimal  "lng"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "measurements", :force => true do |t|
     t.float    "value"
     t.string   "type"
@@ -34,6 +43,14 @@ ActiveRecord::Schema.define(:version => 20130622203100) do
   end
 
   add_index "measurements", ["user_id"], :name => "index_measurements_on_user_id"
+
+  create_table "spatial_ref_sys", :id => false, :force => true do |t|
+    t.integer "srid",                      :null => false
+    t.string  "auth_name", :limit => 256
+    t.integer "auth_srid"
+    t.string  "srtext",    :limit => 2048
+    t.string  "proj4text", :limit => 2048
+  end
 
   create_table "users", :force => true do |t|
     t.datetime "created_at",                             :null => false
