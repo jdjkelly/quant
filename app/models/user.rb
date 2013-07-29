@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
 
   has_many :measurements
   has_many :weights
+  has_many :locations
 
   has_one :withings_account
   has_one :fitbit_account

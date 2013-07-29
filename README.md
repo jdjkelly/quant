@@ -41,7 +41,7 @@ THE SOFTWARE.
 
 ### Roadmap
 
-#### /body/weight
+#### /weights
 * Weight.all_for_user.order("date DESC")
 * recorded_at
 * value
@@ -50,10 +50,10 @@ THE SOFTWARE.
 * lean_mass_value
 * fat_mass_value
 
-#### /body/weight/current
+#### /weights/current
 * Weight.current_for_user
 
-#### /body/weight/goal
+#### /weights/goal
 * WeightGoal.current_for_user
 * recorded_at
 * value
@@ -67,7 +67,7 @@ THE SOFTWARE.
 * height
 * birthday
 
-#### /body/measurements
+#### /measurements
 * Measurement.all_for_user.order("date DESC")
 * recorded_at
 * bicep, calf, chest, forearm, hips, neck, thigh, waist
@@ -77,3 +77,7 @@ THE SOFTWARE.
 ### To Do
 * Tests for Withings Omniauth (omniauths_callback_controller_spec, withings_account_controller_spec)
 * Tests for user#has_withings_auth?, user#has_scale_auth?, user#update_bmi_for_user
+* Migrate body namespace to top level
+* Add active model serializers
+* Add basic add/edit UI for location/weight/measurements
+* Validation on birthday field

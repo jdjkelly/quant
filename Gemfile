@@ -10,6 +10,7 @@ gem 'omniauth-fitbit'
 gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem'
 gem 'activerecord-postgres-hstore'
+gem 'activerecord-postgres-earthdistance'
 gem 'annotate', ">=2.5.0"
 gem 'active_model_serializers'
 

@@ -15,7 +15,7 @@ Bodyimage::Application.routes.draw do
   resources :dashboard, :only => [:index]
   resources :home, :only => [:index]
   resources :users
-  resource :sync, :only => [:update]
+  resources :locations
 
   namespace :body do
     resources :measurements, :weights
