@@ -73,6 +73,12 @@ THE SOFTWARE.
 * bicep, calf, chest, forearm, hips, neck, thigh, waist
 * weight, fat, bmi, muscle mass (aliases)
 
+#### /lifts
+
+#### /sleep
+
+#### /nutrition
+
 
 ### To Do
 * Tests for Withings Omniauth (omniauths_callback_controller_spec, withings_account_controller_spec)
@@ -81,3 +87,6 @@ THE SOFTWARE.
 * Add active model serializers
 * Add basic add/edit UI for location/weight/measurements
 * Validation on birthday field
+* Add Strong Params
+* Upgrade to Rails 4/Ruby 2.0
+* Generic "data update" methods on login/forced - basically the sync feature
