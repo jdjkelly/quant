@@ -91,6 +91,10 @@ class User < ActiveRecord::Base
     has_withings_auth?
   end
 
+  def sync_all_provider_data
+    [withings_account, fitbit_account].each {|provider| provider.try(:get_user_data)}
+  end
+
   protected
 
   def update_weights_bmi
