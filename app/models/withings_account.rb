@@ -28,7 +28,6 @@ class WithingsAccount < DataProvider
   end
 
   def sync_measurement_groups(measurement_groups)
-    binding.pry
     measurement_groups.each do |measurement|
       return if user.weights.where("meta @> 'grpid=>#{measurement.grpid.to_s}'").first
       user.weights.create(
