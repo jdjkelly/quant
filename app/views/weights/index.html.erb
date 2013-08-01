@@ -31,9 +31,9 @@
         <td><%= weight.bmi %></td>
         <td><%= weight.recorded_at %></td>
         <td><%= weight.created_at %></td>
-        <td><%= link_to 'Show', body_weight_path(weight) %></td>
-        <td><%= link_to 'Edit', edit_body_weight_path(weight) %></td>
-        <td><%= link_to 'Destroy', body_weight_path(weight), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', weight_path(weight) %></td>
+        <td><%= link_to 'Edit', edit_weight_path(weight) %></td>
+        <td><%= link_to 'Destroy', weight_path(weight), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     </table>
@@ -44,6 +44,6 @@
 
 <div class="row">
   <div class="columns large-12">
-    <%= link_to 'New Weight', new_body_weight_path %>
+    <%= link_to 'New Weight', new_weight_path %>
   </div>
 </div>

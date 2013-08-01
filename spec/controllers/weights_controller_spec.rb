@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Body::WeightsController do
+describe WeightsController do
 
   # This should return the minimal set of attributes required to create a valid
   # Weight. As you add validations to Weight, be sure to
@@ -75,7 +75,7 @@ describe Body::WeightsController do
 
       it "redirects to the created weight" do
         post :create, {:weight => valid_attributes}
-        response.should redirect_to(body_weight_path(Weight.last))
+        response.should redirect_to(weight_path(Weight.last))
       end
     end
 
@@ -117,7 +117,7 @@ describe Body::WeightsController do
       it "redirects to the weight" do
         weight = user.weights.create! valid_attributes
         put :update, {:id => weight.to_param, :weight => valid_attributes}
-        response.should redirect_to(body_weight_path(weight))
+        response.should redirect_to(weight_path(weight))
       end
     end
 
@@ -151,7 +151,7 @@ describe Body::WeightsController do
     it "redirects to the weights list" do
       weight = user.weights.create! valid_attributes
       delete :destroy, {:id => weight.to_param}
-      response.should redirect_to(body_weights_url)
+      response.should redirect_to(weights_url)
     end
   end
 

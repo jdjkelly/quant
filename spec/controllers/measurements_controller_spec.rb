@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe Body::MeasurementsController do
+describe MeasurementsController do
 
   # This should return the minimal set of attributes required to create a valid
   # Measurement. As you add validations to Measurement, be sure to
@@ -84,7 +84,7 @@ describe Body::MeasurementsController do
 
       it "redirects to the created measurement" do
         post :create, {:measurement => valid_attributes}, valid_session
-        response.should redirect_to(body_measurement_path(Measurement.last))
+        response.should redirect_to(measurement_path(Measurement.last))
       end
     end
 
@@ -126,7 +126,7 @@ describe Body::MeasurementsController do
       it "redirects to the measurement" do
         measurement = Measurement.create! valid_attributes
         put :update, {:id => measurement.to_param, :measurement => valid_attributes}, valid_session
-        response.should redirect_to(body_measurement_path(measurement))
+        response.should redirect_to(measurement_path(measurement))
       end
     end
 
@@ -160,7 +160,7 @@ describe Body::MeasurementsController do
     it "redirects to the measurements list" do
       measurement = Measurement.create! valid_attributes
       delete :destroy, {:id => measurement.to_param}, valid_session
-      response.should redirect_to(body_measurements_url)
+      response.should redirect_to(measurements_url)
     end
   end
 

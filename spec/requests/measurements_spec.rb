@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe "Measurements" do
-  describe "GET /body/measurements" do
+  describe "GET /measurements" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get body_measurements_path
+      get measurements_path
       response.status.should be(200)
     end
   end
