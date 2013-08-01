@@ -1,6 +1,8 @@
-# bodyimage
+# Quantify
 
 ### What is this?
+
+![Quantify.io demo](http://i.imgur.com/C1HSK5q.png)
 
 An open source Rails API to track "quantified self" data.
 
