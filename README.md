@@ -89,5 +89,6 @@ THE SOFTWARE.
 * Add basic add/edit UI for location/weight/measurements
 * Validation on birthday field
 * Add Strong Params
-* Upgrade to Rails 4/Ruby 2.0
+* Upgrade to Rails 4
 * Generic "data update" methods on login/forced - basically the sync feature
+* Only include the Foundation JS that is being used

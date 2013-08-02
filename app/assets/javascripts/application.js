@@ -16,5 +16,7 @@
 //= require turbolinks
 //= require jquery.turbolinks
 //= require chart
+//= require foundation
 
+$(document).foundation()
 $.setReadyEvent('page:change')
