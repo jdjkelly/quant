@@ -31,8 +31,6 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height
 
-  scope :published, where(:published => true)
-
   validates_numericality_of :height, :allow_nil => true
   validates_presence_of :name
 

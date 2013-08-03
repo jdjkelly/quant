@@ -25,11 +25,9 @@ describe Weight do
   it { should validate_presence_of :recorded_at }
 
   let(:weight) {Fabricate(:weight)}
+  let(:user)   { Fabricate(:user) { height 165 } }
   let(:weight_with_height) {
-    Fabricate(:weight) do
-      user    { Fabricate(:user) { height 165 } }
-      value   70
-    end
+    user.weights.new(value: 70)
   }
 
   describe "#calculate_bmi" do
