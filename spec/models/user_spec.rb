@@ -24,7 +24,6 @@
 require 'spec_helper'
 
 describe User do
-  it { should have_many(:measurements) }
   it { should have_many(:weights) }
   it { should validate_numericality_of :height }
   let(:user) { Fabricate(:user) }
