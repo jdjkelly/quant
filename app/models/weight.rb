@@ -18,7 +18,7 @@
 #
 
 class Weight < ActiveRecord::Base
-  attr_accessible :value, :recorded_at, :lean_mass_value, :fat_mass_value, :fat_percentage,
+  attr_accessible :value, :recorded_at, :lean_mass, :fat_mass_value, :fat_percentage,
                   :source, :meta
 
   # We use this to store provider-specific metadata about the weight. In the case of withings,
@@ -41,34 +41,46 @@ class Weight < ActiveRecord::Base
   end
 
   def calculate_all_known_values
-    %w(lean_mass_value fat_mass_value fat_percentage_value bmi).each do |measurement|
+    %w(lean_mass fat_mass_value fat_percentage_value bmi).each do |measurement|
       self.try("calculate_#{measurement}")
     end
   end
 
-   def calculate_bmi
-    return unless self.user && self.user.height
-    self.bmi = Unit.new(self.value, :pounds).to(:kilograms) / ( Unit.new(self.user.height, :centimeters).to(:meters) ** 2 )
+  def calculate_bmi
+    if user && user.height
+      self.bmi = Unit.new(value, :pounds).to(:kilograms) / ( Unit.new(user.height, :centimeters).to(:meters) ** 2 )
+    end
   end
 
-  def calculate_lean_mass_value
-    return unless self.lean_mass_value.nil? && self.fat_mass_value.present? || self.fat_percentage.present?
-    self.lean_mass_value = self.fat_mass_value.present? ? self.value - self.fat_mass_value : self.value - (self.value * (self.fat_percentage / 100))
+  def calculate_lean_mass
+    calculate_missing_value :lean_mass, fat_mass_value, fat_percentage
   end
 
   def calculate_fat_mass_value
-    return unless self.fat_mass_value.nil? && self.lean_mass_value.present? || self.fat_percentage.present?
-    self.fat_mass_value = self.lean_mass_value.present? ? self.value - self.lean_mass_value : self.value - (self.value * (self.fat_percentage / 100))
+    calculate_missing_value :fat_mass_value, lean_mass, fat_percentage
   end
 
   def calculate_fat_percentage_value
-    return unless self.fat_percentage.nil? && self.lean_mass_value.present? || self.fat_mass_value.present?
-    self.fat_percentage = self.lean_mass_value.present? ? ((self.value - self.lean_mass_value) / self.value) * 100 : (self.fat_mass_value / self.value) * 100
+    self.fat_percentage ||= if lean_mass
+      (value - lean_mass) / value * 100
+    elsif fat_mass_value
+      (fat_mass_value / value) * 100
+    end
   end
 
   def self.update_bmi_for_user id
     User.find(id).weights.each do |weight|
       weight.save #executes callbacks that update the bmi
+    end
+  end
+
+  protected
+
+  def calculate_missing_value missing, k, j
+    self[missing] ||= if k
+      value - k
+    elsif j
+      value - (value * (j / 100))
     end
   end
 
