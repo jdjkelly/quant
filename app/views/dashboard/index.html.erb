@@ -59,8 +59,8 @@
       <div class="unit-panel">
         <h5>Body Fat</h5>
         <h1>
-          <% if current_user.fat_percentage %>
-            <%= current_user.fat_percentage.round(1) %>
+          <% if current_user.fat_percent %>
+            <%= current_user.fat_percent.round(1) %>
           <% else %>
             N/A
           <% end %>
@@ -71,7 +71,7 @@
 
     <div class="columns large-3">
       <div class="unit-panel">
-        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.fat_percentage.round(1) %>" width="178" height="102"></canvas>
+        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.fat_percent.round(1) %>" width="178" height="102"></canvas>
       </div>
     </div>
 
