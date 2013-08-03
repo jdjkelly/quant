@@ -73,6 +73,7 @@ GEM
     atomic (1.1.11)
     bcrypt-ruby (3.1.1)
     builder (3.1.4)
+    cancan (1.6.7)
     capybara (1.1.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -304,6 +305,7 @@ DEPENDENCIES
   activerecord-postgres-earthdistance
   activerecord-postgres-hstore
   annotate (>= 2.5.0)
+  cancan
   capybara (~> 1.1.4)
   coffee-rails
   compass-rails (~> 2.0.alpha.0)

@@ -10,11 +10,11 @@
       <tr>
         <th>id</th>
         <th>value</th>
-        <th>lean_mass_value</th>
-        <th>fat_mass_value</th>
-        <th>fat_percentage</th>
+        <th>lean_mass</th>
+        <th>fat_mass</th>
+        <th>fat_percent</th>
         <th>bmi</th>
-        <th>recorded_at</th>
+        <th>date</th>
         <th>created_at</th>
         <th></th>
         <th></th>
@@ -25,11 +25,11 @@
       <tr>
         <td><%= weight.id %></td>
         <td><%= weight.value %></td>
-        <td><%= weight.lean_mass_value %></td>
-        <td><%= weight.fat_mass_value %></td>
-        <td><%= weight.fat_percentage %></td>
+        <td><%= weight.lean_mass %></td>
+        <td><%= weight.fat_mass %></td>
+        <td><%= weight.fat_percent %></td>
         <td><%= weight.bmi %></td>
-        <td><%= weight.recorded_at %></td>
+        <td><%= weight.date %></td>
         <td><%= weight.created_at %></td>
         <td><%= link_to 'Show', weight_path(weight) %></td>
         <td><%= link_to 'Edit', edit_weight_path(weight) %></td>

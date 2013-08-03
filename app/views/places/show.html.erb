@@ -1,0 +1,6 @@
+<p id="notice"><%= notice %></p>
+
+<img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= @place.lat%>,<%= @place.lng %>&zoom=14&size=400x400&sensor=true">
+
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>

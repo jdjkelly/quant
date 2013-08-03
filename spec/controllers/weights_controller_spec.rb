@@ -8,7 +8,7 @@ describe WeightsController do
   def valid_attributes
     {
       value: 0.0,
-      recorded_at: Time.now
+      date: Time.now
     }
   end
 

@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   after_save :update_weights_bmi, :if => :height_changed?
 
   has_many :weights
-  has_many :locations
+  has_many :places
 
   has_one :withings_account
   has_one :fitbit_account
@@ -53,22 +53,22 @@ class User < ActiveRecord::Base
 
   def fat_mass
     return unless current_weight
-    current_weight.fat_mass_value
+    current_weight.fat_mass
   end
 
-  def fat_percentage
+  def fat_percent
     return unless current_weight
-    current_weight.fat_percentage
+    current_weight.fat_percent
   end
 
   def lean_mass
     return unless current_weight
-    current_weight.lean_mass_value
+    current_weight.lean_mass
   end
 
   def lean_mass_percentage
     return unless current_weight
-    current_weight.lean_mass_value / weight * 100
+    current_weight.lean_mass / weight * 100
   end
 
   def bmi
@@ -90,6 +90,12 @@ class User < ActiveRecord::Base
 
   def sync_all_provider_data
     [withings_account, fitbit_account].each {|provider| provider.try(:get_user_data)}
+  end
+
+  # This method exists to address a shortcoming in cancan where you can't define particular
+  # ability blocks as having exceptions when using :all
+  def user_id
+    @user_id ||= self.id
   end
 
   protected

@@ -45,29 +45,32 @@ THE SOFTWARE.
 
 #### /weights
 * Weight.all_for_user.order("date DESC")
-* recorded_at
+* date
 * value
 * bmi
 * user
-* lean_mass_value
-* fat_mass_value
+* lean_mass
+* fat_mass
 
 #### /weights/current
 * Weight.current_for_user
 
-#### /weights/goal
-* WeightGoal.current_for_user
-* recorded_at
-* value
+#### /weights
+#  id              :integer          not null, primary key
+#  type            :string(255)
+#  user_id         :integer
+#  bmi             :float
+#  value           :float
+#  lean_mass       :float
+#  fat_mass  :float
+#  fat_percent  :float
+#  date            :datetime
 
-#### /user/:id
-* User.find(:id)
-* name
-* email
-* password
-* timezone
-* height
-* birthday
+#### /users
+*  name
+*  height
+*  age
+*  birthday
 
 #### /lifts
 
@@ -80,7 +83,7 @@ THE SOFTWARE.
 * Tests for Withings Omniauth (omniauths_callback_controller_spec, withings_account_controller_spec)
 * Tests for user#has_withings_auth?, user#has_scale_auth?, user#update_bmi_for_user
 * Add active model serializers
-* Add basic add/edit UI for location/weight
+* Add basic add/edit UI for place/weight
 * Validation on birthday field
 * Add Strong Params
 * Generic "data update" methods on login/forced - basically the sync feature

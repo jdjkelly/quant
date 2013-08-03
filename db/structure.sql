@@ -119,13 +119,13 @@ ALTER SEQUENCE fitbit_accounts_id_seq OWNED BY fitbit_accounts.id;
 
 
 --
--- Name: locations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: places; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE locations (
+CREATE TABLE places (
     id integer NOT NULL,
     user_id integer,
-    recorded_at timestamp without time zone,
+    date timestamp without time zone,
     lat numeric,
     lng numeric,
     created_at timestamp without time zone NOT NULL,
@@ -134,10 +134,10 @@ CREATE TABLE locations (
 
 
 --
--- Name: locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE locations_id_seq
+CREATE SEQUENCE places_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -146,10 +146,10 @@ CREATE SEQUENCE locations_id_seq
 
 
 --
--- Name: locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
+ALTER SEQUENCE places_id_seq OWNED BY places.id;
 
 
 --
@@ -215,10 +215,10 @@ CREATE TABLE weights (
     user_id integer,
     bmi double precision,
     value double precision,
-    lean_mass_value double precision,
-    fat_mass_value double precision,
-    fat_percentage double precision,
-    recorded_at timestamp without time zone,
+    lean_mass double precision,
+    fat_mass double precision,
+    fat_percent double precision,
+    date timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     meta hstore,
@@ -291,7 +291,7 @@ ALTER TABLE ONLY fitbit_accounts ALTER COLUMN id SET DEFAULT nextval('fitbit_acc
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq'::regclass);
+ALTER TABLE ONLY places ALTER COLUMN id SET DEFAULT nextval('places_id_seq'::regclass);
 
 
 --
@@ -327,7 +327,7 @@ ALTER TABLE ONLY fitbit_accounts
 -- Name: locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY locations
+ALTER TABLE ONLY places
     ADD CONSTRAINT locations_pkey PRIMARY KEY (id);
 
 
@@ -415,7 +415,7 @@ CREATE INDEX index_withings_accounts_on_user_id ON withings_accounts USING btree
 -- Name: locations_earthdistance_ix; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX locations_earthdistance_ix ON locations USING gist (ll_to_earth((lat)::double precision, (lng)::double precision));
+CREATE INDEX locations_earthdistance_ix ON places USING gist (ll_to_earth((lat)::double precision, (lng)::double precision));
 
 
 --
@@ -497,3 +497,9 @@ INSERT INTO schema_migrations (version) VALUES ('20130728222444');
 INSERT INTO schema_migrations (version) VALUES ('20130728222738');
 
 INSERT INTO schema_migrations (version) VALUES ('20130803051622');
+
+INSERT INTO schema_migrations (version) VALUES ('20130803162630');
+
+INSERT INTO schema_migrations (version) VALUES ('20130803175122');
+
+INSERT INTO schema_migrations (version) VALUES ('20130803175510');
