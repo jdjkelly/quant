@@ -17,6 +17,7 @@ gem 'active_model_serializers'
 gem 'pg'
 gem 'protected_attributes'
 
+
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
 gem 'compass-rails', '~> 2.0.alpha.0'
@@ -55,6 +56,7 @@ end
 
 group :production do
   gem 'newrelic_rpm'
+  gem 'rails_12factor' # Heroku requires this
 end
 
 # To use ActiveModel has_secure_password
