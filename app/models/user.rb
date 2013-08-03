@@ -63,12 +63,12 @@ class User < ActiveRecord::Base
 
   def lean_mass
     return unless current_weight
-    current_weight.lean_mass_value
+    current_weight.lean_mass
   end
 
   def lean_mass_percentage
     return unless current_weight
-    current_weight.lean_mass_value / weight * 100
+    current_weight.lean_mass / weight * 100
   end
 
   def bmi

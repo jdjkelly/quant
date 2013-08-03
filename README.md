@@ -49,25 +49,28 @@ THE SOFTWARE.
 * value
 * bmi
 * user
-* lean_mass_value
+* lean_mass
 * fat_mass_value
 
 #### /weights/current
 * Weight.current_for_user
 
-#### /weights/goal
-* WeightGoal.current_for_user
-* recorded_at
-* value
+#### /weights
+#  id              :integer          not null, primary key
+#  type            :string(255)
+#  user_id         :integer
+#  bmi             :float
+#  value           :float
+#  lean_mass       :float
+#  fat_mass_value  :float
+#  fat_percentage  :float
+#  date            :datetime
 
-#### /user/:id
-* User.find(:id)
-* name
-* email
-* password
-* timezone
-* height
-* birthday
+#### /users
+*  name
+*  height
+*  age
+*  birthday
 
 #### /lifts
 

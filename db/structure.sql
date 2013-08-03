@@ -215,7 +215,7 @@ CREATE TABLE weights (
     user_id integer,
     bmi double precision,
     value double precision,
-    lean_mass_value double precision,
+    lean_mass double precision,
     fat_mass_value double precision,
     fat_percentage double precision,
     recorded_at timestamp without time zone,
@@ -497,3 +497,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130728222444');
 INSERT INTO schema_migrations (version) VALUES ('20130728222738');
 
 INSERT INTO schema_migrations (version) VALUES ('20130803051622');
+
+INSERT INTO schema_migrations (version) VALUES ('20130803162630');
