@@ -31,12 +31,12 @@ describe User do
   describe "#weight" do
     before(:each) do
       2.times do
-        user.weights.create(recorded_at: Time.now, value: 1.0)
+        user.weights.create(date: Time.now, value: 1.0)
       end
     end
 
     it "returns the last recorded Weight" do
-      user.current_weight.should eq(user.weights.order("recorded_at DESC").first)
+      user.current_weight.should eq(user.weights.order("date DESC").first)
     end
 
     it "returns the same value as #current" do

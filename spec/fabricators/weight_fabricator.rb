@@ -19,5 +19,5 @@
 
 Fabricator(:weight) do
   value       0.0
-  recorded_at "2013-03-30 12:37:56 -0400"
+  date "2013-03-30 12:37:56 -0400"
 end
