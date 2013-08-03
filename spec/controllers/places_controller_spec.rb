@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe LocationsController do
+describe PlacesController do
 
   let(:user) {Fabricate(:user)}
 

@@ -45,7 +45,7 @@ THE SOFTWARE.
 
 #### /weights
 * Weight.all_for_user.order("date DESC")
-* recorded_at
+* date
 * value
 * bmi
 * user
@@ -83,7 +83,7 @@ THE SOFTWARE.
 * Tests for Withings Omniauth (omniauths_callback_controller_spec, withings_account_controller_spec)
 * Tests for user#has_withings_auth?, user#has_scale_auth?, user#update_bmi_for_user
 * Add active model serializers
-* Add basic add/edit UI for location/weight
+* Add basic add/edit UI for place/weight
 * Validation on birthday field
 * Add Strong Params
 * Generic "data update" methods on login/forced - basically the sync feature

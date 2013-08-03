@@ -10,7 +10,7 @@
 #  lean_mass       :float
 #  fat_mass        :float
 #  fat_percent  :float
-#  recorded_at     :datetime
+#  date     :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  meta            :hstore

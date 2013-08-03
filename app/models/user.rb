@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   after_save :update_weights_bmi, :if => :height_changed?
 
   has_many :weights
-  has_many :locations
+  has_many :places
 
   has_one :withings_account
   has_one :fitbit_account

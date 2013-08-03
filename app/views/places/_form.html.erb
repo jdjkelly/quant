@@ -1,10 +1,10 @@
-<%= form_for(@location) do |f| %>
-  <% if @location.errors.any? %>
+<%= form_for(@place) do |f| %>
+  <% if @place.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
 
       <ul>
-      <% @location.errors.full_messages.each do |msg| %>
+      <% @place.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -22,8 +22,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :recorded_at %><br />
-    <%= f.text_field :recorded_at %>
+    <%= f.label :date %><br />
+    <%= f.text_field :date %>
   </div>
 
   <div class="actions">

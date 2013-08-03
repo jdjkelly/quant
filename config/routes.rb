@@ -16,7 +16,7 @@ Bodyimage::Application.routes.draw do
   resources :home, only: [:index]
 
   resources :users
-  resources :locations
+  resources :places
   resources :weights
 
   # The priority is based upon order of creation:
