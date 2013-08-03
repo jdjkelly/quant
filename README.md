@@ -63,7 +63,7 @@ THE SOFTWARE.
 #  value           :float
 #  lean_mass       :float
 #  fat_mass  :float
-#  fat_percentage  :float
+#  fat_percent  :float
 #  date            :datetime
 
 #### /users

@@ -9,7 +9,7 @@
 #  value           :float
 #  lean_mass       :float
 #  fat_mass        :float
-#  fat_percentage  :float
+#  fat_percent  :float
 #  recorded_at     :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -18,7 +18,7 @@
 #
 
 class Weight < ActiveRecord::Base
-  attr_accessible :value, :recorded_at, :lean_mass, :fat_mass, :fat_percentage,
+  attr_accessible :value, :recorded_at, :lean_mass, :fat_mass, :fat_percent,
                   :source, :meta
 
   # We use this to store provider-specific metadata about the weight. In the case of withings,
@@ -41,7 +41,7 @@ class Weight < ActiveRecord::Base
   end
 
   def calculate_all_known_values
-    %w(lean_mass fat_mass fat_percentage_value bmi).each do |measurement|
+    %w(lean_mass fat_mass fat_percent_value bmi).each do |measurement|
       self.try("calculate_#{measurement}")
     end
   end
@@ -53,15 +53,15 @@ class Weight < ActiveRecord::Base
   end
 
   def calculate_lean_mass
-    calculate_missing_value :lean_mass, fat_mass, fat_percentage
+    calculate_missing_value :lean_mass, fat_mass, fat_percent
   end
 
   def calculate_fat_mass
-    calculate_missing_value :fat_mass, lean_mass, fat_percentage
+    calculate_missing_value :fat_mass, lean_mass, fat_percent
   end
 
-  def calculate_fat_percentage_value
-    self.fat_percentage ||= if lean_mass
+  def calculate_fat_percent_value
+    self.fat_percent ||= if lean_mass
       (value - lean_mass) / value * 100
     elsif fat_mass
       (fat_mass / value) * 100

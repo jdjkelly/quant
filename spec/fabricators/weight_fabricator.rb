@@ -9,7 +9,7 @@
 #  value          :float
 #  lean_mass      :float
 #  fat_mass :float
-#  fat_percentage :float
+#  fat_percent :float
 #  recorded_at    :datetime
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
