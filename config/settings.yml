@@ -9,3 +9,5 @@ smtp_domain: <%= ENV["bi_smtp_domain"] %>
 smtp_user_name: <%= ENV["bi_smtp_user_name"] %>
 smtp_password: <%= ENV["bi_smtp_password"] %>
 action_mailer_default_url_options_host: <%= ENV["bi_action_mailer_default_url_options_host"] %>
+secret_token: <%= ENV["secret_token"] %>
+secret_key_base: <%= ENV["secret_key_base"] %>
