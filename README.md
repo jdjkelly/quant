@@ -92,3 +92,6 @@ THE SOFTWARE.
 * Upgrade to Rails 4
 * Generic "data update" methods on login/forced - basically the sync feature
 * Only include the Foundation JS that is being used
+* check rails 4 version of devise
+* remove measurement - move that to the user
+* upgrade to strong params

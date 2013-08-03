@@ -1,19 +1,19 @@
 Bodyimage::Application.routes.draw do
 
-
   authenticated :user do
-    root :to => "dashboard#index"
+    get '/', to: "dashboard#index"
   end
 
-  root :to => 'home#index'
 
-  devise_for :users, :controllers => {
+  get '/', to: 'home#index'
+
+  devise_for :users, controllers: {
     registrations: "registrations",
     omniauth_callbacks: "omniauth_callbacks"
   }
 
-  resources :dashboard, :only => [:index]
-  resources :home, :only => [:index]
+  resources :dashboard, only: [:index]
+  resources :home, only: [:index]
   resources :users
   resources :locations
   resources :measurements
