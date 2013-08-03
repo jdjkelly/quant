@@ -1,3 +1,4 @@
+
 # Quantify
 
 ### What is this?
@@ -15,6 +16,10 @@ What happens when one of them goes bust? Or decides to pivot towards an ad-based
 model?
 
 This project includes a Rails + Postgres RESTful API to store your data.
+
+### Status
+
+[ ![Codeship Status for jdjkelly/bodyimage](https://www.codeship.io/projects/09ef6f10-81d4-0130-00e5-12313d26400d/status?branch=master)](https://www.codeship.io/projects/2416)
 
 ### License
 
