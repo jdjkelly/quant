@@ -153,40 +153,6 @@ ALTER SEQUENCE locations_id_seq OWNED BY locations.id;
 
 
 --
--- Name: measurements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE measurements (
-    id integer NOT NULL,
-    value double precision,
-    type character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    user_id integer,
-    recorded_at timestamp without time zone
-);
-
-
---
--- Name: measurements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE measurements_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: measurements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE measurements_id_seq OWNED BY measurements.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -332,13 +298,6 @@ ALTER TABLE ONLY locations ALTER COLUMN id SET DEFAULT nextval('locations_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY measurements ALTER COLUMN id SET DEFAULT nextval('measurements_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -373,14 +332,6 @@ ALTER TABLE ONLY locations
 
 
 --
--- Name: measurements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY measurements
-    ADD CONSTRAINT measurements_pkey PRIMARY KEY (id);
-
-
---
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -409,13 +360,6 @@ ALTER TABLE ONLY withings_accounts
 --
 
 CREATE INDEX index_fitbit_accounts_on_user_id ON fitbit_accounts USING btree (user_id);
-
-
---
--- Name: index_measurements_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_measurements_on_user_id ON measurements USING btree (user_id);
 
 
 --
@@ -506,6 +450,8 @@ CREATE RULE geometry_columns_update AS ON UPDATE TO geometry_columns DO INSTEAD 
 -- PostgreSQL database dump complete
 --
 
+SET search_path TO "$user",public;
+
 INSERT INTO schema_migrations (version) VALUES ('20130310155705');
 
 INSERT INTO schema_migrations (version) VALUES ('20130310195028');
@@ -549,3 +495,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130622203100');
 INSERT INTO schema_migrations (version) VALUES ('20130728222444');
 
 INSERT INTO schema_migrations (version) VALUES ('20130728222738');
+
+INSERT INTO schema_migrations (version) VALUES ('20130803051622');

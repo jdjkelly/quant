@@ -13,12 +13,13 @@
 #  recorded_at     :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  grpid           :integer
+#  meta            :hstore
+#  source          :string(255)
 #
 
 class Weight < ActiveRecord::Base
   attr_accessible :value, :recorded_at, :lean_mass_value, :fat_mass_value, :fat_percentage,
-                  :grpid, :source, :meta
+                  :source, :meta
 
   # We use this to store provider-specific metadata about the weight. In the case of withings,
   # we get a pkey called grpid that is useful for maintaining a single copy of each record.

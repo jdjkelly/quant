@@ -69,12 +69,6 @@ THE SOFTWARE.
 * height
 * birthday
 
-#### /measurements
-* Measurement.all_for_user.order("date DESC")
-* recorded_at
-* bicep, calf, chest, forearm, hips, neck, thigh, waist
-* weight, fat, bmi, muscle mass (aliases)
-
 #### /lifts
 
 #### /sleep
@@ -86,12 +80,9 @@ THE SOFTWARE.
 * Tests for Withings Omniauth (omniauths_callback_controller_spec, withings_account_controller_spec)
 * Tests for user#has_withings_auth?, user#has_scale_auth?, user#update_bmi_for_user
 * Add active model serializers
-* Add basic add/edit UI for location/weight/measurements
+* Add basic add/edit UI for location/weight
 * Validation on birthday field
 * Add Strong Params
-* Upgrade to Rails 4
 * Generic "data update" methods on login/forced - basically the sync feature
 * Only include the Foundation JS that is being used
 * check rails 4 version of devise
-* remove measurement - move that to the user
-* upgrade to strong params
