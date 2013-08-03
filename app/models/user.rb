@@ -92,6 +92,12 @@ class User < ActiveRecord::Base
     [withings_account, fitbit_account].each {|provider| provider.try(:get_user_data)}
   end
 
+  # This method exists to address a shortcoming in cancan where you can't define particular
+  # ability blocks as having exceptions when using :all
+  def user_id
+    @user_id ||= self.id
+  end
+
   protected
 
   def update_weights_bmi

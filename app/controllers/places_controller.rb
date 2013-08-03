@@ -1,10 +1,11 @@
 class PlacesController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
 
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    @places = current_user.places.order("date DESC")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,7 +43,7 @@ class PlacesController < ApplicationController
   # POST /places
   # POST /places.json
   def create
-    @place = Place.new(params[:place])
+    @place = current_user.places.new(params[:place])
 
     respond_to do |format|
       if @place.save

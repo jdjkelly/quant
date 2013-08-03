@@ -1,5 +1,6 @@
 class WeightsController < ApplicationController
   before_filter :authenticate_user!
+  load_and_authorize_resource
 
   # GET /weights
   # GET /weights.json
@@ -15,7 +16,7 @@ class WeightsController < ApplicationController
   # GET /weights/1
   # GET /weights/1.json
   def show
-    @weight = current_user.weights.find(params[:id])
+    @weight = Weight.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +27,7 @@ class WeightsController < ApplicationController
   # GET /weights/new
   # GET /weights/new.json
   def new
-    @weight = current_user.weights.new
+    @weight = Weight.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,7 +37,7 @@ class WeightsController < ApplicationController
 
   # GET /weights/1/edit
   def edit
-    @weight = current_user.weights.find(params[:id])
+    @weight = Weight.find(params[:id])
   end
 
   # POST /weights
@@ -58,7 +59,7 @@ class WeightsController < ApplicationController
   # PUT /weights/1
   # PUT /weights/1.json
   def update
-    @weight = current_user.weights.find(params[:id])
+    @weight = Weight.find(params[:id])
 
     respond_to do |format|
       if @weight.update_attributes(params[:weight])
@@ -74,7 +75,7 @@ class WeightsController < ApplicationController
   # DELETE /weights/1
   # DELETE /weights/1.json
   def destroy
-    @weight = current_user.weights.find(params[:id])
+    @weight = Weight.find(params[:id])
     @weight.destroy
 
     respond_to do |format|

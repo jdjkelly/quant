@@ -16,7 +16,7 @@ gem 'annotate', '>=2.5.0'
 gem 'active_model_serializers'
 gem 'pg'
 gem 'protected_attributes'
-
+gem 'cancan'
 
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
