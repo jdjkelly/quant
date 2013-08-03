@@ -27,8 +27,8 @@ class Weight < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :value, :presence => true, :numericality => true
-  validates :date, :presence => true
+  validates :value, presence: true, numericality: true
+  validates :date, presence: true
 
   before_save :calculate_all_known_values
 

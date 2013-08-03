@@ -16,9 +16,9 @@ class Place < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :date, :presence => true
-  validates :lat, :presence => true, :numericality => true
-  validates :lng, :presence => true, :numericality => true
+  validates :date, presence: true
+  validates :lat, presence: true, numericality: true
+  validates :lng, presence: true, numericality: true
 
   attr_accessible :date, :lat, :lng
 end
