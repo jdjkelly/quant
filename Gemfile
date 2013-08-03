@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
 
-gem 'rails', '3.2.12'
+gem 'rails', '4.0.0'
 gem 'rails_config'
 gem 'oauth'
 gem 'devise'
@@ -12,12 +12,20 @@ gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem'
 gem 'activerecord-postgres-hstore'
 gem 'activerecord-postgres-earthdistance'
-gem 'annotate', ">=2.5.0"
+gem 'annotate', '>=2.5.0'
 gem 'active_model_serializers'
+gem 'pg'
+gem 'protected_attributes'
 
-group :database do
-  gem 'pg'
-end
+# Assets
+gem 'sass-rails',   '~> 4.0.0'
+gem 'compass-rails', '~> 2.0.alpha.0'
+gem 'coffee-rails'
+gem 'uglifier', '>= 1.0.3'
+gem 'zurb-foundation', github: 'zurb/foundation'
+gem 'turbolinks'
+gem 'jquery-turbolinks'
+gem 'jquery-rails'
 
 group :development do
   gem 'rspec-rails'
@@ -35,7 +43,7 @@ group :test do
   gem 'rspec'
   gem 'growl'
   gem 'rb-fsevent'
-  gem 'spork-rails'
+  gem 'spork-rails', github: 'sporkrb/spork-rails', ref: '3224f84d8c31fcb0894e9a43f6c3ac67e3aa0d71'
   gem 'guard-spork'
   gem 'shoulda-matchers'
   gem 'fabrication'
@@ -48,20 +56,6 @@ end
 group :production do
   gem 'newrelic_rpm'
 end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'compass-rails'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'zurb-foundation', github: 'zurb/foundation'
-  gem 'turbolinks'
-  gem 'jquery-turbolinks'
-  gem 'jquery-rails'
-end
-
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -22,7 +22,7 @@ class Weight < ActiveRecord::Base
 
   # We use this to store provider-specific metadata about the weight. In the case of withings,
   # we get a pkey called grpid that is useful for maintaining a single copy of each record.
-  serialize :meta, ActiveRecord::Coders::Hstore
+  store_accessor :meta, :grpid
 
   belongs_to :user
 
