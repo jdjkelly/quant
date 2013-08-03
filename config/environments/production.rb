@@ -79,4 +79,7 @@ Bodyimage::Application.configure do
   config.active_support.deprecation = :notify
 
   config.logger = Logger.new(STDOUT)
+
+  # Mandated by a Heroku bug: http://stackoverflow.com/questions/17300341/migrate-not-working-on-heroku
+  config.active_record.schema_format = :ruby
 end
