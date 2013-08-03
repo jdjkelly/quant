@@ -12,7 +12,7 @@
 #
 
 class Place < ActiveRecord::Base
-  acts_as_geolocated
+  # acts_as_geolocated
 
   belongs_to :user
 
