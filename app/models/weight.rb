@@ -13,7 +13,8 @@
 #  recorded_at     :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  grpid           :integer
+#  meta            :hstore
+#  source          :string(255)
 #
 
 class Weight < ActiveRecord::Base
