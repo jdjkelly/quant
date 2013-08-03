@@ -8,7 +8,7 @@
 #  bmi            :float
 #  value          :float
 #  lean_mass      :float
-#  fat_mass_value :float
+#  fat_mass :float
 #  fat_percentage :float
 #  recorded_at    :datetime
 #  created_at     :datetime         not null

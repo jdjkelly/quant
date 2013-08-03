@@ -50,7 +50,7 @@ THE SOFTWARE.
 * bmi
 * user
 * lean_mass
-* fat_mass_value
+* fat_mass
 
 #### /weights/current
 * Weight.current_for_user
@@ -62,7 +62,7 @@ THE SOFTWARE.
 #  bmi             :float
 #  value           :float
 #  lean_mass       :float
-#  fat_mass_value  :float
+#  fat_mass  :float
 #  fat_percentage  :float
 #  date            :datetime
 

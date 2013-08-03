@@ -33,7 +33,7 @@ class WithingsAccount < DataProvider
       user.weights.create(
         value: Unit.new(measurement.weight, :kilograms).to(:pounds),
         recorded_at: measurement.taken_at,
-        fat_mass_value: Unit.new(measurement.fat, :kilograms).to(:pounds),
+        fat_mass: Unit.new(measurement.fat, :kilograms).to(:pounds),
         source: "WithingsAccount",
         meta: {
           grpid: measurement.grpid.to_s

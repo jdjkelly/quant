@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
 
   def fat_mass
     return unless current_weight
-    current_weight.fat_mass_value
+    current_weight.fat_mass
   end
 
   def fat_percentage

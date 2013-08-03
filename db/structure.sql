@@ -216,7 +216,7 @@ CREATE TABLE weights (
     bmi double precision,
     value double precision,
     lean_mass double precision,
-    fat_mass_value double precision,
+    fat_mass double precision,
     fat_percentage double precision,
     recorded_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
