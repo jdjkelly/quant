@@ -18,7 +18,7 @@
 #
 
 class Weight < ActiveRecord::Base
-  attr_accessible :value, :recorded_at, :lean_mass, :fat_mass, :fat_percent,
+  attr_accessible :value, :date, :lean_mass, :fat_mass, :fat_percent,
                   :source, :meta
 
   # We use this to store provider-specific metadata about the weight. In the case of withings,
@@ -28,16 +28,16 @@ class Weight < ActiveRecord::Base
   belongs_to :user
 
   validates :value, :presence => true, :numericality => true
-  validates :recorded_at, :presence => true
+  validates :date, :presence => true
 
   before_save :calculate_all_known_values
 
   def self.current
-    order("recorded_at DESC").first
+    order("date DESC").first
   end
 
   def self.most_recent(count)
-    order("recorded_at DESC").limit(count)
+    order("date DESC").limit(count)
   end
 
   def calculate_all_known_values

@@ -4,7 +4,7 @@ class WeightsController < ApplicationController
   # GET /weights
   # GET /weights.json
   def index
-    @weights = current_user.weights.order("recorded_at DESC")
+    @weights = current_user.weights.order("date DESC")
 
     respond_to do |format|
       format.html # index.html.erb

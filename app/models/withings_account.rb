@@ -32,7 +32,7 @@ class WithingsAccount < DataProvider
       return if user.weights.where("meta @> 'grpid=>#{measurement.grpid.to_s}'").first
       user.weights.create(
         value: Unit.new(measurement.weight, :kilograms).to(:pounds),
-        recorded_at: measurement.taken_at,
+        date: measurement.taken_at,
         fat_mass: Unit.new(measurement.fat, :kilograms).to(:pounds),
         source: "WithingsAccount",
         meta: {
