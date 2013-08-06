@@ -1,4 +1,3 @@
-
 # Quantify
 
 ### What is this?
@@ -48,40 +47,38 @@ THE SOFTWARE.
 
 ### Roadmap
 
-#### /weights
-* Weight.all_for_user.order("date DESC")
-* date
-* value
-* bmi
-* user
-* lean_mass
-* fat_mass
 
-#### /weights/current
-* Weight.current_for_user
 
 #### /weights
-#  id              :integer          not null, primary key
-#  type            :string(255)
-#  user_id         :integer
-#  bmi             :float
-#  value           :float
-#  lean_mass       :float
-#  fat_mass  :float
-#  fat_percent  :float
-#  date            :datetime
+* id              :integer          not null, primary key
+* bmi             :float
+* value           :float
+* lean_mass       :float
+* fat_mass        :float
+* fat_percent     :float
+* date            :datetime
 
 #### /users
-*  name
-*  height
-*  age
-*  birthday
+* name
+* height
+* age
+* birthday
 
-#### /lifts
+#### /workouts
+?
 
 #### /sleep
+* start (datetime)
+* end (datetime)
 
 #### /nutrition
+* date
+* calories
+* carbs (g)
+* fats (g)
+* protein (g)
+* start
+* end
 
 
 ### To Do
