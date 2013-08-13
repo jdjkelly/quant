@@ -69,11 +69,13 @@
       </div>
     </div>
 
-    <div class="columns large-3">
-      <div class="unit-panel">
-        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.fat_percent.round(1) %>" width="178" height="102"></canvas>
+    <% if current_user.fat_percent %>
+      <div class="columns large-3">
+        <div class="unit-panel">
+          <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.fat_percent.round(1) %>" width="178" height="102"></canvas>
+        </div>
       </div>
-    </div>
+    <% end %>
 
     <div class="columns large-3">
       <div class="unit-panel">
@@ -89,11 +91,13 @@
       </div>
     </div>
 
-    <div class="columns large-3">
-      <div class="unit-panel">
-        <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.lean_mass_percentage.round(1) %>" width="178" height="102"></canvas>
+    <% if current_user.lean_mass %>
+      <div class="columns large-3">
+        <div class="unit-panel">
+          <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.lean_mass_percentage.round(1) %>" width="178" height="102"></canvas>
+        </div>
       </div>
-    </div>
+    <% end %>
 
   </div>
 <% end %>

@@ -18,5 +18,7 @@
 //= require chart
 //= require foundation
 
-$(document).foundation()
-$.setReadyEvent('page:change')
+$(document).ready(function() {
+  $(document).foundation()
+  $.setReadyEvent('page:change')
+})
