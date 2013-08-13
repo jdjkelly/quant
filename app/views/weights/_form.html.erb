@@ -1,40 +1,65 @@
 <div class="row">
-  <%= form_for @weight, :url => weights_path(@weight) do |f| %>
-    <% if @weight.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@weight.errors.count, "error") %> prohibited this weight from being saved:</h2>
+  <div class="columns large-4 push-4">
+    <%= form_for @weight, :url => weights_path(@weight), :html => { :class => "custom" } do |f| %>
 
-        <ul>
-        <% @weight.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
+      <div class="panel">
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :value %>
+            <%= f.text_field :value %>
+            <% if @weight.errors[:value].present? %>
+              <small class="error"><%= @weight.errors[:value].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :fat_percent %>
+            <%= f.text_field :fat_percent %>
+            <% if @weight.errors[:fat_percent].present? %>
+              <small class="error"><%= @weight.errors[:fat_percent].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :lean_mass %>
+            <%= f.text_field :lean_mass %>
+            <% if @weight.errors[:lean_mass].present? %>
+              <small class="error"><%= @weight.errors[:lean_mass].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :source %>
+            <%= f.text_field :source %>
+            <% if @weight.errors[:source].present? %>
+              <small class="error"><%= @weight.errors[:source].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :date %>
+            <%= datetime_local_field("weight", "date", :discard_year => true) %>
+            <% if @weight.errors[:source].present? %>
+              <small class="error"><%= @weight.errors[:date].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns large-12">
+            <%= f.submit class: "button radius large-12 small-12" %>
+          </div>
+        </div>
       </div>
     <% end %>
-
-    <fieldset>
-
-      <div class="row">
-        <div class="large-2 columns">
-          <%= f.label :value %>
-          <%= f.text_field :value %>
-        </div>
-
-        <div class="large-2 columns">
-          <%= f.label :fat_percent %>
-          <%= f.text_field :fat_percent %>
-        </div>
-
-        <div class="large-2 columns">
-          <%= f.label :date %>
-          <%= date_select("weight", "date", :discard_year => true) %>
-        </div>
-      </div>
-
-    </fieldset>
-
-    <div class="actions">
-      <%= f.submit class: "button radius" %>
-    </div>
-  <% end %>
+  </div>
 </div>
