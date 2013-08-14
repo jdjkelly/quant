@@ -1,32 +1,45 @@
-<%= form_for(@place) do |f| %>
-  <% if @place.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@place.errors.count, "error") %> prohibited this place from being saved:</h2>
+<div class="row">
+  <div class="columns large-4 push-4">
+    <%= form_for @place, :url => places_path(@place), :html => { :class => "custom" } do |f| %>
 
-      <ul>
-      <% @place.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="unit-panel">
 
-  <div class="field">
-    <%= f.label :lat %><br />
-    <%= f.text_field :lat %>
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :lat %>
+            <%= f.text_field :lat %>
+            <% if @place.errors[:lat].present? %>
+              <small class="error"><%= @place.errors[:value].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :lng %>
+            <%= f.text_field :lng %>
+            <% if @place.errors[:lng].present? %>
+              <small class="error"><%= @place.errors[:lng].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :date %>
+            <%= datetime_local_field("place", "date", :discard_year => true) %>
+            <% if @place.errors[:source].present? %>
+              <small class="error"><%= @place.errors[:date].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns large-12">
+            <%= f.submit class: "button radius large-12 small-12" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :lng %><br />
-    <%= f.text_field :lng %>
-  </div>
-
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.text_field :date %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
