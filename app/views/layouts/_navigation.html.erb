@@ -12,16 +12,26 @@
       <section class="top-bar-section">
         <ul class="left">
           <li>
-            <%= link_to "Show weights", weights_path %>
+            <%= link_to "Weight", weights_path %>
           </li>
           <li>
-            <%= link_to "Add weight", new_weight_path %>
+            <%= link_to "Places", places_path %>
+          </li>
+          <li>
+            <%= link_to "Nutrition" %>
+          </li>
+          <li class="has-dropdown"><a href="#">Data providers</a>
+            <ul class="dropdown">
+                <%- User.omniauth_providers.each do |provider| %>
+                  <li><%= link_to "Connect #{provider.to_s.titleize}", omniauth_authorize_path(User, provider) %></li>
+                <% end -%>
+            </ul>
           </li>
         </ul>
       </section>
       <section class="top-bar-section">
         <ul class="right">
-          <li class="has-dropdown"><%= link_to current_user.name, user_path(current_user) %></a>
+          <li class="has-dropdown"><%= link_to current_user.name, user_path(current_user) %>
 
             <ul class="dropdown">
               <li><label>User Settings</label></li>
