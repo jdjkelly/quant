@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="columns large-4 push-4">
+    <%= form_for @place, :url => places_path(@place), :html => { :class => "custom" } do |f| %>
+
+      <div class="unit-panel">
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :lat %>
+            <%= f.text_field :lat %>
+            <% if @place.errors[:lat].present? %>
+              <small class="error"><%= @place.errors[:value].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :lng %>
+            <%= f.text_field :lng %>
+            <% if @place.errors[:lng].present? %>
+              <small class="error"><%= @place.errors[:lng].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <%= f.label :date %>
+            <%= datetime_local_field("place", "date", :discard_year => true) %>
+            <% if @place.errors[:source].present? %>
+              <small class="error"><%= @place.errors[:date].join(", ") %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="columns large-12">
+            <%= f.submit class: "button radius large-12 small-12" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
