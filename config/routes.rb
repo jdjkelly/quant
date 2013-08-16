@@ -18,6 +18,7 @@ Bodyimage::Application.routes.draw do
   resources :users
   resources :places
   resources :weights
+  resources :meals
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

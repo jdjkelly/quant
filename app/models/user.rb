@@ -38,6 +38,7 @@ class User < ActiveRecord::Base
 
   has_many :weights
   has_many :places
+  has_many :meals
 
   has_one :withings_account
   has_one :fitbit_account
