@@ -1,37 +1,38 @@
 <div class="row">
-  <div class="columns large-12">
-    <h1>All weights</h1>
+  <div class="columns large-3">
+    <%= link_to 'New Weight', new_weight_path, class: "small button" %>
+  </div>
+  <div class="columns large-6 pull-3">
+    <h3 class="text-center">Weights</h3>
   </div>
 </div>
 
 <div class="row">
   <div class="columns large-12">
     <table>
-      <tr>
-        <th>id</th>
-        <th>value</th>
-        <th>lean_mass</th>
-        <th>fat_mass</th>
-        <th>fat_percent</th>
-        <th>bmi</th>
-        <th>date</th>
-        <th>created_at</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Value (lbs)</th>
+          <th>Lean Mass (lbs) </th>
+          <th>Fat Mass (lbs)</th>
+          <th>Fat (%)</th>
+          <th>BMI</th>
+          <th>API</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
     <% @weights.each do |weight| %>
       <tr>
-        <td><%= weight.id %></td>
-        <td><%= weight.value %></td>
-        <td><%= weight.lean_mass %></td>
-        <td><%= weight.fat_mass %></td>
-        <td><%= weight.fat_percent %></td>
-        <td><%= weight.bmi %></td>
-        <td><%= weight.date %></td>
-        <td><%= weight.created_at %></td>
-        <td><%= link_to 'Show', weight_path(weight) %></td>
+        <td><%= link_to weight.date.to_formatted_s(:short), weight %></td>
+        <td><%= weight.value.round(1) %></td>
+        <td><%= weight.lean_mass.present? ? weight.lean_mass.round(1) : nil %></td>
+        <td><%= weight.fat_mass.present? ? weight.fat_mass.round(1) : nil %></td>
+        <td><%= weight.fat_percent.present? ? weight.fat_percent.round(1) : nil %></td>
+        <td><%= weight.bmi.round(1) %></td>
+        <td><%= link_to 'JSON', weight_path(weight, format: :json) %></td>
         <td><%= link_to 'Edit', edit_weight_path(weight) %></td>
         <td><%= link_to 'Destroy', weight_path(weight), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -39,11 +40,5 @@
     </table>
 
     <br />
-  </div>
-</div>
-
-<div class="row">
-  <div class="columns large-12">
-    <%= link_to 'New Weight', new_weight_path %>
   </div>
 </div>
