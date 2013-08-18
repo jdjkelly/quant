@@ -1,7 +1,12 @@
 <div class="row">
-  <div class="columns large-12">
-    <h1>Meals</h1>
+  <div class="columns large-3">
+    <%= link_to 'New Meal', new_meal_path, class: "small button" %>
   </div>
+  <div class="columns large-6 pull-3">
+    <h3 class="text-center">Meals
+    </h3>
+  </div>
+
 </div>
 
 <div class="row">
@@ -9,13 +14,15 @@
     <table>
       <thead>
         <tr>
-          <th>id</th>
-          <th>date</th>
-          <th>calories</th>
-          <th>carbohydrates</th>
-          <th>fat</th>
-          <th>protein</th>
-          <th></th>
+          <th>Date</th>
+          <th>Calories (kcal)</th>
+          <th>Carbs (g)</th>
+          <th>Fat (g)</th>
+          <th>Protein (g)</th>
+          <th>Carbs (%)</th>
+          <th>Fat (%)</th>
+          <th>Protein (%)</th>
+          <th>API</th>
           <th></th>
           <th></th>
         </tr>
@@ -23,23 +30,19 @@
 
     <% @meals.each do |meal| %>
       <tr>
-        <td><%= meal.id %></td>
-        <td><%= meal.date %></td>
+        <td><%= link_to meal.date.to_formatted_s(:day_month_and_year), meal %></td>
         <td><%= meal.calories %></td>
         <td><%= meal.carbohydrates %></td>
         <td><%= meal.fat %></td>
         <td><%= meal.protein %></td>
-        <td><%= link_to 'Show', meal %></td>
+        <td><%= meal.carbohydrates_percentage %></td>
+        <td><%= meal.fat_percentage %></td>
+        <td><%= meal.protein_percentage %></td>
+        <td><%= link_to 'JSON', meal_path(meal, format: :json) %></td>
         <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
         <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
     </table>
-  </div>
-</div>
-
-<div class="row">
-  <div class="columns large-12">
-    <%= link_to 'New Meal', new_meal_path %>
   </div>
 </div>

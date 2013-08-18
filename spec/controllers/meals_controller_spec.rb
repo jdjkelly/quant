@@ -139,9 +139,9 @@ describe MealsController do
           assigns(:meal).should be_persisted
         end
 
-        it "redirects to the created meal" do
+        it "redirects to the meals index" do
           post :create, {:meal => valid_attributes}
-          response.should redirect_to(meal_path(Meal.last))
+          response.should redirect_to(meals_path)
         end
       end
 
@@ -189,10 +189,10 @@ describe MealsController do
           assigns(:meal).should eq(meal)
         end
 
-        it "redirects to the meal" do
+        it "redirects to meals index" do
           meal = user.meals.create! valid_attributes
           put :update, {:id => meal.to_param, :meal => valid_attributes}
-          response.should redirect_to(meal_path(meal))
+          response.should redirect_to(meals_path)
         end
       end
 

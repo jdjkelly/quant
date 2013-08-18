@@ -18,14 +18,17 @@ class Meal < ActiveRecord::Base
   end
 
   def carbohydrates_percentage
+    return if carbohydrates.nil?
     percentage(:carbohydrates).round(1)
   end
 
   def fat_percentage
+    return if fat.nil?
     percentage(:fat).round(1)
   end
 
   def protein_percentage
+    return if protein.nil?
     percentage(:protein).round(1)
   end
 
