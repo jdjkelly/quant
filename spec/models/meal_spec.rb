@@ -9,7 +9,7 @@ describe Meal do
   it { should validate_numericality_of :protein }
   it { should belong_to(:user) }
 
-  let(:meal) { Fabricate(:meal) }
+  let(:meal) { Fabricate.build(:meal) }
 
   describe "#percentage" do
     it "calculates carbohydrate percentage correctly" do
