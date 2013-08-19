@@ -6,10 +6,11 @@ class MealsController < ApplicationController
   # GET /meals.json
   def index
     @meals = current_user.meals.order("date DESC")
-    @meals_grouped_by_date = @meals.group("date(date)")
 
     respond_to do |format|
-      format.html
+      format.html do
+        @meals_grouped_by_date = current_user.meals.order("date DESC")
+      end
       format.json { render json: @meals }
     end
   end
