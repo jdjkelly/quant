@@ -26,7 +26,8 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:withings, :fitbit]
+         :recoverable, :rememberable, :validatable, :confirmable, :token_authenticatable,
+         :omniauthable, :omniauth_providers => [:withings, :fitbit]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height

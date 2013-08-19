@@ -19,6 +19,7 @@ Bodyimage::Application.routes.draw do
   resources :places
   resources :weights
   resources :meals
+  resources :token_authentications, :only => [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
