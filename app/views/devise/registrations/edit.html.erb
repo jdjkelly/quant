@@ -39,7 +39,7 @@
 
     <% if resource.authentication_token %>
       <p>You can use this url to login<br />
-      <%= link_to root_path(:auth_token => resource.authentication_token), root_path(:auth_token => resource.authentication_token)  %></p>
+      <%= resource.authentication_token %></p>
     <% end %>
 
     <div><%= f.submit "Update" %></div>

@@ -219,7 +219,8 @@ CREATE TABLE users (
     unlock_token character varying(255),
     locked_at timestamp without time zone,
     name character varying(255),
-    height double precision
+    height double precision,
+    authentication_token character varying(255)
 );
 
 
@@ -422,6 +423,13 @@ CREATE INDEX index_meals_on_user_id ON meals USING btree (user_id);
 
 
 --
+-- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_users_on_authentication_token ON users USING btree (authentication_token);
+
+
+--
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -564,3 +572,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130803175122');
 INSERT INTO schema_migrations (version) VALUES ('20130803175510');
 
 INSERT INTO schema_migrations (version) VALUES ('20130816020401');
+
+INSERT INTO schema_migrations (version) VALUES ('20130819210218');
