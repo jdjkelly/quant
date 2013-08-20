@@ -5,6 +5,7 @@ class TokenAuthenticationsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
+
     authorize! :edit, @user
     @user.reset_authentication_token!
     redirect_to edit_user_registration_path(@user)
@@ -12,6 +13,7 @@ class TokenAuthenticationsController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+
     authorize! :edit, @user
     @user.authentication_token = nil
     @user.save
