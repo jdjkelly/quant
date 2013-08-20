@@ -24,5 +24,18 @@ describe Meal do
       meal.fat_percentage.should(eq(50.0))
     end
 
+    context "all macros are set to 0" do
+      before(:each) do
+        meal.carbohydrates = 0
+        meal.protein = 0
+        meal.fat = 0
+      end
+
+      it "returns 0 for each macro percentage" do
+        meal.carbohydrates_percentage.should(eq(0.0))
+        meal.fat_percentage.should(eq(0.0))
+        meal.protein_percentage.should(eq(0.0))
+      end
+    end
   end
 end

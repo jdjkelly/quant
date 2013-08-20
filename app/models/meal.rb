@@ -18,23 +18,25 @@ class Meal < ActiveRecord::Base
   end
 
   def carbohydrates_percentage
-    return if carbohydrates.nil?
+    return 0 if carbohydrates.nil?
     percentage(:carbohydrates).round(1)
   end
 
   def fat_percentage
-    return if fat.nil?
+    return 0 if fat.nil?
     percentage(:fat).round(1)
   end
 
   def protein_percentage
-    return if protein.nil?
+    return 0 if protein.nil?
     percentage(:protein).round(1)
   end
 
   private
 
   def percentage nutrient
+    return 0 if self.send(nutrient.to_sym) == 0
+
     sum = 0
     Meal.macro_nutrients.each do |macro_nutrient|
       sum += self.send(macro_nutrient.to_sym)
