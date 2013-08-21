@@ -1,0 +1,3 @@
+class GoalWeight < Goal
+
+end

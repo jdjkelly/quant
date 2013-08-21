@@ -1,5 +1,7 @@
 Bodyimage::Application.routes.draw do
 
+  resources :goals
+
   authenticated :user do
     get '/', to: "dashboard#index"
   end

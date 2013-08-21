@@ -99,4 +99,21 @@
     <% end %>
 
   </div>
+
 <% end %>
+
+<div class="row">
+    <div class="columns large-4">
+      <div class="unit-panel">
+        <h5>Calories</h5>
+        <h1>
+          <% if current_user.meals.present? %>
+            <%= current_user.meals.group_by {|meal| meal.date}.map(&:calories).inject(:+).to_f / current_user.meals.count %>
+          <% else %>
+            N/A
+          <% end %>
+        </h1>
+        <h5>AVG per day (7 days)</h5>
+      </div>
+    </div>
+  </div>
