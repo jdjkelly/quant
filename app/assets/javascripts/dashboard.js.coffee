@@ -40,6 +40,23 @@ ready = ->
 
         new Chart(ctx).Doughnut data
       )()
+      when "doughnut-array" then (=>
+        data = $(@).data("chart-data").split(",")
+        return unless typeof data == "object"
+
+        data = [
+          value: 24,
+          color: "#2ECC71"
+        ,
+          value: 34,
+          color: "#3498DB"
+        ,
+          value: 42,
+          color: "#E74C3C"
+        ]
+
+        new Chart(ctx).Doughnut data
+      )()
   )
 
 $(document).ready(ready)
