@@ -6,7 +6,6 @@
 
 <% if current_user.current_weight %>
   <div class="row">
-
     <div class="columns large-6">
       <div class="unit-panel">
         <div class="row">
@@ -49,11 +48,9 @@
         <h5>centimeters</h5>
       </div>
     </div>
-
   </div>
 
   <div class="row">
-
     <div class="columns large-3">
       <div class="unit-panel">
         <h5>Body Fat</h5>
@@ -97,6 +94,68 @@
         </div>
       </div>
     <% end %>
-
   </div>
 <% end %>
+
+<div class="row">
+  <div class="columns large-4">
+    <div class="unit-panel">
+      <h5>Calories</h5>
+      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 3.days).map(&:calories).inject(:+) / 3 %></h1>
+      <h5>3 day average</h5>
+    </div>
+  </div>
+  <div class="columns large-4">
+    <div class="unit-panel">
+      <h5>Calories</h5>
+      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 7.days).map(&:calories).inject(:+) / 7%></h1>
+      <h5>7 day average</h5>
+    </div>
+  </div>
+  <div class="columns large-4">
+    <div class="unit-panel">
+      <h5>Calories</h5>
+      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 7.days).map(&:calories).inject(:+) / 7 - 30%></h1>
+      <h5>30 day average</h5>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="row">
+  <div class="columns large-3">
+    <div class="unit-panel">
+      <h5>Carbs</h5>
+      <h1>
+        23.0
+      </h1>
+      <h5>percent</h5>
+    </div>
+  </div>
+
+  <div class="columns large-3">
+    <div class="unit-panel">
+      <h5>Fat</h5>
+      <h1>
+        34.4
+      </h1>
+      <h5>percent</h5>
+    </div>
+  </div>
+
+  <div class="columns large-3">
+    <div class="unit-panel">
+      <h5>Protein</h5>
+      <h1>
+        42.6
+      </h1>
+      <h5>percent</h5>
+    </div>
+  </div>
+
+  <div class="columns large-3">
+    <div class="unit-panel">
+      <canvas class="chart" data-chart-type="doughnut-array" data-chart-data="23,34,42" width="178" height="102"></canvas>
+    </div>
+  </div>
+</div>
+ -->
