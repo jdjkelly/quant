@@ -3,7 +3,7 @@ class Meal < ActiveRecord::Base
 
   validates_presence_of :date, :calories
   validates_numericality_of :calories
-  validates_numericality_of :carbohydrates, :fat, :protein, allow_nil: true
+  validates_numericality_of :carbohydrates, :fat, :protein
 
   belongs_to :user
 
