@@ -25,6 +25,8 @@ require 'spec_helper'
 
 describe User do
   it { should have_many(:weights) }
+  it { should have_many(:meals) }
+  it { should have_many(:places) }
   it { should validate_numericality_of :height }
   let(:user) { Fabricate.build(:user) }
 

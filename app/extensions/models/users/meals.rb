@@ -4,8 +4,12 @@ module Users
       meals.where("date >= ?", datetime)
     end
 
+    def meals_after datetime
+      meals.where("date > ?", datetime)
+    end
+
     def meals_before datetime
-      meals.where("date <= ?", datetime)
+      meals.where("date < ?", datetime)
     end
 
     def meals_on datetime
