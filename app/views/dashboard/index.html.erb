@@ -98,26 +98,27 @@
 <% end %>
 
 <% if current_user.weights.any? %>
-<div class="row">
-  <div class="columns large-4">
-    <div class="unit-panel">
-      <h5>Calories</h5>
-      <h1><%= current_user.meals_from(Time.now.at_beginning_of_day).map(&:calories).inject(:+) || 0 %></h1>
-      <h5>Today</h5>
+  <div class="row">
+    <div class="columns large-4">
+      <div class="unit-panel">
+        <h5>Calories</h5>
+        <h1><%= current_user.meals_from(Time.now.at_beginning_of_day).map(&:calories).inject(:+) || 0 %></h1>
+        <h5>Today</h5>
+      </div>
+    </div>
+    <div class="columns large-4">
+      <div class="unit-panel">
+        <h5>Calories</h5>
+        <h1><%= current_user.meals_from(3.days.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 / 3 %></h1>
+        <h5>3 day average</h5>
+      </div>
+    </div>
+    <div class="columns large-4">
+      <div class="unit-panel">
+        <h5>Calories</h5>
+        <h1><%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 / 7 %></h1>
+        <h5>7 day average</h5>
+      </div>
     </div>
   </div>
-  <div class="columns large-4">
-    <div class="unit-panel">
-      <h5>Calories</h5>
-      <h1><%= current_user.meals_from(3.days.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 / 3 %></h1>
-      <h5>3 day average</h5>
-    </div>
-  </div>
-  <div class="columns large-4">
-    <div class="unit-panel">
-      <h5>Calories</h5>
-      <h1><%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 / 7 %></h1>
-      <h5>7 day average</h5>
-    </div>
-  </div>
-</div>
+<% end %>
