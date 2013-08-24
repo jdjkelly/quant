@@ -1,75 +1,81 @@
 <div class="row">
-  <div class="columns large-4 push-4">
+  <div class="columns large-8 push-2">
     <%= form_for @meal, :url => meal_path(@meal), :html => { :class => "custom" } do |f| %>
 
       <div class="unit-panel">
-
         <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :calories %>
-            <%= f.text_field :calories %>
-            <% if @meal.errors[:calories].present? %>
-              <small class="error"><%= @meal.errors[:calories].join(", ") %></small>
-            <% end %>
+          <div class="large-6 columns">
+            <div class="row">
+              <div class="large-12 columns">
+                <%= f.label :calories %>
+                <%= f.text_field :calories %>
+                <% if @meal.errors[:calories].present? %>
+                  <small class="error"><%= @meal.errors[:calories].join(", ") %></small>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-12 columns">
+                <%= f.label :carbohydrates %>
+                <%= f.text_field :carbohydrates %>
+                <% if @meal.errors[:carbohydrates].present? %>
+                  <small class="error"><%= @meal.errors[:carbohydrates].join(", ") %></small>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-12 columns">
+                <%= f.label :fat %>
+                <%= f.text_field :fat %>
+                <% if @meal.errors[:fat].present? %>
+                  <small class="error"><%= @meal.errors[:fat].join(", ") %></small>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-12 columns">
+                <%= f.label :protein %>
+                <%= f.text_field :protein %>
+                <% if @meal.errors[:protein].present? %>
+                  <small class="error"><%= @meal.errors[:protein].join(", ") %></small>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-12 columns">
+                <%= f.label :description %>
+                <%= f.text_field :description %>
+                <% if @meal.errors[:description].present? %>
+                  <small class="error"><%= @meal.errors[:description].join(", ") %></small>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-12 columns">
+                <%= f.label :date %>
+                <%= date_field("meal", "date", :discard_year => true) %>
+                <% if @meal.errors[:source].present? %>
+                  <small class="error"><%= @meal.errors[:date].join(", ") %></small>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="columns large-12">
+                <%= f.submit class: "button radius large-12 small-12" %>
+              </div>
+            </div>
+          </div>
+          <div class="large-6 columns">
+            <h5>Food finder</h5>
           </div>
         </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :carbohydrates %>
-            <%= f.text_field :carbohydrates %>
-            <% if @meal.errors[:carbohydrates].present? %>
-              <small class="error"><%= @meal.errors[:carbohydrates].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :fat %>
-            <%= f.text_field :fat %>
-            <% if @meal.errors[:fat].present? %>
-              <small class="error"><%= @meal.errors[:fat].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :protein %>
-            <%= f.text_field :protein %>
-            <% if @meal.errors[:protein].present? %>
-              <small class="error"><%= @meal.errors[:protein].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :description %>
-            <%= f.text_field :description %>
-            <% if @meal.errors[:description].present? %>
-              <small class="error"><%= @meal.errors[:description].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :date %>
-            <%= date_field("meal", "date", :discard_year => true) %>
-            <% if @meal.errors[:source].present? %>
-              <small class="error"><%= @meal.errors[:date].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="columns large-12">
-            <%= f.submit class: "button radius large-12 small-12" %>
-          </div>
-        </div>
-      </div>
+      </div
     <% end %>
   </div>
 </div>

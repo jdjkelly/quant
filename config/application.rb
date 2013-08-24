@@ -57,7 +57,12 @@ module Bodyimage
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+    config.autoload_paths += %W(
+      models
+      extensions/models
+    ).map{|path| File.join(config.root,'app',path)}
+
+
 
     config.generators do |g|
         g.test_framework :rspec, fixture: true
