@@ -102,8 +102,8 @@
     <div class="columns large-4">
       <div class="unit-panel">
         <h5>Calories</h5>
-        <h1><%= current_user.meals_from(Time.now.at_beginning_of_day).map(&:calories).inject(:+) || 0 %></h1>
-        <h5>Today</h5>
+        <h1><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 %></h1>
+        <h5>Yesterday</h5>
       </div>
     </div>
     <div class="columns large-4">

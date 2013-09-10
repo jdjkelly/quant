@@ -9,7 +9,7 @@ class MealsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @meals_grouped_by_date = current_user.meals.order("date DESC")
+        @meals_grouped_by_date = @meals.group_by { |m| m.date }
       end
       format.json { render json: @meals }
     end

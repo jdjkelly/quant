@@ -1,9 +1,12 @@
 <div class="row">
-  <div class="columns large-3">
-    <%= link_to 'New Meal', new_meal_path, class: "small button" %>
+  <div class="columns large-8">
+    <h3>Meals</h3>
   </div>
-  <div class="columns large-6 pull-3">
-    <h3 class="text-center">Meals</h3>
+  <div class="columns large-2">
+    <%= link_to 'New Meal', new_meal_path, class: "small button expand" %>
+  </div>
+  <div class="columns large-2">
+    <a href="#" class="button small expand split secondary">Data<span></span></a>
   </div>
 </div>
 
@@ -26,20 +29,36 @@
         </tr>
       </thead>
 
-    <% @meals.each do |meal| %>
+    <% @meals_grouped_by_date.keys.each do |key| %>
       <tr>
-        <td><%= link_to meal.date.to_formatted_s(:day_month_and_year), meal %></td>
-        <td><%= meal.calories %></td>
-        <td><%= meal.carbohydrates %></td>
-        <td><%= meal.fat %></td>
-        <td><%= meal.protein %></td>
-        <td><%= meal.carbohydrates_percentage %></td>
-        <td><%= meal.fat_percentage %></td>
-        <td><%= meal.protein_percentage %></td>
-        <td><%= link_to 'JSON', meal_path(meal, format: :json) %></td>
-        <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
-        <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= key.to_formatted_s(:day_month_and_year) %></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:calories) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:fat) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:protein) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates_percentage) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:fat_percentage) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:protein_percentage) %></strong></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
+
+      <% @meals_grouped_by_date[key].each do |meal| %>
+        <tr>
+          <td></td>
+          <td><%= meal.calories %></td>
+          <td><%= meal.carbohydrates %></td>
+          <td><%= meal.fat %></td>
+          <td><%= meal.protein %></td>
+          <td><%= meal.carbohydrates_percentage %></td>
+          <td><%= meal.fat_percentage %></td>
+          <td><%= meal.protein_percentage %></td>
+          <td><%= link_to 'JSON', meal_path(meal, format: :json) %></td>
+          <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
+          <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
     </table>
   </div>
