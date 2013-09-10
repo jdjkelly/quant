@@ -32,13 +32,13 @@
     <% @meals_grouped_by_date.keys.each do |key| %>
       <tr>
         <td><%= key.to_formatted_s(:day_month_and_year) %></td>
-        <td><strong><%= @meals_grouped_by_date[key].sum(&:calories) %></strong></td>
-        <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates) %></strong></td>
-        <td><strong><%= @meals_grouped_by_date[key].sum(&:fat) %></strong></td>
-        <td><strong><%= @meals_grouped_by_date[key].sum(&:protein) %></strong></td>
-        <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates_percentage) %></strong></td>
-        <td><strong><%= @meals_grouped_by_date[key].sum(&:fat_percentage) %></strong></td>
-        <td><strong><%= @meals_grouped_by_date[key].sum(&:protein_percentage) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:calories).round(1) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates).round(1) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:fat).round(1) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:protein).round(1) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates_percentage).round(1) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:fat_percentage).round(1) %></strong></td>
+        <td><strong><%= @meals_grouped_by_date[key].sum(&:protein_percentage).round(1) %></strong></td>
         <td></td>
         <td></td>
         <td></td>

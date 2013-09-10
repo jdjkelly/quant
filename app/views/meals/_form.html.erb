@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="columns large-8 push-2">
+  <div class="columns large-4 push-4">
     <%= form_for @meal, :url => meal_path(@meal), :html => { :class => "custom" } do |f| %>
 
       <div class="unit-panel">
         <div class="row">
-          <div class="large-6 columns">
+          <div class="large-12 columns">
             <div class="row">
               <div class="large-12 columns">
                 <%= f.label :calories %>
@@ -17,20 +17,20 @@
 
             <div class="row">
               <div class="large-12 columns">
-                <%= f.label :carbohydrates %>
-                <%= f.text_field :carbohydrates %>
-                <% if @meal.errors[:carbohydrates].present? %>
-                  <small class="error"><%= @meal.errors[:carbohydrates].join(", ") %></small>
+                <%= f.label :fat %>
+                <%= f.text_field :fat %>
+                <% if @meal.errors[:fat].present? %>
+                  <small class="error"><%= @meal.errors[:fat].join(", ") %></small>
                 <% end %>
               </div>
             </div>
 
             <div class="row">
               <div class="large-12 columns">
-                <%= f.label :fat %>
-                <%= f.text_field :fat %>
-                <% if @meal.errors[:fat].present? %>
-                  <small class="error"><%= @meal.errors[:fat].join(", ") %></small>
+                <%= f.label :carbohydrates %>
+                <%= f.text_field :carbohydrates %>
+                <% if @meal.errors[:carbohydrates].present? %>
+                  <small class="error"><%= @meal.errors[:carbohydrates].join(", ") %></small>
                 <% end %>
               </div>
             </div>
@@ -70,9 +70,6 @@
                 <%= f.submit class: "button radius large-12 small-12" %>
               </div>
             </div>
-          </div>
-          <div class="large-6 columns">
-            <h5>Food finder</h5>
           </div>
         </div>
       </div
