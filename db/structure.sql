@@ -119,6 +119,40 @@ ALTER SEQUENCE fitbit_accounts_id_seq OWNED BY fitbit_accounts.id;
 
 
 --
+-- Name: goals; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE goals (
+    id integer NOT NULL,
+    type character varying(255),
+    start timestamp without time zone,
+    "end" timestamp without time zone,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: goals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE goals_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: goals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE goals_id_seq OWNED BY goals.id;
+
+
+--
 -- Name: meals; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -220,7 +254,8 @@ CREATE TABLE users (
     locked_at timestamp without time zone,
     name character varying(255),
     height double precision,
-    authentication_token character varying(255)
+    authentication_token character varying(255),
+    time_zone character varying(255) DEFAULT 'UTC'::character varying
 );
 
 
@@ -329,6 +364,13 @@ ALTER TABLE ONLY fitbit_accounts ALTER COLUMN id SET DEFAULT nextval('fitbit_acc
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY goals ALTER COLUMN id SET DEFAULT nextval('goals_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY meals ALTER COLUMN id SET DEFAULT nextval('meals_id_seq'::regclass);
 
 
@@ -366,6 +408,14 @@ ALTER TABLE ONLY withings_accounts ALTER COLUMN id SET DEFAULT nextval('withings
 
 ALTER TABLE ONLY fitbit_accounts
     ADD CONSTRAINT fitbit_accounts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: goals_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY goals
+    ADD CONSTRAINT goals_pkey PRIMARY KEY (id);
 
 
 --
@@ -574,3 +624,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130803175510');
 INSERT INTO schema_migrations (version) VALUES ('20130816020401');
 
 INSERT INTO schema_migrations (version) VALUES ('20130819210218');
+
+INSERT INTO schema_migrations (version) VALUES ('20130820032604');
+
+INSERT INTO schema_migrations (version) VALUES ('20130913015037');
