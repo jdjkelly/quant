@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:withings, :fitbit]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height,
+                  :timezone
 
   validates_numericality_of :height, :allow_nil => true
   validates_presence_of :name
