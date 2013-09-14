@@ -19,6 +19,8 @@
 #  locked_at              :datetime
 #  name                   :string(255)
 #  height                 :float
+#  authentication_token   :string(255)
+#  time_zone              :string(255)      default("UTC")
 #
 
 class User < ActiveRecord::Base
