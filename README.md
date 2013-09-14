@@ -91,3 +91,4 @@ THE SOFTWARE.
 * Generic "data update" methods on login/forced - basically the sync feature
 * Only include the Foundation JS that is being used
 * check rails 4 version of devise
+* add https://github.com/scottwater/detect_timezone_rails
