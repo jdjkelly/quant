@@ -158,7 +158,7 @@ ALTER SEQUENCE goals_id_seq OWNED BY goals.id;
 
 CREATE TABLE meals (
     id integer NOT NULL,
-    date timestamp without time zone,
+    date date,
     calories integer,
     carbohydrates integer,
     protein integer,
@@ -628,3 +628,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130819210218');
 INSERT INTO schema_migrations (version) VALUES ('20130820032604');
 
 INSERT INTO schema_migrations (version) VALUES ('20130913015037');
+
+INSERT INTO schema_migrations (version) VALUES ('20130913031613');
