@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-module Bodyimage
+module Quantify
   class Application < Rails::Application
     VERSION = "0.0.11"
     # Settings in config/environments/* take precedence over those specified here.

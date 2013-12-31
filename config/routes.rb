@@ -1,9 +1,8 @@
-Bodyimage::Application.routes.draw do
+Quantify::Application.routes.draw do
 
   authenticated :user do
     get '/', to: "dashboard#index"
   end
-
 
   get '/', to: 'home#index'
 
@@ -15,7 +14,7 @@ Bodyimage::Application.routes.draw do
   resources :dashboard, only: [:index]
   resources :home, only: [:index]
 
-  resources :users
+  resources :users, only: [:show]
   resources :places
   resources :weights
   resources :meals

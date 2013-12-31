@@ -15,9 +15,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: bodyimage_development
+  database: quantify_development
   pool: 5
-  username: bodyimage
+  username: quantify
   password:
   host: localhost
 
@@ -43,9 +43,9 @@ test:
   adapter: postgresql
   encoding: unicode
   reconnect: false
-  database: bodyimage_test
+  database: quantify_test
   pool: 5
-  username: bodyimage
+  username: quantify
   password:
   host: localhost
 
@@ -53,8 +53,8 @@ production:
   adapter: postgresql
   encoding: unicode
   reconnect: false
-  database: bodyimage
+  database: quantify
   pool: 5
-  username: bodyimage
+  username: quantify
   password:
   host: localhost
