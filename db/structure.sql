@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -64,20 +65,6 @@ CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
 COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
 
 
---
--- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
-
-
---
--- Name: EXTENSION postgis; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
-
-
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -94,8 +81,8 @@ CREATE TABLE fitbit_accounts (
     oauth_token character varying(255),
     oauth_token_secret character varying(255),
     user_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -165,8 +152,8 @@ CREATE TABLE places (
     date timestamp without time zone,
     lat numeric,
     lng numeric,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -204,8 +191,8 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE users (
     id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     email character varying(255) DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying(255),
@@ -257,8 +244,8 @@ CREATE TABLE weights (
     fat_mass double precision,
     fat_percent double precision,
     date timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     meta hstore,
     source character varying(255)
 );
@@ -290,8 +277,8 @@ ALTER SEQUENCE weights_id_seq OWNED BY weights.id;
 CREATE TABLE withings_accounts (
     id integer NOT NULL,
     userid character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     oauth_token character varying(255),
     user_id integer,
     oauth_token_secret character varying(255),
@@ -490,27 +477,6 @@ CREATE INDEX locations_earthdistance_ix ON places USING gist (ll_to_earth((lat):
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
-
-
---
--- Name: geometry_columns_delete; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_delete AS ON DELETE TO geometry_columns DO INSTEAD NOTHING;
-
-
---
--- Name: geometry_columns_insert; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_insert AS ON INSERT TO geometry_columns DO INSTEAD NOTHING;
-
-
---
--- Name: geometry_columns_update; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_update AS ON UPDATE TO geometry_columns DO INSTEAD NOTHING;
 
 
 --
