@@ -23,19 +23,23 @@
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :token_authenticatable,
-         :omniauthable, :omniauth_providers => [:withings, :fitbit]
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:withings, :fitbit]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height
+  attr_accessible :email,
+    :password,
+    :password_confirmation,
+    :remember_me,
+    :name,
+    :height
 
-  validates_numericality_of :height, :allow_nil => true
+  validates_numericality_of :height, allow_nil: true
   validates_presence_of :name
 
-  after_save :update_weights_bmi, :if => :height_changed?
+  after_save :update_weights_bmi, if: :height_changed?
 
   has_many :weights
   has_many :places

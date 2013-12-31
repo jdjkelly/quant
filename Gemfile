@@ -4,7 +4,7 @@ ruby "2.0.0"
 gem 'rails', '4.0.0'
 gem 'rails_config'
 gem 'oauth'
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth'
 gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
 gem 'omniauth-fitbit'
