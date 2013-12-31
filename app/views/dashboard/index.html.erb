@@ -101,21 +101,21 @@
   <div class="columns large-4">
     <div class="unit-panel">
       <h5>Calories</h5>
-      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 3.days).map(&:calories).inject(:+) / 3 %></h1>
+      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 3.days).map(&:calories).inject(:+) || 0 / 3 %></h1>
       <h5>3 day average</h5>
     </div>
   </div>
   <div class="columns large-4">
     <div class="unit-panel">
       <h5>Calories</h5>
-      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 7.days).map(&:calories).inject(:+) / 7%></h1>
+      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 7.days).map(&:calories).inject(:+) || 0 / 7%></h1>
       <h5>7 day average</h5>
     </div>
   </div>
   <div class="columns large-4">
     <div class="unit-panel">
       <h5>Calories</h5>
-      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 7.days).map(&:calories).inject(:+) / 7 - 30%></h1>
+      <h1><%= @meals.where("date >= ?", Time.now.at_beginning_of_day - 7.days).map(&:calories).inject(:+) || 0 / 7%></h1>
       <h5>30 day average</h5>
     </div>
   </div>
