@@ -7,8 +7,8 @@
 #  oauth_token        :string(255)
 #  oauth_token_secret :string(255)
 #  user_id            :integer
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  created_at         :datetime
+#  updated_at         :datetime
 #
 
 require 'spec_helper'

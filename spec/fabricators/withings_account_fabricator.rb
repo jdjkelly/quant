@@ -4,8 +4,8 @@
 #
 #  id                 :integer          not null, primary key
 #  userid             :string(255)
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  created_at         :datetime
+#  updated_at         :datetime
 #  oauth_token        :string(255)
 #  user_id            :integer
 #  oauth_token_secret :string(255)

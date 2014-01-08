@@ -2,19 +2,19 @@
 #
 # Table name: weights
 #
-#  id              :integer          not null, primary key
-#  type            :string(255)
-#  user_id         :integer
-#  bmi             :float
-#  value           :float
-#  lean_mass       :float
-#  fat_mass        :float
-#  fat_percent  :float
-#  date     :datetime
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  meta            :hstore
-#  source          :string(255)
+#  id          :integer          not null, primary key
+#  type        :string(255)
+#  user_id     :integer
+#  bmi         :float
+#  value       :float
+#  lean_mass   :float
+#  fat_mass    :float
+#  fat_percent :float
+#  date        :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#  meta        :hstore
+#  source      :string(255)
 #
 
 class Weight < ActiveRecord::Base

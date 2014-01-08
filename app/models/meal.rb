@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: meals
+#
+#  id            :integer          not null, primary key
+#  date          :datetime
+#  calories      :integer
+#  carbohydrates :integer
+#  protein       :integer
+#  fat           :integer
+#  user_id       :integer
+#  description   :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 class Meal < ActiveRecord::Base
   attr_accessible :date, :calories, :carbohydrates, :fat, :protein, :description
 

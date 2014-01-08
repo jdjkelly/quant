@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: meals
+#
+#  id            :integer          not null, primary key
+#  date          :datetime
+#  calories      :integer
+#  carbohydrates :integer
+#  protein       :integer
+#  fat           :integer
+#  user_id       :integer
+#  description   :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+
 Fabricator(:meal) do
   date              "2013-03-30 12:37:56 -0400"
   calories          100

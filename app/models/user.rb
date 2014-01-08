@@ -3,8 +3,8 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  created_at             :datetime
+#  updated_at             :datetime
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  reset_password_token   :string(255)
@@ -19,6 +19,7 @@
 #  locked_at              :datetime
 #  name                   :string(255)
 #  height                 :float
+#  authentication_token   :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -44,6 +45,7 @@ class User < ActiveRecord::Base
   has_many :weights
   has_many :places
   has_many :meals
+  has_many :moods
 
   has_one :withings_account
   has_one :fitbit_account

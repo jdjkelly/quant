@@ -2,13 +2,13 @@
 #
 # Table name: places
 #
-#  id          :integer          not null, primary key
-#  user_id     :integer
-#  date :datetime
-#  lat         :decimal(, )
-#  lng         :decimal(, )
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  date       :datetime
+#  lat        :decimal(, )
+#  lng        :decimal(, )
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class Place < ActiveRecord::Base
