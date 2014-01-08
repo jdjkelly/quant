@@ -24,9 +24,9 @@
 #
 
 Fabricator(:user) do
-  name { Faker::Name.name }
+  name { "First Last" }
   height 10.0
-  email "#{Faker::Name.name}@local.dev"
+  email "#{Random.rand(0...999999)}@local.dev"
   password 'changeme'
   password_confirmation 'changeme'
 end

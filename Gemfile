@@ -50,7 +50,6 @@ group :test do
   gem 'fabrication'
   gem 'database_cleaner'
   gem 'email_spec'
-  gem 'faker'
   gem 'webmock'
 end
 
