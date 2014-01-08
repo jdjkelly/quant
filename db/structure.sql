@@ -3,6 +3,7 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -64,20 +65,6 @@ CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
 COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
 
 
---
--- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
-
-
---
--- Name: EXTENSION postgis; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
-
-
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -85,7 +72,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: fitbit_accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: fitbit_accounts; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE fitbit_accounts (
@@ -94,8 +81,8 @@ CREATE TABLE fitbit_accounts (
     oauth_token character varying(255),
     oauth_token_secret character varying(255),
     user_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -119,7 +106,7 @@ ALTER SEQUENCE fitbit_accounts_id_seq OWNED BY fitbit_accounts.id;
 
 
 --
--- Name: goals; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: goals; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE goals (
@@ -153,7 +140,7 @@ ALTER SEQUENCE goals_id_seq OWNED BY goals.id;
 
 
 --
--- Name: meals; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: meals; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE meals (
@@ -190,7 +177,41 @@ ALTER SEQUENCE meals_id_seq OWNED BY meals.id;
 
 
 --
--- Name: places; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: moods; Type: TABLE; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE TABLE moods (
+    id integer NOT NULL,
+    date timestamp without time zone,
+    user_id integer,
+    rating numeric,
+    description text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: moods_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE moods_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: moods_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE moods_id_seq OWNED BY moods.id;
+
+
+--
+-- Name: places; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE places (
@@ -199,8 +220,8 @@ CREATE TABLE places (
     date timestamp without time zone,
     lat numeric,
     lng numeric,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -224,7 +245,7 @@ ALTER SEQUENCE places_id_seq OWNED BY places.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE schema_migrations (
@@ -233,13 +254,13 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE users (
     id integer NOT NULL,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     email character varying(255) DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying(255) DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying(255),
@@ -279,7 +300,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: weights; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: weights; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE weights (
@@ -292,8 +313,8 @@ CREATE TABLE weights (
     fat_mass double precision,
     fat_percent double precision,
     date timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     meta hstore,
     source character varying(255)
 );
@@ -319,14 +340,14 @@ ALTER SEQUENCE weights_id_seq OWNED BY weights.id;
 
 
 --
--- Name: withings_accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: withings_accounts; Type: TABLE; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE TABLE withings_accounts (
     id integer NOT NULL,
     userid character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     oauth_token character varying(255),
     user_id integer,
     oauth_token_secret character varying(255),
@@ -378,6 +399,13 @@ ALTER TABLE ONLY meals ALTER COLUMN id SET DEFAULT nextval('meals_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY moods ALTER COLUMN id SET DEFAULT nextval('moods_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY places ALTER COLUMN id SET DEFAULT nextval('places_id_seq'::regclass);
 
 
@@ -403,7 +431,7 @@ ALTER TABLE ONLY withings_accounts ALTER COLUMN id SET DEFAULT nextval('withings
 
 
 --
--- Name: fitbit_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: fitbit_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY fitbit_accounts
@@ -411,7 +439,7 @@ ALTER TABLE ONLY fitbit_accounts
 
 
 --
--- Name: goals_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: goals_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY goals
@@ -419,7 +447,7 @@ ALTER TABLE ONLY goals
 
 
 --
--- Name: locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY places
@@ -427,7 +455,7 @@ ALTER TABLE ONLY places
 
 
 --
--- Name: meals_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: meals_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY meals
@@ -435,7 +463,15 @@ ALTER TABLE ONLY meals
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: moods_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
+--
+
+ALTER TABLE ONLY moods
+    ADD CONSTRAINT moods_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY users
@@ -443,7 +479,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: weights_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: weights_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY weights
@@ -451,7 +487,7 @@ ALTER TABLE ONLY weights
 
 
 --
--- Name: withings_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: withings_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace:
 --
 
 ALTER TABLE ONLY withings_accounts
@@ -459,108 +495,87 @@ ALTER TABLE ONLY withings_accounts
 
 
 --
--- Name: index_fitbit_accounts_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_fitbit_accounts_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_fitbit_accounts_on_user_id ON fitbit_accounts USING btree (user_id);
 
 
 --
--- Name: index_meals_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_meals_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_meals_on_user_id ON meals USING btree (user_id);
 
 
 --
--- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_users_on_authentication_token ON users USING btree (authentication_token);
 
 
 --
--- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
 
 
 --
--- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX index_users_on_unlock_token ON users USING btree (unlock_token);
 
 
 --
--- Name: index_weights_on_meta; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_weights_on_meta; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_weights_on_meta ON weights USING gist (meta);
 
 
 --
--- Name: index_weights_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_weights_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_weights_on_user_id ON weights USING btree (user_id);
 
 
 --
--- Name: index_withings_accounts_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_withings_accounts_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX index_withings_accounts_on_user_id ON withings_accounts USING btree (user_id);
 
 
 --
--- Name: locations_earthdistance_ix; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: locations_earthdistance_ix; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE INDEX locations_earthdistance_ix ON places USING gist (ll_to_earth((lat)::double precision, (lng)::double precision));
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace:
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
-
-
---
--- Name: geometry_columns_delete; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_delete AS ON DELETE TO geometry_columns DO INSTEAD NOTHING;
-
-
---
--- Name: geometry_columns_insert; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_insert AS ON INSERT TO geometry_columns DO INSTEAD NOTHING;
-
-
---
--- Name: geometry_columns_update; Type: RULE; Schema: public; Owner: -
---
-
-CREATE RULE geometry_columns_update AS ON UPDATE TO geometry_columns DO INSTEAD NOTHING;
 
 
 --
@@ -625,8 +640,8 @@ INSERT INTO schema_migrations (version) VALUES ('20130816020401');
 
 INSERT INTO schema_migrations (version) VALUES ('20130819210218');
 
-INSERT INTO schema_migrations (version) VALUES ('20130820032604');
-
 INSERT INTO schema_migrations (version) VALUES ('20130913015037');
 
 INSERT INTO schema_migrations (version) VALUES ('20130913031613');
+
+INSERT INTO schema_migrations (version) VALUES ('20131231024056');

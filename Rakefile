@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Bodyimage::Application.load_tasks
+Quantify::Application.load_tasks

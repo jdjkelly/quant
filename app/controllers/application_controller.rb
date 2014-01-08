@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_timezone
 
+  # Provides us with global authentication handling, by assuming that
+  # every non-devise controller requires authorization, and rescues from
+  # the case of an access denied error from CanCan (in the case of a
+  # user requesting access to someone else's resource, for example)
   check_authorization :unless => :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -11,5 +15,14 @@ class ApplicationController < ActionController::Base
 
   def set_timezone
     Time.zone = current_user.time_zone if current_user
+  end
+
+  # Required by the strong params behavior in Rails 4.0
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << :name
   end
 end

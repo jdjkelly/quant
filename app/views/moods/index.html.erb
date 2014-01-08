@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="columns large-3">
+    <%= link_to 'New Mood', new_mood_path, class: "small button" %>
+  </div>
+  <div class="columns large-6 pull-3">
+    <h3 class="text-center">Moods</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns large-12">
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Rating</th>
+          <th>API</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+    <% @moods.each do |mood| %>
+      <tr>
+        <td><%= link_to mood.date.to_formatted_s(:day_month_and_year), mood %></td>
+        <td><%= mood.rating %></td>
+        <td><%= link_to 'JSON', meal_path(mood, format: :json) %></td>
+        <td><%= link_to 'Edit', edit_meal_path(mood) %></td>
+        <td><%= link_to 'Destroy', mood, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</div>

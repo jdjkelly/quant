@@ -3,8 +3,8 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  created_at             :datetime
+#  updated_at             :datetime
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  reset_password_token   :string(255)
@@ -27,27 +27,29 @@ class User < ActiveRecord::Base
   include Users::Meals
   include Users::Weights
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :token_authenticatable,
-         :omniauthable, :omniauth_providers => [:withings, :fitbit]
+         :recoverable, :rememberable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:withings, :fitbit]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :height,
-                  :time_zone
+  attr_accessible :email,
+    :password,
+    :password_confirmation,
+    :remember_me,
+    :name,
+    :height,
+    :time_zone
 
-  validates_numericality_of :height, :allow_nil => true
+  validates_numericality_of :height, allow_nil: true
   validates_presence_of :name
 
-  # All callbacks and lifecycle events should be kept on the model itself, and not stored
-  # modules. This way, we have a central source of truth about lifecycle events for the
-  # model.
-  after_save :update_weights_bmi, :if => :height_changed?
+  after_save :update_weights_bmi, if: :height_changed?
 
   has_many :weights
   has_many :places
   has_many :meals
+  has_many :moods
 
   has_one :withings_account
   has_one :fitbit_account
