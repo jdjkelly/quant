@@ -3,7 +3,11 @@ require 'spec_helper'
 describe MoodsController do
 
   def valid_attributes
-    Fabricate(:mood).attributes.keep_if {|k, _| [:rating, :date, :description].include? k.to_sym }
+    {
+      rating: 1,
+      date: Time.now,
+      description: "Some description"
+    }
   end
 
   let(:mood)       {Fabricate(:mood)}
@@ -108,6 +112,7 @@ describe MoodsController do
   end
 
   describe "POST 'create'" do
+
     context "when a user isn't signed in" do
       it "should redirect" do
         post :create, {:mood => valid_attributes}
