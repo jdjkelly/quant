@@ -49,6 +49,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'fabrication'
   gem 'database_cleaner'
+  gem 'faker'
   gem 'email_spec'
   gem 'webmock'
 end
