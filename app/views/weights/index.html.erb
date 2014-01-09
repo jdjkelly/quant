@@ -12,36 +12,50 @@
 
 <div class="row">
   <div class="columns large-12">
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Value (lbs)</th>
-          <th>Lean Mass (lbs) </th>
-          <th>Fat Mass (lbs)</th>
-          <th>Fat (%)</th>
-          <th>BMI</th>
-          <th>API</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
+    <dl class="sub-nav" data-tab>
+      <dt>Filter:</dt>
+      <dd><a href="#summary">Summary</a></dd>
+      <dd class="active"><a href="#raw-data">Raw Data</a></dd>
+    </dl>
+    <div class="tabs-content">
+      <div class="content summary" id="summary">
+        <p>First panel content goes here...</p>
+      </div>
+      <div class="content active raw-data" id="raw-data">
+        <div class="row">
+          <div class="columns large-12">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Value (lbs)</th>
+                  <th>Lean Mass (lbs) </th>
+                  <th>Fat Mass (lbs)</th>
+                  <th>Fat (%)</th>
+                  <th>BMI</th>
+                  <th>API</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
 
-    <% @weights.each do |weight| %>
-      <tr>
-        <td><%= link_to weight.date.to_formatted_s(:short), weight %></td>
-        <td><%= weight.value.round(1) %></td>
-        <td><%= weight.lean_mass.present? ? weight.lean_mass.round(1) : nil %></td>
-        <td><%= weight.fat_mass.present? ? weight.fat_mass.round(1) : nil %></td>
-        <td><%= weight.fat_percent.present? ? weight.fat_percent.round(1) : nil %></td>
-        <td><%= weight.bmi.present? ? weight.bmi.round(1) : nil %></td>
-        <td><%= link_to 'JSON', weight_path(weight, format: :json) %></td>
-        <td><%= link_to 'Edit', edit_weight_path(weight) %></td>
-        <td><%= link_to 'Destroy', weight_path(weight), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-    </table>
-
-    <br />
+            <% @weights.each do |weight| %>
+              <tr>
+                <td><%= link_to weight.date.to_formatted_s(:short), weight %></td>
+                <td><%= weight.value.round(1) %></td>
+                <td><%= weight.lean_mass.present? ? weight.lean_mass.round(1) : nil %></td>
+                <td><%= weight.fat_mass.present? ? weight.fat_mass.round(1) : nil %></td>
+                <td><%= weight.fat_percent.present? ? weight.fat_percent.round(1) : nil %></td>
+                <td><%= weight.bmi.present? ? weight.bmi.round(1) : nil %></td>
+                <td><%= link_to 'JSON', weight_path(weight, format: :json) %></td>
+                <td><%= link_to 'Edit', edit_weight_path(weight) %></td>
+                <td><%= link_to 'Destroy', weight_path(weight), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

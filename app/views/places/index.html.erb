@@ -13,28 +13,44 @@
 
 <div class="row">
   <div class="columns large-12">
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Lat</th>
-          <th>Lng</th>
-          <th>API</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
+    <dl class="sub-nav" data-tab>
+      <dt>Filter:</dt>
+      <dd><a href="#summary">Summary</a></dd>
+      <dd class="active"><a href="#raw-data">Raw Data</a></dd>
+    </dl>
+    <div class="tabs-content">
+      <div class="content summary" id="summary">
+        <p>First panel content goes here...</p>
+      </div>
+      <div class="content active raw-data" id="raw-data">
+        <div class="row">
+          <div class="columns large-12">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Lat</th>
+                  <th>Lng</th>
+                  <th>API</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
 
-      <% @places.each do |place| %>
-        <tr>
-          <td><%= link_to place.date.to_formatted_s(:short), place %></td>
-          <td><%= place.lat %></td>
-          <td><%= place.lng %></td>
-          <td><%= link_to 'JSON', place_path(place, format: :json) %></td>
-          <td><%= link_to 'Edit', edit_place_path(place) %></td>
-          <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </table>
+              <% @places.each do |place| %>
+                <tr>
+                  <td><%= link_to place.date.to_formatted_s(:short), place %></td>
+                  <td><%= place.lat %></td>
+                  <td><%= place.lng %></td>
+                  <td><%= link_to 'JSON', place_path(place, format: :json) %></td>
+                  <td><%= link_to 'Edit', edit_place_path(place) %></td>
+                  <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
