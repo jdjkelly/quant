@@ -1,16 +1,17 @@
 <div class="contain-to-grid">
-  <nav class="top-bar">
+  <nav class="top-bar" data-topbar>
     <ul class="title-area">
       <li class="name">
         <h1>
           <%= link_to 'Quant', "/" %>
         </h1>
       </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
     <% if user_signed_in? %>
       <section class="top-bar-section">
         <ul class="left">
+          <li class="divider"></li>
           <li>
             <%= link_to "Weight", weights_path %>
           </li>
@@ -23,6 +24,12 @@
           <li>
             <%= link_to "Moods", moods_path %>
           </li>
+          <li class="divider"></li>
+        </ul>
+      </section>
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="divider"></li>
           <li class="has-dropdown"><a href="#">Data providers</a>
             <ul class="dropdown">
                 <%- User.omniauth_providers.each do |provider| %>
@@ -30,10 +37,7 @@
                 <% end -%>
             </ul>
           </li>
-        </ul>
-      </section>
-      <section class="top-bar-section">
-        <ul class="right">
+          <li class="divider"></li>
           <li class="has-dropdown"><%= link_to current_user.name, user_path(current_user) %>
 
             <ul class="dropdown">
@@ -43,7 +47,7 @@
               <li class="divider"></li>
 
               <li><label>Data Sources Settings</label></li>
-              <li>Edit sources</li>
+              <li><a href="#">Edit sources</a></li>
               <li><a href="#">Sync sources</a></li>
               <li class="divider"></li>
               <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>

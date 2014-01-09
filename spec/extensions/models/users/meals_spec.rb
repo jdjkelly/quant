@@ -7,7 +7,7 @@ describe Users::Meals do
 
   before do
     3.times do |i|
-      user.meals.create(date: Date.today - i.days, calories: 0, carbohydrates: 0, fat: 0, protein: 0)
+      user.meals.create(date: Date.current - i.days, calories: 0, carbohydrates: 0, fat: 0, protein: 0)
     end
   end
 
@@ -20,7 +20,7 @@ describe Users::Meals do
 
     context "search for today" do
       it "finds 1 meal" do
-        user.meals_from(Date.today).length.should eq(1)
+        user.meals_from(Date.current).length.should eq(1)
       end
     end
   end
@@ -34,7 +34,7 @@ describe Users::Meals do
 
     context "search for today" do
       it "finds 0 meals" do
-        user.meals_after(Date.today).length.should eq(0)
+        user.meals_after(Date.current).length.should eq(0)
       end
     end
   end
@@ -48,7 +48,7 @@ describe Users::Meals do
 
     context "search for today" do
       it "finds 2 meals" do
-        user.meals_before(Date.today).length.should eq(2)
+        user.meals_before(Date.current).length.should eq(2)
       end
     end
   end
@@ -62,7 +62,7 @@ describe Users::Meals do
 
     context "search for today" do
       it "finds 1 meal" do
-        user.meals_on(Date.today).length.should eq(1)
+        user.meals_on(Date.current).length.should eq(1)
       end
     end
   end
