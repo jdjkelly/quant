@@ -14,6 +14,14 @@ GIT
       ruby-hmac
 
 GIT
+  remote: git://github.com/mattmueller/foundation-rails.git
+  revision: effaea8efbfcc6ec17b553b45d1cc529bc7716e8
+  specs:
+    foundation-rails (5.0.2.0)
+      railties (>= 3.1.0)
+      sass (>= 3.2.0)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: 01e029fd9b33cd14947954456febba661b49e190
   specs:
@@ -32,14 +40,6 @@ GIT
     spork-rails (3.2.1)
       rails (>= 3.0.0, < 5)
       spork (>= 1.0rc0)
-
-GIT
-  remote: git://github.com/zurb/foundation-rails.git
-  revision: e077d749316bcb78525830e15a58c0c19e31a854
-  specs:
-    foundation-rails (5.0.2.0)
-      railties (>= 3.1.0)
-      sass (>= 3.2.0)
 
 GEM
   remote: https://rubygems.org/

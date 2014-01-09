@@ -1,9 +1,12 @@
 <div class="row">
-  <div class="columns large-3">
-    <%= link_to 'New Mood', new_mood_path, class: "small button" %>
+  <div class="columns large-8">
+    <h2>Moods</h2>
   </div>
-  <div class="columns large-6 pull-3">
-    <h3 class="text-center">Moods</h3>
+  <div class="columns large-2">
+    <%= link_to 'New Mood', new_mood_path, class: "small button expand" %>
+  </div>
+  <div class="columns large-2">
+    <a href="#" class="button small expand split secondary">Data<span></span></a>
   </div>
 </div>
 
@@ -14,20 +17,32 @@
         <tr>
           <th>Date</th>
           <th>Rating</th>
+          <th>Description</th>
           <th>API</th>
           <th></th>
           <th></th>
         </tr>
       </thead>
 
-    <% @moods.each do |mood| %>
+    <% @moods_grouped_by_date.keys.each do |key| %>
       <tr>
-        <td><%= link_to mood.date.to_formatted_s(:day_month_and_year), mood %></td>
-        <td><%= mood.rating %></td>
-        <td><%= link_to 'JSON', meal_path(mood, format: :json) %></td>
-        <td><%= link_to 'Edit', edit_meal_path(mood) %></td>
-        <td><%= link_to 'Destroy', mood, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= key.to_formatted_s(:day_month_and_year) %></td>
+        <td><strong><%= (@moods_grouped_by_date[key].sum(&:rating) / @moods_grouped_by_date[key].count).round(1) %></strong></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
+
+      <% @moods_grouped_by_date[key].each do |mood| %>
+        <tr>
+          <td></td>
+          <td><%= mood.rating %></td>
+          <td><%= mood.description %></td>
+          <td><%= link_to 'JSON', mood_path(mood, format: :json) %></td>
+          <td><%= link_to 'Edit', edit_mood_path(mood) %></td>
+          <td><%= link_to 'Destroy', mood, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
     </table>
   </div>

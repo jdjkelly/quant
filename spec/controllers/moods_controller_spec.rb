@@ -162,4 +162,86 @@ describe MoodsController do
     end
   end
 
+    describe "PUT update" do
+    context "when a user isn't signed in" do
+      it "should redirect" do
+        put :update, {:id => valid_attributes}
+        response.should be_redirect
+      end
+    end
+
+    context "when a user is is signed in" do
+      before(:each) do
+        sign_in user
+      end
+
+      describe "with valid params" do
+        it "updates the requested mood" do
+          mood = user.moods.create! valid_attributes
+          Mood.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+          put :update, {:id => mood.to_param, :mood => { "these" => "params" }}
+        end
+
+        it "assigns the requested mood as @mood" do
+          mood = user.moods.create! valid_attributes
+          put :update, {:id => mood.to_param, :mood => valid_attributes}
+          assigns(:mood).should eq(mood)
+        end
+
+        it "redirects to moods index" do
+          mood = user.moods.create! valid_attributes
+          put :update, {:id => mood.to_param, :mood => valid_attributes}
+          response.should redirect_to(moods_path)
+        end
+      end
+
+      describe "with invalid params" do
+        it "assigns the mood as @mood" do
+          mood = user.moods.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Mood.any_instance.stub(:save).and_return(false)
+          put :update, {:id => mood.to_param, :mood => {  }}
+          assigns(:mood).should eq(mood)
+        end
+
+        it "re-renders the 'edit' template" do
+          mood = user.moods.create! valid_attributes
+          # Trigger the behavior that occurs when invalid params are submitted
+          Mood.any_instance.stub(:save).and_return(false)
+          put :update, {:id => mood.to_param, :mood => {  }}
+          response.should render_template("edit")
+        end
+      end
+    end
+  end
+
+  describe "DELETE destroy" do
+    context "when a user isn't signed in" do
+      it "should redirect" do
+        mood = user.moods.create! valid_attributes
+        delete :destroy, {:id => mood.to_param}
+        response.should be_redirect
+      end
+    end
+
+    context "when a user is is signed in" do
+      before(:each) do
+        sign_in user
+      end
+
+      it "destroys the requested mood" do
+        mood = user.moods.create! valid_attributes
+        expect {
+          delete :destroy, {:id => mood.to_param}
+        }.to change(Mood, :count).by(-1)
+      end
+
+      it "redirects to the moods list" do
+        mood = user.moods.create! valid_attributes
+        delete :destroy, {:id => mood.to_param}
+        response.should redirect_to(moods_url)
+      end
+    end
+  end
+
 end
