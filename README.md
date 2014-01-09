@@ -92,3 +92,23 @@ THE SOFTWARE.
 * Only include the Foundation JS that is being used
 * check rails 4 version of devise
 * add https://github.com/scottwater/detect_timezone_rails
+
+
+### API Integrations
+
+#### Moods
+
+#### Weights
+Fitbit
+
+#### Sleeps
+Fitbit
+
+#### Meals
+myfitnesspal.com
+
+#### Places
+Facebook
+Foursquare
+Twitter
+
