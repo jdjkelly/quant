@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe "Sleeps" do
   describe "GET /sleeps" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get sleeps_path
-      response.status.should be(200)
+    context "when not signed in" do
+      it "redirects" do
+        get weights_path
+        response.status.should be(302) # have to be signed in
+      end
     end
   end
 end
