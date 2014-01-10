@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="columns large-8">
+    <h2>Sleeps</h2>
+  </div>
+  <div class="columns large-2">
+    <%= link_to 'New Sleep', new_sleep_path, class: "small button expand" %>
+  </div>
+  <div class="columns large-2">
+    <a href="#" class="button small expand split secondary">Data<span></span></a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="columns large-12">
+    <dl class="sub-nav" data-tab>
+      <dt>Filter:</dt>
+      <dd><a href="#summary">Summary</a></dd>
+      <dd class="active"><a href="#raw-data">Raw Data</a></dd>
+    </dl>
+    <div class="tabs-content">
+      <div class="content summary" id="summary">
+        <p>First panel content goes here...</p>
+      </div>
+      <div class="content active raw-data" id="raw-data">
+        <div class="row">
+          <div class="columns large-12">
+            <table>
+              <thead>
+                <tr>
+                  <th>Start</th>
+                  <th>End</th>
+                  <th>Duration</th>
+                  <th>API</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+
+            <% @sleeps.each do |sleep| %>
+              <tr>
+                <td><%= link_to sleep.start.to_formatted_s(:short), sleep %></td>
+                <td><%= link_to sleep.end.to_formatted_s(:short), sleep %></td>
+                <td><%= sleep.end - sleep.start %></td>
+                <td><%= link_to 'JSON', sleep_path(sleep, format: :json) %></td>
+                <td><%= link_to 'Edit', edit_sleep_path(sleep) %></td>
+                <td><%= link_to 'Destroy', sleep_path(sleep), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

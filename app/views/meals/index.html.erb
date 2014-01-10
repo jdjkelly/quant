@@ -48,9 +48,9 @@
                 <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates).round(1) %></strong></td>
                 <td><strong><%= @meals_grouped_by_date[key].sum(&:fat).round(1) %></strong></td>
                 <td><strong><%= @meals_grouped_by_date[key].sum(&:protein).round(1) %></strong></td>
-                <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates_percentage).round(1) %></strong></td>
-                <td><strong><%= @meals_grouped_by_date[key].sum(&:fat_percentage).round(1) %></strong></td>
-                <td><strong><%= @meals_grouped_by_date[key].sum(&:protein_percentage).round(1) %></strong></td>
+                <td><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :carbohydrates).round(1) %></strong></td>
+                <td><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :fat).round(1) %></strong></td>
+                <td><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :protein).round(1) %></strong></td>
                 <td></td>
                 <td></td>
                 <td></td>

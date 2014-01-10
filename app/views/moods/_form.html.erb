@@ -8,7 +8,7 @@
           <div class="large-12 columns">
             <%= f.label :date %>
             <%= date_field("mood", "date", :discard_year => true) %>
-            <% if @mood.errors[:source].present? %>
+            <% if @mood.errors[:date].present? %>
               <small class="error"><%= @mood.errors[:date].join(", ") %></small>
             <% end %>
           </div>
@@ -18,7 +18,7 @@
           <div class="large-12 columns">
             <%= f.label :rating %>
             <%= f.number_field :rating, max: 5, min: 1 %>
-            <% if @mood.errors[:source].present? %>
+            <% if @mood.errors[:rating].present? %>
               <small class="error"><%= @mood.errors[:date].join(", ") %></small>
             <% end %>
           </div>

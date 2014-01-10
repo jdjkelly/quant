@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="columns large-4 push-4">
+    <%= form_for @sleep, :url => sleep_path(@sleep), :html => { :class => "custom" } do |f| %>
+
+      <div class="unit-panel">
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="row">
+              <div class="large-12 columns">
+                <%= f.label :start %>
+                <%= f.datetime_local_field :start %>
+                <% if @sleep.errors[:start].present? %>
+                  <small class="error"><%= @sleep.errors[:start].join(", ") %></small>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="large-12 columns">
+                <%= f.label :end %>
+                <%= f.datetime_local_field :end %>
+                <% if @sleep.errors[:end].present? %>
+                  <small class="error"><%= @sleep.errors[:end].join(", ") %></small>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="columns large-12">
+                <%= f.submit class: "button radius large-12 small-12" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div
+    <% end %>
+  </div>
+</div>

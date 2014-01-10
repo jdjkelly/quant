@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe MoodsController do
 
-  def valid_attributes
+  let(:valid_attributes) {
     {
       rating: 1,
       date: Time.now,
       description: "Some description"
     }
-  end
+  }
 
   let(:mood)       {Fabricate(:mood)}
   let(:user)       {Fabricate(:user)}
@@ -16,7 +16,7 @@ describe MoodsController do
 
   describe "GET 'index'" do
     context "when a user isn't signed in" do
-      it "should redirect" do
+      it "redirects" do
         get :index
         response.should be_redirect
       end
@@ -27,7 +27,7 @@ describe MoodsController do
         sign_in user
       end
 
-      it "should only return the current_user's moods" do
+      it "only returns the current_user's moods" do
         mood = user.moods.create! valid_attributes
         other_users_mood = other_user.moods.create! valid_attributes
 
@@ -39,13 +39,13 @@ describe MoodsController do
 
   describe "GET 'show'" do
     context "when a user isn't signed in" do
-      it "should redirect" do
+      it "redirects" do
         get :show, {id: 1}
         response.should be_redirect
       end
     end
 
-    context "what a user is is signed in" do
+    context "when a user is is signed in" do
       before(:each) do
         sign_in user
       end
@@ -66,7 +66,7 @@ describe MoodsController do
 
   describe "GET 'new'" do
     context "when a user isn't signed in" do
-      it "should redirect" do
+      it "redirects" do
         get :new, {}
         response.should be_redirect
       end
@@ -162,7 +162,7 @@ describe MoodsController do
     end
   end
 
-    describe "PUT update" do
+  describe "PUT update" do
     context "when a user isn't signed in" do
       it "should redirect" do
         put :update, {:id => valid_attributes}

@@ -220,6 +220,39 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: sleeps; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE sleeps (
+    id integer NOT NULL,
+    start timestamp without time zone,
+    "end" timestamp without time zone,
+    user_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sleeps_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sleeps_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sleeps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sleeps_id_seq OWNED BY sleeps.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -371,6 +404,13 @@ ALTER TABLE ONLY places ALTER COLUMN id SET DEFAULT nextval('places_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY sleeps ALTER COLUMN id SET DEFAULT nextval('sleeps_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -418,6 +458,14 @@ ALTER TABLE ONLY meals
 
 ALTER TABLE ONLY moods
     ADD CONSTRAINT moods_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sleeps_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY sleeps
+    ADD CONSTRAINT sleeps_pkey PRIMARY KEY (id);
 
 
 --
@@ -590,3 +638,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130913031613');
 INSERT INTO schema_migrations (version) VALUES ('20131231024056');
 
 INSERT INTO schema_migrations (version) VALUES ('20140108154856');
+
+INSERT INTO schema_migrations (version) VALUES ('20140109041557');

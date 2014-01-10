@@ -43,6 +43,7 @@ GIT
 
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.0.0)
       actionpack (= 4.0.0)
@@ -215,6 +216,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.0.0)
       sprockets-rails (~> 2.0.0)
+    rails-assets-cal-heatmap (1.0.1)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -250,6 +252,7 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     ruby-hmac (0.4.0)
+    ruby_gntp (0.3.4)
     rubyzip (0.9.9)
     sass (3.2.12)
     sass-rails (4.0.0)
@@ -341,11 +344,13 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rails (= 4.0.0)
+  rails-assets-cal-heatmap
   rails_12factor
   rails_config
   rb-fsevent
   rspec
   rspec-rails
+  ruby_gntp
   sass-rails (~> 4.0.0)
   shoulda-matchers
   spork-rails!
