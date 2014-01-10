@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
+
 ruby "2.0.0"
 
 gem 'rails', '4.0.0'
@@ -17,6 +19,7 @@ gem 'active_model_serializers'
 gem 'pg'
 gem 'protected_attributes'
 gem 'cancan'
+gem 'rails-assets-cal-heatmap'
 
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
@@ -37,6 +40,7 @@ group :development do
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'thin'
+  gem 'ruby_gntp'
 end
 
 group :test do
