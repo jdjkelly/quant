@@ -26,7 +26,7 @@ class SleepsController < ApplicationController
     @sleep = current_user.sleeps.new(sleep_params)
 
     if @sleep.save
-      redirect_to @sleep, notice: 'Sleep was successfully created.'
+      redirect_to sleeps_url, notice: 'Sleep was successfully created.'
     else
       render action: 'new'
     end
@@ -35,7 +35,7 @@ class SleepsController < ApplicationController
   # PATCH/PUT /sleeps/1
   def update
     if @sleep.update(sleep_params)
-      redirect_to @sleep, notice: 'Sleep was successfully updated.'
+      redirect_to sleeps_url, notice: 'Sleep was successfully updated.'
     else
       render action: 'edit'
     end
