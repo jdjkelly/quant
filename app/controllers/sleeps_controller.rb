@@ -5,7 +5,7 @@ class SleepsController < ApplicationController
 
   # GET /sleeps
   def index
-    @sleeps = current_user.sleeps.order("start ASC")
+    @sleeps = current_user.sleeps.order("start DESC")
   end
 
   # GET /sleeps/1
