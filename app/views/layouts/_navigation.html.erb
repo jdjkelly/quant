@@ -12,21 +12,11 @@
       <section class="top-bar-section">
         <ul class="left">
           <li class="divider"></li>
-          <li>
-            <%= link_to "Weight", weights_path %>
-          </li>
-          <li>
-            <%= link_to "Places", places_path %>
-          </li>
-          <li>
-            <%= link_to "Meals", meals_path %>
-          </li>
-          <li>
-            <%= link_to "Mood", moods_path %>
-          </li>
-          <li>
-            <%= link_to "Sleep", sleeps_path %>
-          </li>
+          <%= nav_link "Weight", weights_path %>
+          <%= nav_link "Places", places_path %>
+          <%= nav_link "Meals", meals_path %>
+          <%= nav_link "Mood", moods_path %>
+          <%= nav_link "Sleep", sleeps_path %>
           <li class="divider"></li>
         </ul>
       </section>
