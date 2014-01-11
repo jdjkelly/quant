@@ -9,11 +9,13 @@ $sub-header-nav-bar-h3-font-color: #6b7781
   // Title header for category/resource (i.e. Sleeps)
   h3
     color: $sub-header-nav-bar-h3-font-color
+    float: left
+    margin-top: 6px
 
   // New resource buttons
   .sub-header-nav-bar-button
-    @extend .button
-    // needs to be size directive
+    @extend button
+    // @TODO needs to be screen size directive
     margin-bottom: 0px
 
   // Tabs
@@ -22,8 +24,9 @@ $sub-header-nav-bar-h3-font-color: #6b7781
     $sub-header-nav-bar-tabs-font-color: #85909a
 
     @extend .tabs
-    // needs to be size directive
-    float: right
+    // @TODO needs to be screen size directive
+    float: left
+    margin-left: 20px
 
     dd > a
       font-weight: 500

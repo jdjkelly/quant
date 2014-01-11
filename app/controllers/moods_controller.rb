@@ -30,6 +30,7 @@ class MoodsController < ApplicationController
   # GET /moods/new.json
   def new
     @mood = Mood.new
+    @mood.date = Date.current
 
     respond_to do |format|
       format.html # new.html.erb
