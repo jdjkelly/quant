@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Sleep do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "validates that the end is after the start time" do
+    pending
+  end
 end
