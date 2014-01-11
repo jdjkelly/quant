@@ -19,7 +19,6 @@ gem 'active_model_serializers'
 gem 'pg'
 gem 'protected_attributes'
 gem 'cancan'
-gem 'rails-assets-cal-heatmap'
 
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
@@ -30,6 +29,8 @@ gem 'foundation-rails', github: 'mattmueller/foundation-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails'
+gem 'd3-rails'
+gem 'rails-assets-cal-heatmap'
 
 group :development do
   gem 'rspec-rails'

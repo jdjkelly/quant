@@ -507,6 +507,13 @@ CREATE INDEX index_meals_on_user_id ON meals USING btree (user_id);
 
 
 --
+-- Name: index_sleeps_on_start; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_sleeps_on_start ON sleeps USING btree (start);
+
+
+--
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -640,3 +647,5 @@ INSERT INTO schema_migrations (version) VALUES ('20131231024056');
 INSERT INTO schema_migrations (version) VALUES ('20140108154856');
 
 INSERT INTO schema_migrations (version) VALUES ('20140109041557');
+
+INSERT INTO schema_migrations (version) VALUES ('20140110125408');
