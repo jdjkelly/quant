@@ -11,12 +11,19 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
+//= require d3
 //= require_tree .
 //= require turbolinks
 //= require jquery.turbolinks
 //= require chart
-//= require foundation
+//= require cal-heatmap
+//= require foundation/foundation
+//= require foundation/foundation.abide
+//= require foundation/foundation.alert
+//= require foundation/foundation.dropdown
+//= require foundation/foundation.tab
+//= require foundation/foundation.tooltip
+//= require foundation/foundation.topbar
 
 $(document).ready(function() {
   $(document).foundation()
