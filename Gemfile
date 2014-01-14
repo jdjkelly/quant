@@ -30,18 +30,20 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails'
 gem 'd3-rails'
-gem 'rails-assets-cal-heatmap'
+gem 'rails-assets-cal-heatmap', '3.3.9'
 
 group :development do
   gem 'rspec-rails'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-bundler'
+  gem 'guard',            require: false
+  gem 'guard-rspec',      require: false
+  gem 'guard-bundler',    require: false
   gem 'foreman'
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'thin'
   gem 'ruby_gntp'
+  gem 'guard-livereload', require: false
+  gem 'rack-livereload'
 end
 
 group :test do

@@ -20,36 +20,10 @@
   <div class="columns large-12">
     <div class="tabs-content">
       <div class="content summary" id="summary">
-        <p>First panel content goes here...</p>
+        <%= render 'summary' %>
       </div>
       <div class="content active raw-data" id="raw-data">
-        <div class="row">
-          <div class="columns large-12">
-            <table>
-              <thead>
-                <tr>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Duration</th>
-                  <th>API</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-
-            <% @sleeps.each do |sleep| %>
-              <tr>
-                <td><%= link_to sleep.start.to_formatted_s(:short), sleep %></td>
-                <td><%= link_to sleep.end.to_formatted_s(:short), sleep %></td>
-                <td><%= formatted_duration(sleep) %></td>
-                <td><%= link_to 'JSON', sleep_path(sleep, format: :json) %></td>
-                <td><%= link_to 'Edit', edit_sleep_path(sleep) %></td>
-                <td><%= link_to 'Destroy', sleep_path(sleep), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-            <% end %>
-            </table>
-          </div>
-        </div>
+        <%= render 'raw_data' %>
       </div>
     </div>
   </div>
