@@ -17,17 +17,17 @@ ready = ->
       legendHorizontalPosition: "right",
       considerMissingDataAsZero: true
       data: "/sleeps.json" + "?#{location.search.substr(1)}"
-      afterLoadData: (data, sleeps=data.sleeps)->
-        data = {}
-        sleeps.forEach (sleep) ->
-          start = Date.parse(sleep.start)
-          end = Date.parse(sleep.end)
+      # afterLoadData: (data, sleeps=data.sleeps)->
+      #   data = {}
+      #   sleeps.forEach (sleep) ->
+      #     start = Date.parse(sleep.start)
+      #     end = Date.parse(sleep.end)
 
-          timeStamp = start
-          while timeStamp < end
-            data[timeStamp] = 1
-            timeStamp + 3600000
-        data
+      #     timeStamp = start
+      #     while timeStamp < end
+      #       data[timeStamp] = 1
+      #       timeStamp + 3600000
+      #   data
 
     cal.init options
 
