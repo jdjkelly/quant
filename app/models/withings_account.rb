@@ -18,6 +18,7 @@ class WithingsAccount < DataProvider
   validates_presence_of :userid, :oauth_token, :oauth_token_secret
 
   def get_user_data
+    # THis needs to be caught and raised
     if synced_at
       sync_measurement_groups WithingsAccount.authenticated_user(id).send(:measurement_groups, { start_at: synced_at })
     else
