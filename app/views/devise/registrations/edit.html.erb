@@ -33,17 +33,6 @@
 
     <%= f.collection_select :time_zone, ActiveSupport::TimeZone.all, :name, :to_s %>
 
-    <p><%= f.label :token_authentication_key %><br />
-    <%= resource.authentication_token.blank? ? "Token Empty" : resource.authentication_token %></p>
-
-    <p><%= link_to "Generate Token", token_authentications_path(:user_id => resource.id), :method => :post, :confirm => "Are you sure?"  %>
-    <%= link_to "Delete Token", token_authentication_path(resource), :method => :delete, :confirm => "Are you sure?"  %></p>
-
-    <% if resource.authentication_token %>
-      <p>You can use this url to login<br />
-      <%= resource.authentication_token %></p>
-    <% end %>
-
     <div><%= f.submit "Update" %></div>
   <% end %>
 
