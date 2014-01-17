@@ -57,7 +57,13 @@ class User < ActiveRecord::Base
   has_one :fitbit_account
 
   def sync_all_provider_data
-    [withings_account, fitbit_account].each {|provider| provider.try(:get_user_data)}
+    [withings_account, fitbit_account].each {|provider|
+      begin
+        provider.try(:get_user_data)
+      rescue
+        raise Exceptions::ApiError
+      end
+    }
   end
 
   # This method exists to address a shortcoming in cancan where you can't define particular
