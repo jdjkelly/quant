@@ -134,6 +134,8 @@ GEM
     ffi (1.8.1)
     fitgem (0.7.0)
       oauth
+    font-awesome-rails (4.0.3.1)
+      railties (>= 3.2, < 5.0)
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
@@ -341,6 +343,7 @@ DEPENDENCIES
   fabrication
   faker
   fitgem
+  font-awesome-rails
   foreman
   foundation-rails!
   growl

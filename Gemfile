@@ -31,6 +31,7 @@ gem 'jquery-turbolinks'
 gem 'jquery-rails'
 gem 'd3-rails'
 gem 'rails-assets-cal-heatmap', '3.3.9'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'rspec-rails'
