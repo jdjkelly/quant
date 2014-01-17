@@ -1,5 +1,5 @@
 ready = ->
-  if $('.sleeps.index #cal-heatmap')?
+  if $('.sleeps.index #cal-heatmap').length > 0
     cal = new CalHeatMap()
     options =
       start: new Date(2014, 0)
