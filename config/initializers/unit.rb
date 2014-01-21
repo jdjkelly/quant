@@ -6,7 +6,8 @@ class Unit
     meters: {
       feet: 3.28084,
       meters: 1.0,
-      centimeters: 100
+      centimeters: 100,
+      kilograms: 1.0
     },
     centimeters: {
       meters: 0.01
@@ -15,7 +16,8 @@ class Unit
       pounds: 2.2046
     },
     pounds: {
-      kilograms: 0.453592
+      kilograms: 0.453592,
+      pounds: 1.0
     }
   }
 
@@ -25,6 +27,8 @@ class Unit
   end
 
   def to(new_unit)
+    return @length if @unit == new_unit
+
     new_length = @length * @@conversion_rates[@unit][new_unit]
   end
 
