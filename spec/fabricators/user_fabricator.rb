@@ -24,7 +24,7 @@
 #
 
 Fabricator(:user) do
-  namee 'test name'
+  name 'test name'
   email { "#{(0...8).map { (65 + rand(26)).chr }.join}@local.dev" }
   height 10.0
   password 'changeme'
