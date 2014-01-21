@@ -24,8 +24,4 @@
 #
 
 Fabricator(:user) do
-  name { Faker::Name.name }
-  email { |attrs| "#{attrs[:name].parameterize}@local.dev" }
-  password 'changeme'
-  password_confirmation 'changeme'
 end
