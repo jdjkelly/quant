@@ -18,7 +18,7 @@ class FitbitAccount < ActiveRecord::Base
 
   validates_presence_of :uid, :oauth_token, :oauth_token_secret
 
-  data_provider_for :weights, :sleeps, :meals
+  data_provider_for :weights
 
   def weights options={}
     options[:start_date] = synced_at if synced_at
@@ -35,22 +35,8 @@ class FitbitAccount < ActiveRecord::Base
       options[:period] = "1m"
     end
 
-    weights = client.body_weight options
-    process_weights user.weights.create weights[:weight]
-  end
-
-  def sleeps options={}
-    # sleeps = client.sleeps(options)
-    # process_sleeps user.sleeps.create sleeps[:sleep.to_s]
-
-    raise Exceptions::NotImplemented
-  end
-
-  def meals options={}
-    # meals = client.recent_foods
-    # process_sleeps user.meals.create meals[:meal.to_s]
-
-    raise Exceptions::NotImplemented
+    response = client.body_weight options
+    process_weights response["weight"]
   end
 
   private
@@ -70,24 +56,18 @@ class FitbitAccount < ActiveRecord::Base
   end
 
   def process_weights weights
+    raise ArgumentError "weights must be an array" unless weights.is_a? Array || weights.nil?
+
     weights.each do |weight|
-      next if user.weights.where("meta @> 'logId=>#{weight[:logId.to_s].to_s}").first
+      next if user.weights.where("meta @> 'logId=>#{weight[:logId.to_s].to_s}'").first
       user.weights.create(
-        value: Unit.new(measurement.weight, :pounds).to(:pounds),
-        date: weight[:date.to_s],
+        value: Unit.new(weight["weight"], :pounds).to(:pounds),
+        date: Time.parse("#{weight["date"]} #{weight["time"]}"),
         source: "FitbitAccount",
         meta: {
-          logId: weight[:logId.to_s]
+          logId: weight["logId"]
         }
       )
     end
-  end
-
-  def process_sleeps sleeps
-    raise Exceptions::NotImplemented
-  end
-
-  def process_meals meals
-    raise Exceptions::NotImplemented
   end
 end
