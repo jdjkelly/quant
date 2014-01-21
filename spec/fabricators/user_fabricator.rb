@@ -24,4 +24,9 @@
 #
 
 Fabricator(:user) do
+  name { Faker::Name.name }
+  email { "#{(0...8).map { (65 + rand(26)).chr }.join}@local.dev" }
+  height 10.0
+  password 'changeme'
+  password_confirmation 'changeme'
 end
