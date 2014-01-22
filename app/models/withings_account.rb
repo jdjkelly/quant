@@ -12,39 +12,43 @@
 #  synced_at          :datetime
 #
 
-class WithingsAccount < DataProvider
+class WithingsAccount < ActiveRecord::Base
+  include DataProvider
+
   attr_accessible :userid, :oauth_token, :oauth_token_secret
 
   validates_presence_of :userid, :oauth_token, :oauth_token_secret
 
-  def get_user_data
-    # THis needs to be caught and raised
-    if synced_at
-      sync_measurement_groups WithingsAccount.authenticated_user(id).send(:measurement_groups, { start_at: synced_at })
-    else
-      sync_measurement_groups WithingsAccount.authenticated_user(id).send(:measurement_groups)
-    end
+  data_provider_for :weights
 
-    update_attribute :synced_at, Time.now
+  def weights options={}
+    options[:start_at] = synced_at if synced_at
+    process_weights client.send(:measurement_groups, options)
   end
 
-  def sync_measurement_groups(measurement_groups)
-    measurement_groups.each do |measurement|
-      return if user.weights.where("meta @> 'grpid=>#{measurement.grpid.to_s}'").first
-      user.weights.create(
-        value: Unit.new(measurement.weight, :kilograms).to(:pounds),
-        date: measurement.taken_at,
-        fat_mass: Unit.new(measurement.fat, :kilograms).to(:pounds),
-        source: "WithingsAccount",
-        meta: {
-          grpid: measurement.grpid.to_s
-        }
-      )
-    end
+  private
+
+  def client
+    WithingsAccount.authenticated_user(id)
   end
 
   def self.authenticated_user id
     user = WithingsAccount.find id
     Withings::User.authenticate(user.userid, user.oauth_token, user.oauth_token_secret)
+  end
+
+  def process_weights weights
+    weights.each do |weight|
+      next if user.weights.where("meta @> 'grpid=>#{weight.grpid.to_s}'").first
+      user.weights.create(
+        value: Unit.new(weight.weight, :kilograms).to(:pounds),
+        date: weight.taken_at,
+        fat_mass: Unit.new(weight.fat, :kilograms).to(:pounds),
+        source: "WithingsAccount",
+        meta: {
+          grpid: weight.grpid.to_s
+        }
+      )
+    end
   end
 end

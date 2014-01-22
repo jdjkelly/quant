@@ -45,6 +45,9 @@ describe OmniauthCallbacksController do
     before do
       request.env["devise.mapping"] = Devise.mappings[:user]
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:fitbit]
+
+      stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/body\/log\/weight\/date\/.*\/1m.json/).
+        to_return(:status => 200, :body => "{\"weight\":[{\"bmi\":31.45,\"date\":\"2014-01-11\",\"logId\":1389484799000,\"time\":\"23:59:59\",\"weight\":195},{\"bmi\":30.81,\"date\":\"2014-01-18\",\"logId\":1390089599000,\"time\":\"23:59:59\",\"weight\":191}]}", :headers => {})
     end
 
     context "when a user is signed in" do

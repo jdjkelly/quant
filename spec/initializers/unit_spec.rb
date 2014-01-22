@@ -10,6 +10,12 @@ describe Unit do
       end
     end
 
+    context "when converting 1 pound to one pound (same unit)" do
+      it "is 3.28084" do
+        Unit.new(1, :pounds).to(:pounds).should eq(1)
+      end
+    end
+
   end
 
 end
