@@ -18,22 +18,14 @@ class FitbitAccount < ActiveRecord::Base
 
   validates_presence_of :uid, :oauth_token, :oauth_token_secret
 
-  data_provider_for :weights
+  data_provider_for :weights, :sleeps
 
   def weights options={}
-    options[:start_date] = synced_at if synced_at
-
-    if options[:start_date].present? && options[:end_date].present?
-      if options[:end].in_days - options[:start].in_days > 31
-        raise Exceptions::OutOfRange
-      end
-    elsif options[:start_date].present?
-      raise Exceptions::NotImplemented "We need to handle the case of a synced_at
-        date > 30 days ago - and then recursively gather data in 31 day blocks"
-    else
-      options[:base_date] = "today"
-      options[:period] = "1m"
-    end
+    # TODO: Add support for data /since/ synced_at,
+    # data for all time, and splitting both over multiple
+    # requests
+    options[:base_date] = "today"
+    options[:period] = "1m"
 
     response = client.body_weight options
     process_weights response["weight"]
