@@ -18,7 +18,7 @@ class FitbitAccount < ActiveRecord::Base
 
   validates_presence_of :uid, :oauth_token, :oauth_token_secret
 
-  data_provider_for :weights, :sleeps
+  data_provider_for :weights
 
   def weights options={}
     # TODO: Add support for data /since/ synced_at,
