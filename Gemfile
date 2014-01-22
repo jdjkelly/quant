@@ -5,20 +5,27 @@ ruby "2.0.0"
 
 gem 'rails', '4.0.0'
 gem 'rails_config'
+
+# Rails 4.1 upgrade to remove
+gem 'active_model_serializers'
+gem 'protected_attributes'
+gem 'concerning', github: '37signals/concerning'
+
+# Databases
+gem 'activerecord-postgres-hstore'
+gem 'activerecord-postgres-earthdistance'
+gem 'annotate', '>=2.5.0'
+gem 'pg'
+
+# Authentication & APIs
+gem 'cancan'
 gem 'oauth'
 gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth'
 gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
 gem 'omniauth-fitbit'
 gem 'withings', github: 'jdjkelly/withings'
-gem 'fitgem'
-gem 'activerecord-postgres-hstore'
-gem 'activerecord-postgres-earthdistance'
-gem 'annotate', '>=2.5.0'
-gem 'active_model_serializers'
-gem 'pg'
-gem 'protected_attributes'
-gem 'cancan'
+gem 'fitgem', github: 'whazzmaster/fitgem' # Version 0.9 wasn't out yet - once it is, we can revert back to rubygems source
 
 # Assets
 gem 'sass-rails',   '~> 4.0.0'

@@ -100,15 +100,25 @@ THE SOFTWARE.
 
 #### Weights
 Fitbit
+Withings
 
 #### Sleeps
 Fitbit
+Withings
+Jawbone
 
 #### Meals
-myfitnesspal.com
+myfitnesspal.com (?)
+loseit.com (?)
+Fitbit
 
 #### Places
 Facebook
 Foursquare
 Twitter
 
+#### Activities
+Nike+
+Fitbit
+Withings
+Jawbone
