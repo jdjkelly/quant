@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require d3
-//= require_tree .
 //= require turbolinks
 //= require jquery.turbolinks
 //= require chart
@@ -24,6 +23,10 @@
 //= require foundation/foundation.tab
 //= require foundation/foundation.tooltip
 //= require foundation/foundation.topbar
+//= require angular
+//= require angular-resource
+//= require quantApp
+//= require_tree .
 
 $(document).ready(function() {
   $(document).foundation()

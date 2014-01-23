@@ -94,6 +94,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.4)
+    angularjs-rails (1.2.9)
     annotate (2.5.0)
       rake
     arel (4.0.1)
@@ -343,6 +344,7 @@ DEPENDENCIES
   active_model_serializers
   activerecord-postgres-earthdistance
   activerecord-postgres-hstore
+  angularjs-rails
   annotate (>= 2.5.0)
   cancan
   capybara (~> 1.1.4)
