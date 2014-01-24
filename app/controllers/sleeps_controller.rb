@@ -5,11 +5,12 @@ class SleepsController < ApplicationController
 
   # GET /sleeps
   def index
-    @sleeps = current_user.sleeps.order("start DESC")
-
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @sleeps }
+      format.html
+      format.json do
+        @sleeps = current_user.sleeps.order("start DESC")
+        render json: @sleeps, root: false
+      end
     end
   end
 
