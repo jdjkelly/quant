@@ -32,7 +32,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         current_user.create_fitbit_account(
           uid: request.env["omniauth.auth"]["uid"],
           oauth_token: request.env["omniauth.auth"]["credentials"]["token"],
-          oauth_token_secret: request.env["omniauth.auth"]["credentials"]["secret"]
+          oauth_token_secret: request.env["omniauth.auth"]["credentials"]["secret"],
+          activated_at: Date.parse(request.env["omniauth.auth"]["info"]["member_since"].to_s)
         )
 
         flash[:success] = "Fitbit account synchronized"

@@ -10,6 +10,7 @@
 #  user_id            :integer
 #  oauth_token_secret :string(255)
 #  synced_at          :datetime
+#  activated_at       :datetime
 #
 
 Fabricator(:withings_account) do
