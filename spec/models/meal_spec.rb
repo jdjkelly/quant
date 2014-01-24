@@ -3,7 +3,7 @@
 # Table name: meals
 #
 #  id            :integer          not null, primary key
-#  date          :datetime
+#  date          :date
 #  calories      :integer
 #  carbohydrates :integer
 #  protein       :integer

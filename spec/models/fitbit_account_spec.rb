@@ -9,6 +9,8 @@
 #  user_id            :integer
 #  created_at         :datetime
 #  updated_at         :datetime
+#  synced_at          :datetime
+#  activated_at       :datetime
 #
 
 require 'spec_helper'
@@ -38,7 +40,7 @@ describe FitbitAccount do
       context "with synced_at stamp" do
         before do
           #TODO: Move this into a general stub file
-          stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/body\/log\/weight\/date\/.*\/1m.json/).
+          stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/body\/log\/weight\/date\/.*\/30d.json/).
             to_return(:status => 200, :body => "{\"weight\":[{\"bmi\":31.45,\"date\":\"2014-01-11\",\"logId\":1389484799000,\"time\":\"23:59:59\",\"weight\":195},{\"bmi\":30.81,\"date\":\"2014-01-18\",\"logId\":1390089599000,\"time\":\"23:59:59\",\"weight\":191}]}", :headers => {})
 
           user.fitbit_account.synced_at = Time.now
@@ -48,8 +50,8 @@ describe FitbitAccount do
         end
       end
 
-      context "with start_date and end_date" do
-        it "requests weights between start and end dates" do
+      context "with importing = true" do
+        it "requests all user weights since user activation date, in 30 day blocks" do
           pending
         end
       end
