@@ -83,7 +83,8 @@ CREATE TABLE fitbit_accounts (
     user_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    synced_at timestamp without time zone
+    synced_at timestamp without time zone,
+    activated_at timestamp without time zone
 );
 
 
@@ -382,7 +383,8 @@ CREATE TABLE withings_accounts (
     oauth_token character varying(255),
     user_id integer,
     oauth_token_secret character varying(255),
-    synced_at timestamp without time zone
+    synced_at timestamp without time zone,
+    activated_at timestamp without time zone
 );
 
 
@@ -701,3 +703,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140110125408');
 INSERT INTO schema_migrations (version) VALUES ('20140113150329');
 
 INSERT INTO schema_migrations (version) VALUES ('20140118211647');
+
+INSERT INTO schema_migrations (version) VALUES ('20140124014335');

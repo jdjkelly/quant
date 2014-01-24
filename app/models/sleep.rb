@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: sleeps
+#
+#  id         :integer          not null, primary key
+#  start      :datetime
+#  end        :datetime
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Sleep < ActiveRecord::Base
   attr_accessible :start, :end
 
