@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: [:withings, :fitbit]
+         :omniauthable, omniauth_providers: [:withings, :fitbit, :foursquare]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email,

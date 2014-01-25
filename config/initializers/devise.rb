@@ -257,4 +257,8 @@ Devise.setup do |config|
   config.omniauth :withings, Settings.withings_oauth_key, Settings.withings_oauth_secret
 
   config.omniauth :fitbit, Settings.fitbit_oauth_key, Settings.fitbit_oauth_secret
+
+  binding.pry
+
+  config.omniauth :foursquare, Settings.foursquare_oauth_key, Settings.foursquare_oauth_secret
 end
