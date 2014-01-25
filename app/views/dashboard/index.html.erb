@@ -11,8 +11,8 @@
         <div class="row">
           <div class="columns large-6">
             <h5>Weight</h5>
-            <h1><%= current_user.weight.round(1) %></h1>
-            <h5>pounds</h5>
+            <h1><%= Unit.new(current_user.weight, :kilograms).to_system(:imperial).round(1) %></h1>
+            <h5>Pounds</h5>
           </div>
           <div class="columns large-6">
             <canvas class="chart" data-chart-type="line" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="102"></canvas>
@@ -78,7 +78,7 @@
         <h5>Lean Mass</h5>
         <h1>
           <% if current_user.lean_mass %>
-            <%= current_user.lean_mass.round(1) %>
+            <%= Unit.new(current_user.lean_mass, :kilograms).to_system(:imperial).round(1) %>
           <% else %>
             N/A
           <% end %>
