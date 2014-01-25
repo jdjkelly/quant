@@ -42,6 +42,15 @@ Spork.prefork do
 
   counter = -1
   RSpec.configure do |config|
+    # Defer garbage collection
+    config.before(:all) do
+       DeferredGarbageCollection.start
+    end
+
+    config.after(:all) do
+       DeferredGarbageCollection.reconsider
+    end
+
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

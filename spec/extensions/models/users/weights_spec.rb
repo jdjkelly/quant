@@ -23,7 +23,7 @@ describe Users::Weights do
 
     context "when the user has a height" do
       it "returns valid bmi" do
-        user.bmi.should eq(45.3592)
+        user.bmi.should eq(100.0)
       end
     end
   end

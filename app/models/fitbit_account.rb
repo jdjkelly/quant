@@ -60,7 +60,8 @@ class FitbitAccount < ActiveRecord::Base
       consumer_key: Settings.fitbit_oauth_key,
       consumer_secret: Settings.fitbit_oauth_secret,
       token: user.oauth_token,
-      secret: user.oauth_token_secret
+      secret: user.oauth_token_secret,
+      unit_system: Fitgem::ApiUnitSystem.METRIC
     })
   end
 
@@ -70,7 +71,7 @@ class FitbitAccount < ActiveRecord::Base
     weights.each do |weight|
       next if user.weights.where("meta @> 'logId=>#{weight[:logId.to_s].to_s}'").first
       user.weights.create(
-        value: Unit.new(weight["weight"], :pounds).to(:pounds),
+        value: weight["weight"],
         date: Time.parse("#{weight["date"]} #{weight["time"]}"),
         source: "FitbitAccount",
         meta: {

@@ -53,9 +53,9 @@ class WithingsAccount < ActiveRecord::Base
     weights.each do |weight|
       next if user.weights.where("meta @> 'grpid=>#{weight.grpid.to_s}'").first
       user.weights.create(
-        value: Unit.new(weight.weight, :kilograms).to(:pounds),
+        value: weight.weight,
         date: weight.taken_at,
-        fat_mass: Unit.new(weight.fat, :kilograms).to(:pounds),
+        fat_mass: weight.fat,
         source: "WithingsAccount",
         meta: {
           grpid: weight.grpid.to_s
