@@ -48,6 +48,12 @@ describe OmniauthCallbacksController do
 
       stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/body\/log\/weight\/date\/.*\/30d.json/).
         to_return(:status => 200, :body => "{\"weight\":[{\"bmi\":31.45,\"date\":\"2014-01-11\",\"logId\":1389484799000,\"time\":\"23:59:59\",\"weight\":195},{\"bmi\":30.81,\"date\":\"2014-01-18\",\"logId\":1390089599000,\"time\":\"23:59:59\",\"weight\":191}]}", :headers => {})
+
+      stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/sleep\/startTime\/date\/.*\/.*.json/).
+        to_return(status: 200, body: "{\"sleep-startTime\": [{\"dateTime\": \"2014-01-22\",\"value\": \"00:52\"}]}", headers: {})
+
+      stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/sleep\/date\/.*.json/).
+        to_return(status: 200, body: "{\"sleep\":[{\"awakeningsCount\":14,\"duration\":26160000,\"efficiency\":93,\"isMainSleep\":true,\"logId\":98934441,\"minuteData\":[{\"dateTime\":\"00:52:00\",\"value\":\"3\"}],\"minutesAfterWakeup\":0,\"minutesAsleep\":401,\"minutesAwake\":29,\"minutesToFallAsleep\":6,\"startTime\":\"2014-01-22T00:52:00.000\",\"timeInBed\":436}],\"summary\":{\"totalMinutesAsleep\":401,\"totalSleepRecords\":1,\"totalTimeInBed\":436}}")
     end
 
     context "when a user is signed in" do

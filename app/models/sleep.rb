@@ -11,7 +11,7 @@
 #
 
 class Sleep < ActiveRecord::Base
-  attr_accessible :start, :end
+  attr_accessible :start, :end, :source, :meta
 
   validates_presence_of :start, :end
   validate :ends_after_start
