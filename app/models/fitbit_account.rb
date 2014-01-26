@@ -20,17 +20,13 @@ class FitbitAccount < ActiveRecord::Base
 
   validates_presence_of :uid, :oauth_token, :oauth_token_secret
 
-  data_provider_for :weights
+  data_provider_for :weights, :sleeps
 
   def weights options={}
     if options[:import] == true && self.activated_at.present?
       weights_since self.activated_at, options.except(:import)
       return
     elsif options[:sync] == true && self.synced_at.present?
-      options = {
-        base_date: "today",
-        period: "1m"
-      } if options.nil?
       weights_since self.synced_at, options.except(:sync)
       return
     end
@@ -45,6 +41,28 @@ class FitbitAccount < ActiveRecord::Base
     while date < Date.current
       date += 30.days
       weights({ base_date: date, period: "30d" }.merge(options))
+    end
+  end
+
+  def sleeps options={}
+    if options[:import] == true
+      sleeps_since Date.current, options.merge({ period: "max" })
+    elsif options[:sync] == true && self.synced_at.present?
+      sleeps_since self.synced_at, options.merge({ end_date: Date.current })
+    else
+      options = { base_date: Date.current}.merge(options)
+      response = client.sleep_on_date(options[:base_date])
+      process_sleeps response["sleep"]
+    end
+  end
+
+  def sleeps_since date=Date.current, options={}
+    sleeps = client.data_by_time_range("/sleep/startTime", { base_date: date }.merge(options))
+
+    sleeps = sleeps["sleep-startTime"].select{|sleep| !sleep["value"].empty?}
+
+    sleeps.each do |sleep|
+      sleeps({ base_date: Date.parse(sleep["dateTime"]) }.merge(options).except(:sync, :import))
     end
   end
 
@@ -72,10 +90,29 @@ class FitbitAccount < ActiveRecord::Base
       next if user.weights.where("meta @> 'logId=>#{weight[:logId.to_s].to_s}'").first
       user.weights.create(
         value: weight["weight"],
-        date: Time.parse("#{weight["date"]} #{weight["time"]}"),
+        date: Time.parse("#{weight["date"]} #{weight["time"]}"), #TODO: Timezone?
         source: "FitbitAccount",
         meta: {
-          logId: weight["logId"]
+          logId: weight["logId"],
+          response: weight
+        }
+      )
+    end
+  end
+
+  def process_sleeps sleeps
+    raise ArgumentError "sleeps must be an array" unless sleeps.is_a? Array || sleeeps.nil?
+
+    sleeps.each do |sleep|
+      next if user.sleeps.where("meta @> 'logId=>#{sleep[:logId.to_s].to_s}'").first
+      start = Time.parse(sleep["startTime"])
+      user.sleeps.create(
+        start: start,
+        end: start + sleep["timeInBed"].to_i.minutes,
+        source: "FitbitAccount",
+        meta: {
+          logId: sleep["logId"],
+          response: sleep
         }
       )
     end

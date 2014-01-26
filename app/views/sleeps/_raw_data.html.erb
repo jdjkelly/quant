@@ -14,8 +14,8 @@
 
     <% @sleeps.each do |sleep| %>
       <tr>
-        <td><%= link_to sleep.start.to_formatted_s(:short), sleep %></td>
-        <td><%= link_to sleep.end.to_formatted_s(:short), sleep %></td>
+        <td><%= link_to sleep.start.in_time_zone(current_user.time_zone).to_formatted_s(:short), sleep %></td>
+        <td><%= link_to sleep.end.in_time_zone(current_user.time_zone).to_formatted_s(:short), sleep %></td>
         <td><%= formatted_duration(sleep) %></td>
         <td><%= link_to 'JSON', sleep_path(sleep, format: :json) %></td>
         <td><%= link_to 'Edit', edit_sleep_path(sleep) %></td>
