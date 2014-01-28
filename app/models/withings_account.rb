@@ -10,6 +10,7 @@
 #  user_id            :integer
 #  oauth_token_secret :string(255)
 #  synced_at          :datetime
+#  activated_at       :datetime
 #
 
 class WithingsAccount < ActiveRecord::Base
@@ -22,8 +23,19 @@ class WithingsAccount < ActiveRecord::Base
   data_provider_for :weights
 
   def weights options={}
-    options[:start_at] = synced_at if synced_at
-    process_weights client.send(:measurement_groups, options)
+    if options[:sync] == true && self.synced_at.present?
+      weights_since self.synced_at, options.except(:sync)
+      return
+    end
+
+    # TODO: This needs to be wrapped in an external API rescue so that
+    # failures are handled gracefully
+    response = client.send(:measurement_groups, options)
+    process_weights response
+  end
+
+  def weights_since date=Date.current, options={}
+    weights({ start_at: date }.merge(options))
   end
 
   private
@@ -41,9 +53,9 @@ class WithingsAccount < ActiveRecord::Base
     weights.each do |weight|
       next if user.weights.where("meta @> 'grpid=>#{weight.grpid.to_s}'").first
       user.weights.create(
-        value: Unit.new(weight.weight, :kilograms).to(:pounds),
+        value: weight.weight,
         date: weight.taken_at,
-        fat_mass: Unit.new(weight.fat, :kilograms).to(:pounds),
+        fat_mass: weight.fat,
         source: "WithingsAccount",
         meta: {
           grpid: weight.grpid.to_s

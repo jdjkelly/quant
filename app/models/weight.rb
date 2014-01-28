@@ -48,7 +48,7 @@ class Weight < ActiveRecord::Base
 
   def calculate_bmi
     if user && user.height
-      self.bmi = Unit.new(value, :pounds).to(:kilograms) / ( Unit.new(user.height, :centimeters).to(:meters) ** 2 )
+      self.bmi = value / ( Unit.new(user.height, :centimeters).to_unit(:meters) ** 2 )
     end
   end
 
