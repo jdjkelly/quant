@@ -25,6 +25,7 @@
 //= require foundation/foundation.topbar
 //= require angular
 //= require angular-resource
+//= require mm-foundation-0.0.0.min
 //= require quantApp
 //= require_tree .
 

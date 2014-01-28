@@ -1,4 +1,4 @@
-quantApp = angular.module('quantApp', ['ngResource'])
+quantApp = angular.module('quantApp', ['ngResource', 'mm.foundation'])
 
 quantApp.factory('Sleeps', ['$resource', ($resource)->
   $resource '/sleeps/:id.json'
