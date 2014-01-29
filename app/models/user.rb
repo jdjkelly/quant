@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   has_one :fitbit_account
 
   def sync_all_provider_data
-    [withings_account, fitbit_account].each {|provider| provider.syc }
+    [withings_account, fitbit_account].each {|provider| provider.sync }
   end
 
   # This method exists to address a shortcoming in cancan where you can't define particular
