@@ -35,7 +35,7 @@ describe WithingsAccount do
   end
 
   context "with an active withings account" do
-    describe ".get_user_data" do
+    describe ".sync" do
       it "should update #synced_at" do
         pending
       end

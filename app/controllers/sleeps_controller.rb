@@ -15,6 +15,10 @@ class SleepsController < ApplicationController
 
   # GET /sleeps/1
   def show
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @sleep }
+    end
   end
 
   # GET /sleeps/new

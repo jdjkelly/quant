@@ -39,7 +39,7 @@ shared_examples "a data provider" do
     end
   end
 
-  describe "#get_user_data" do
+  describe "#syc" do
     it "updates synced_at stamp" do
       expect(data_provider.save).to_not eq(nil)
     end
