@@ -123,6 +123,6 @@ class FitbitAccount < ActiveRecord::Base
   end
 
   def user_info
-    @user_info ||= client.user_info
+    @user_info ||= client.user_info["user"]
   end
 end
