@@ -12,9 +12,9 @@
         </tr>
       </thead>
       <tr ng-repeat="sleep in sleeps"}}>
-        <td>{{sleep.start}}</td>
-        <td>{{sleep.end}}</td>
-        <td></td>
+        <td>{{sleep.start | date:"dd/MM/yyyy @ h:mma"}}</td>
+        <td>{{sleep.end | date:"dd/MM/yyyy @ h:mma"}}</td>
+        <td>{{sleep | duration:"hours"}}</td>
         <td></td>
         <td></td>
         <td></td>
