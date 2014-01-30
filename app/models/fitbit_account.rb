@@ -67,7 +67,7 @@ class FitbitAccount < ActiveRecord::Base
   end
 
   def time_zone
-    user_info["timezone"]
+    user_info["timezone"] if user_info.present?
   end
 
   private
