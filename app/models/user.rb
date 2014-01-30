@@ -56,7 +56,12 @@ class User < ActiveRecord::Base
   has_one :fitbit_account
 
   def sync_all_provider_data
-    [withings_account, fitbit_account].each {|provider| provider.sync }
+    # Use try here so as not to raise on nil relations
+    [withings_account, fitbit_account].each do |provider|
+      if provider.present?
+        provider.sync
+      end
+    end
   end
 
   # This method exists to address a shortcoming in cancan where you can't define particular
