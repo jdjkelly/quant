@@ -48,8 +48,6 @@ describe FitbitAccount do
        to_return(:status => 200, :body => "", :headers => {})
   end
 
-
-
   context "with a user" do
     before do
       # Let user #after_create occur - I'm not sure why this is all necessary though?
@@ -127,6 +125,14 @@ describe FitbitAccount do
     end
 
     describe ".process_sleeps" do
+      pending
+    end
+
+    describe ".time_zone" do
+      pending
+    end
+
+    describe ".user_info" do
       pending
     end
   end
