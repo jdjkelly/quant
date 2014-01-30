@@ -66,6 +66,10 @@ class FitbitAccount < ActiveRecord::Base
     end
   end
 
+  def time_zone
+    user_info["timezone"]
+  end
+
   private
 
   def client
@@ -90,7 +94,7 @@ class FitbitAccount < ActiveRecord::Base
       next if user.weights.where("meta @> 'logId=>#{weight[:logId.to_s].to_s}'").first
       user.weights.create(
         value: weight["weight"],
-        date: Time.parse("#{weight["date"]} #{weight["time"]}"), #TODO: Timezone?
+        date: Time.use_zone(time_zone) { Time.parse("#{weight["date"]} #{weight["time"]}") }, #TODO: Timezone?
         source: "FitbitAccount",
         meta: {
           logId: weight["logId"],
@@ -105,7 +109,7 @@ class FitbitAccount < ActiveRecord::Base
 
     sleeps.each do |sleep|
       next if user.sleeps.where("meta @> 'logId=>#{sleep[:logId.to_s].to_s}'").first
-      start = Time.parse(sleep["startTime"])
+      start = Time.use_zone(time_zone) { Time.parse(sleep["startTime"]) }
       user.sleeps.create(
         start: start,
         end: start + sleep["timeInBed"].to_i.minutes,
@@ -116,5 +120,9 @@ class FitbitAccount < ActiveRecord::Base
         }
       )
     end
+  end
+
+  def user_info
+    @user_info ||= client.user_info
   end
 end

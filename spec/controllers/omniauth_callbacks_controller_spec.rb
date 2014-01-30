@@ -54,6 +54,9 @@ describe OmniauthCallbacksController do
 
       stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/sleep\/date\/.*.json/).
         to_return(status: 200, body: "{\"sleep\":[{\"awakeningsCount\":14,\"duration\":26160000,\"efficiency\":93,\"isMainSleep\":true,\"logId\":98934441,\"minuteData\":[{\"dateTime\":\"00:52:00\",\"value\":\"3\"}],\"minutesAfterWakeup\":0,\"minutesAsleep\":401,\"minutesAwake\":29,\"minutesToFallAsleep\":6,\"startTime\":\"2014-01-22T00:52:00.000\",\"timeInBed\":436}],\"summary\":{\"totalMinutesAsleep\":401,\"totalSleepRecords\":1,\"totalTimeInBed\":436}}")
+
+      stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/profile.json/).
+        to_return(:status => 200, :body => "", :headers => {})
     end
 
     context "when a user is signed in" do
