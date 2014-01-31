@@ -12,12 +12,12 @@
         </tr>
       </thead>
       <tr ng-repeat="sleep in sleeps"}}>
-        <td>{{sleep.start | date:"dd/MM/yyyy @ h:mma"}}</td>
-        <td>{{sleep.end | date:"dd/MM/yyyy @ h:mma"}}</td>
-        <td>{{sleep | duration:"hours"}}</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><a href="/sleeps/{{sleep.id}}">{{sleep.start | date:"dd MMM yyyy h:mma"}}</a></td>
+        <td><a href="/sleeps/{{sleep.id}}">{{sleep.end | date:"dd MMM yyyy h:mma"}}</a></td>
+        <td>{{sleep | duration:"hours"}} hours</td>
+        <td><a href="/sleeps/{{sleep.id}}.json">JSON</a></td>
+        <td><a href="/sleeps/{{sleep.id}}/edit">Edit</a></td>
+        <td><a href="/sleeps/{{sleep.id}}/edit">Destroy</a></td>
       </tr>
     </table>
   </div>

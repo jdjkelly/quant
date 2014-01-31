@@ -232,8 +232,6 @@ GEM
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
-    rack-livereload (0.3.15)
-      rack
     rack-test (0.6.2)
       rack (>= 1.0)
     rails (4.0.0)
@@ -378,7 +376,6 @@ DEPENDENCIES
   protected_attributes
   pry-rails
   quiet_assets
-  rack-livereload
   rails (= 4.0.0)
   rails-assets-cal-heatmap (= 3.3.9)
   rails_12factor

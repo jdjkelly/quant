@@ -32,14 +32,15 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'compass-rails', '~> 1.1.3'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.0.3'
-gem 'foundation-rails', github: 'mattmueller/foundation-rails'
+gem 'foundation-rails', github: 'mattmueller/foundation-rails' #update to head
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails'
 gem 'd3-rails'
-gem 'rails-assets-cal-heatmap', '3.3.9'
+gem 'rails-assets-cal-heatmap', '3.3.9' #remove
 gem 'font-awesome-rails'
 gem 'angularjs-rails'
+
 
 group :development do
   gem 'rspec-rails'
@@ -52,7 +53,6 @@ group :development do
   gem 'thin'
   gem 'ruby_gntp'
   gem 'guard-livereload', require: false
-  gem 'rack-livereload'
 end
 
 group :test do

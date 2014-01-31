@@ -1,30 +1,32 @@
-<nav class="sub-header-nav-bar">
-  <div class="row">
-    <div class="columns large-8">
-      <h3>Sleeps</h3>
-      <dl class="sub-header-nav-bar-tabs" data-tab>
-        <dd><a href="#summary">Summary</a></dd>
-        <dd class="active"><a href="#raw-data">Raw Data</a></dd>
-      </dl>
+<div ng-controller="SleepsCtrl">
+  <nav class="sub-header-nav-bar">
+    <div class="row">
+      <div class="columns large-8">
+        <h3>Sleeps</h3>
+      </div>
+      <div class="columns large-2">
+        <%= link_to 'New Sleep', new_sleep_path, class: "small sub-header-nav-bar-button expand" %>
+      </div>
+      <div class="columns large-2">
+        <a href="#" class="sub-header-nav-bar-button small expand split success">Data<span></span></a>
+      </div>
     </div>
-    <div class="columns large-2">
-      <%= link_to 'New Sleep', new_sleep_path, class: "small sub-header-nav-bar-button expand" %>
-    </div>
-    <div class="columns large-2">
-      <a href="#" class="sub-header-nav-bar-button small expand split success">Data<span></span></a>
-    </div>
-  </div>
-</nav>
+  </nav>
 
-<div class="row" ng-controller="SleepsCtrl">
-  <div class="columns large-12">
-    <div class="tabs-content">
-      <div class="content summary" id="summary">
-        <%= render 'summary' %>
-      </div>
-      <div class="content active raw-data" id="raw-data">
-        <%= render 'raw_data' %>
-      </div>
+  <div class="row">
+    <div class="columns large-12">
+      <tabset>
+        <tab heading="Summary">
+          <div class="content summary" id="summary">
+            <%= render 'summary' %>
+          </div>
+        </tab>
+        <tab heading="Raw data">
+          <div class="content active raw-data" id="raw-data">
+            <%= render 'raw_data' %>
+          </div>
+        </tab>
+      </tabset>
     </div>
   </div>
 </div>
