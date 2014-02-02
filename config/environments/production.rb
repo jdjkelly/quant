@@ -49,6 +49,9 @@ Quantify::Application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
+  if Settings.asset_host
+    config.action_controller.asset_host = Settings.asset_host
+  end
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
