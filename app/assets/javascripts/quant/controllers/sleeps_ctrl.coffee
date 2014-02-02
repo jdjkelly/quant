@@ -37,13 +37,16 @@ angular.module('quant')
         .attr("transform", (d,i) -> "translate(" + i * barWidth + ",0)")
 
       bar.append("rect")
-        .attr("y", (d)-> y(d))
-        .attr("height", (d)-> height - y(d))
+        .attr("y", (d) -> y(d))
         .attr("width", barWidth - 1)
+        .attr("height", 0)
+        .transition().delay((d,i) -> i * 50).ease("linearOut")
+        .duration(250).attr("height", (d)-> height - y(d))
 
       bar.append("text")
         .attr("x", barWidth / 2)
         .attr("y", (d)-> y(d) + 3)
         .attr("dy", "1.5em")
         .text((d)-> "#{d} h")
+
 ]
