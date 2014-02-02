@@ -1,5 +1,6 @@
 class WeightsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :set_weight, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
   # GET /weights
@@ -16,8 +17,6 @@ class WeightsController < ApplicationController
   # GET /weights/1
   # GET /weights/1.json
   def show
-    @weight = Weight.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @weight }
@@ -37,13 +36,12 @@ class WeightsController < ApplicationController
 
   # GET /weights/1/edit
   def edit
-    @weight = Weight.find(params[:id])
   end
 
   # POST /weights
   # POST /weights.json
   def create
-    @weight = current_user.weights.new(params[:weight])
+    @weight = current_user.weights.new(weight_params)
 
     respond_to do |format|
       if @weight.save
@@ -56,13 +54,11 @@ class WeightsController < ApplicationController
     end
   end
 
-  # PUT /weights/1
-  # PUT /weights/1.json
+  # PATCH/PUT /weights/1
+  # PATCH/PUT /weights/1.json
   def update
-    @weight = Weight.find(params[:id])
-
     respond_to do |format|
-      if @weight.update_attributes(params[:weight])
+      if @weight.update_attributes(weight_params)
         format.html { redirect_to weight_path(@weight), notice: 'Weight was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,7 +71,6 @@ class WeightsController < ApplicationController
   # DELETE /weights/1
   # DELETE /weights/1.json
   def destroy
-    @weight = Weight.find(params[:id])
     @weight.destroy
 
     respond_to do |format|
@@ -83,4 +78,15 @@ class WeightsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_weight
+      @weight = Weight.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def weight_params
+      params.require(:weight).permit(:value, :date, :lean_mass, :fat_mass, :fat_percent, :source, :meta)
+    end
 end

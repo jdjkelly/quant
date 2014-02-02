@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :set_timezone
+  before_action :set_timezone
 
   # Provides us with global authentication handling, by assuming that
   # every non-devise controller requires authorization, and rescues from
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Required by the strong params behavior in Rails 4.0
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 

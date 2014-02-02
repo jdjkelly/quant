@@ -36,7 +36,7 @@ describe WeightsController do
   describe "GET show" do
     it "assigns the requested weight as @weight" do
       weight = user.weights.create! valid_attributes
-      get :show, {:id => weight.to_param}
+      get :show, {id: weight.to_param}
       assigns(:weight).should eq(weight)
     end
   end
@@ -51,7 +51,7 @@ describe WeightsController do
   describe "GET edit" do
     it "assigns the requested weight as @weight" do
       weight = user.weights.create! valid_attributes
-      get :edit, {:id => weight.to_param}
+      get :edit, { id: weight.to_param, weight: {} }
       assigns(:weight).should eq(weight)
     end
   end
@@ -63,18 +63,18 @@ describe WeightsController do
       end
       it "creates a new Weight" do
         expect {
-          post :create, {:weight => valid_attributes}
+          post :create, {weight: valid_attributes}
         }.to change(Weight, :count).by(1)
       end
 
       it "assigns a newly created weight as @weight" do
-        post :create, {:weight => valid_attributes}
+        post :create, {weight: valid_attributes}
         assigns(:weight).should be_a(Weight)
         assigns(:weight).should be_persisted
       end
 
       it "redirects to the created weight" do
-        post :create, {:weight => valid_attributes}
+        post :create, {weight: valid_attributes}
         response.should redirect_to(weight_path(Weight.last))
       end
     end
@@ -83,15 +83,15 @@ describe WeightsController do
       it "assigns a newly created but unsaved weight as @weight" do
         # Trigger the behavior that occurs when invalid params are submitted
         Weight.any_instance.stub(:save).and_return(false)
-        post :create, {:weight => {  }}
+        post :create, {weight: { value: 'invalid params' }}
         assigns(:weight).should be_a_new(Weight)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Weight.any_instance.stub(:save).and_return(false)
-        post :create, {:weight => {  }}
-        response.should render_template("new")
+        post :create, {weight: { value: 'invalid params' }}
+        response.should render_template('new')
       end
     end
   end
@@ -104,19 +104,19 @@ describe WeightsController do
         # specifies that the Weight created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Weight.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
-        put :update, {:id => weight.to_param, :weight => { "these" => "params" }}
+        Weight.any_instance.should_receive(:update_attributes).with({ 'value' => '1.0' })
+        put :update, {id: weight.to_param, weight: { value: 1.0 }}
       end
 
       it "assigns the requested weight as @weight" do
         weight = user.weights.create! valid_attributes
-        put :update, {:id => weight.to_param, :weight => valid_attributes}
+        put :update, {id: weight.to_param, weight: valid_attributes}
         assigns(:weight).should eq(weight)
       end
 
       it "redirects to the weight" do
         weight = user.weights.create! valid_attributes
-        put :update, {:id => weight.to_param, :weight => valid_attributes}
+        put :update, {id: weight.to_param, weight: valid_attributes}
         response.should redirect_to(weight_path(weight))
       end
     end
@@ -126,7 +126,7 @@ describe WeightsController do
         weight = user.weights.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Weight.any_instance.stub(:save).and_return(false)
-        put :update, {:id => weight.to_param, :weight => {  }}
+        put :update, { id: weight.to_param, weight: { value: 'invalid value' }}
         assigns(:weight).should eq(weight)
       end
 
@@ -134,7 +134,7 @@ describe WeightsController do
         weight = user.weights.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Weight.any_instance.stub(:save).and_return(false)
-        put :update, {:id => weight.to_param, :weight => {  }}
+        put :update, { id: weight.to_param, weight: { value: "invalid value" }}
         response.should render_template("edit")
       end
     end
@@ -144,13 +144,13 @@ describe WeightsController do
     it "destroys the requested weight" do
       weight = user.weights.create! valid_attributes
       expect {
-        delete :destroy, {:id => weight.to_param}
+        delete :destroy, { id: weight.to_param, weight: {} }
       }.to change(Weight, :count).by(-1)
     end
 
     it "redirects to the weights list" do
       weight = user.weights.create! valid_attributes
-      delete :destroy, {:id => weight.to_param}
+      delete :destroy, { id: weight.to_param, weight: {} }
       response.should redirect_to(weights_url)
     end
   end

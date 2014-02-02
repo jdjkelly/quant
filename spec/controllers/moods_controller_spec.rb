@@ -115,7 +115,7 @@ describe MoodsController do
 
     context "when a user isn't signed in" do
       it "should redirect" do
-        post :create, {:mood => valid_attributes}
+        post :create, {mood: valid_attributes}
         response.should be_redirect
       end
     end
@@ -128,18 +128,18 @@ describe MoodsController do
       describe "with valid params" do
         it "creates a new Mood" do
           expect {
-            post :create, {:mood => valid_attributes}
+            post :create, {mood: valid_attributes}
           }.to change(Mood, :count).by(1)
         end
 
         it "assigns a newly created mood as @mood" do
-          post :create, {:mood => valid_attributes}
+          post :create, {mood: valid_attributes}
           assigns(:mood).should be_a(Mood)
           assigns(:mood).should be_persisted
         end
 
         it "redirects to the moods index" do
-          post :create, {:mood => valid_attributes}
+          post :create, {mood: valid_attributes}
           response.should redirect_to(moods_path)
         end
       end
@@ -148,14 +148,14 @@ describe MoodsController do
         it "assigns a newly created but unsaved mood as @mood" do
           # Trigger the behavior that occurs when invalid params are submitted
           Mood.any_instance.stub(:save).and_return(false)
-          post :create, {:mood => { }}
+          post :create, {mood: { rating: 'abc' }}
           assigns(:mood).should be_a_new(Mood)
         end
 
         it "re-renders the 'new' template" do
           # Trigger the behavior that occurs when invalid params are submitted
           Mood.any_instance.stub(:save).and_return(false)
-          post :create, {:mood => {  }}
+          post :create, {mood: { rating: 'abc' }}
           response.should render_template("new")
         end
       end
@@ -165,7 +165,7 @@ describe MoodsController do
   describe "PUT update" do
     context "when a user isn't signed in" do
       it "should redirect" do
-        put :update, {:id => valid_attributes}
+        put :update, {id: valid_attributes}
         response.should be_redirect
       end
     end
@@ -178,19 +178,19 @@ describe MoodsController do
       describe "with valid params" do
         it "updates the requested mood" do
           mood = user.moods.create! valid_attributes
-          Mood.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
-          put :update, {:id => mood.to_param, :mood => { "these" => "params" }}
+          Mood.any_instance.should_receive(:update_attributes).with({ "rating" => "1.0" })
+          put :update, {id: mood.to_param, mood: { rating: 1.0 }}
         end
 
         it "assigns the requested mood as @mood" do
           mood = user.moods.create! valid_attributes
-          put :update, {:id => mood.to_param, :mood => valid_attributes}
+          put :update, {id: mood.to_param, mood: valid_attributes}
           assigns(:mood).should eq(mood)
         end
 
         it "redirects to moods index" do
           mood = user.moods.create! valid_attributes
-          put :update, {:id => mood.to_param, :mood => valid_attributes}
+          put :update, {id: mood.to_param, mood: valid_attributes}
           response.should redirect_to(moods_path)
         end
       end
@@ -200,7 +200,7 @@ describe MoodsController do
           mood = user.moods.create! valid_attributes
           # Trigger the behavior that occurs when invalid params are submitted
           Mood.any_instance.stub(:save).and_return(false)
-          put :update, {:id => mood.to_param, :mood => {  }}
+          put :update, {id: mood.to_param, mood: { rating: 'abc' }}
           assigns(:mood).should eq(mood)
         end
 
@@ -208,7 +208,7 @@ describe MoodsController do
           mood = user.moods.create! valid_attributes
           # Trigger the behavior that occurs when invalid params are submitted
           Mood.any_instance.stub(:save).and_return(false)
-          put :update, {:id => mood.to_param, :mood => {  }}
+          put :update, {id: mood.to_param, mood: { rating: 'abc' }}
           response.should render_template("edit")
         end
       end
@@ -219,7 +219,7 @@ describe MoodsController do
     context "when a user isn't signed in" do
       it "should redirect" do
         mood = user.moods.create! valid_attributes
-        delete :destroy, {:id => mood.to_param}
+        delete :destroy, {id: mood.to_param}
         response.should be_redirect
       end
     end
@@ -232,13 +232,13 @@ describe MoodsController do
       it "destroys the requested mood" do
         mood = user.moods.create! valid_attributes
         expect {
-          delete :destroy, {:id => mood.to_param}
+          delete :destroy, {id: mood.to_param}
         }.to change(Mood, :count).by(-1)
       end
 
       it "redirects to the moods list" do
         mood = user.moods.create! valid_attributes
-        delete :destroy, {:id => mood.to_param}
+        delete :destroy, {id: mood.to_param}
         response.should redirect_to(moods_url)
       end
     end
