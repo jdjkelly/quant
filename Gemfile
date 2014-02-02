@@ -68,6 +68,7 @@ group :test do
   gem 'faker'
   gem 'email_spec'
   gem 'webmock'
+  gem 'fuubar'
 end
 
 group :production do
