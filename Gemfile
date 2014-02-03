@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-ruby "2.0.0"
+ruby "2.1.0"
 
 gem 'rails', '4.0.0'
 gem 'rails_config'
@@ -53,6 +53,7 @@ group :development do
   gem 'ruby_gntp'
   gem 'guard-livereload', require: false
   gem 'rack-livereload'
+  gem 'parallel_tests'
 end
 
 group :test do
@@ -68,6 +69,7 @@ group :test do
   gem 'faker'
   gem 'email_spec'
   gem 'webmock'
+  gem 'fuubar'
 end
 
 group :production do

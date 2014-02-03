@@ -43,7 +43,7 @@ test:
   adapter: postgresql
   encoding: unicode
   reconnect: false
-  database: quantify_test
+  database: quantify_test<%= ENV['TEST_ENV_NUMBER'] %>
   pool: 5
   username: quantify
   password:

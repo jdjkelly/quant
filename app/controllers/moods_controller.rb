@@ -1,5 +1,6 @@
 class MoodsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
+  before_action :set_mood, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
   # GET /moods
@@ -18,8 +19,6 @@ class MoodsController < ApplicationController
   # GET /moods/1
   # GET /moods/1.json
   def show
-    @mood = Mood.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @mood }
@@ -40,13 +39,12 @@ class MoodsController < ApplicationController
 
   # GET /moods/1/edit
   def edit
-    @mood = Mood.find(params[:id])
   end
 
   # POST /moods
   # POST /moods.json
   def create
-    @mood = current_user.moods.new(params[:mood])
+    @mood = current_user.moods.new(mood_params)
 
     respond_to do |format|
       if @mood.save
@@ -62,10 +60,8 @@ class MoodsController < ApplicationController
   # PUT /moods/1
   # PUT /moods/1.json
   def update
-    @mood = Mood.find(params[:id])
-
     respond_to do |format|
-      if @mood.update_attributes(params[:mood])
+      if @mood.update_attributes(mood_params)
         format.html { redirect_to moods_path, notice: 'Mood was successfully updated.' }
         format.json { head :no_content }
       else
@@ -78,7 +74,6 @@ class MoodsController < ApplicationController
   # DELETE /moods/1
   # DELETE /moods/1.json
   def destroy
-    @mood = Mood.find(params[:id])
     @mood.destroy
 
     respond_to do |format|
@@ -86,5 +81,16 @@ class MoodsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_mood
+      @mood = Mood.find(params[:id])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def mood_params
+      params.require(:mood).permit(:date, :rating, :description)
+    end
 
 end

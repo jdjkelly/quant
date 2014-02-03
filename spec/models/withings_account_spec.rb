@@ -21,6 +21,7 @@ describe WithingsAccount do
   it { should validate_presence_of :oauth_token }
   it { should validate_presence_of :oauth_token_secret }
   it { should belong_to(:user) }
+  it { should be_a_data_provider_for :weights }
 
   it_behaves_like "a data provider"
 
@@ -34,7 +35,7 @@ describe WithingsAccount do
   end
 
   context "with an active withings account" do
-    describe ".get_user_data" do
+    describe ".sync" do
       it "should update #synced_at" do
         pending
       end
