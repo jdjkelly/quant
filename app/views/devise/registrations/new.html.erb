@@ -1,6 +1,7 @@
 <div class="row">
   <div class="columns large-4 push-4">
-    <h3 class="text-center">Sign up</h3>
+    <h3 class="text-center">Sign up <small>coming soon</small></h3>
+    <a href="https://github.com/jdjkelly/quant" class="text-center">Contribute on GitHub</a>
   </div>
 </div>
 
@@ -12,7 +13,7 @@
         <div class="row">
           <div class="large-12 columns">
             <%= f.label :name %>
-            <%= f.text_field :name, :autofocus => true%>
+            <%= f.text_field :name, :autofocus => true, disabled: true%>
             <% if resource.errors[:name].present? %>
               <small class="error"><%= resource.errors[:name].join(", ") %></small>
             <% end %>
@@ -22,7 +23,7 @@
         <div class="row">
           <div class="large-12 columns">
             <%= f.label :email %>
-            <%= f.email_field :email %>
+            <%= f.email_field :email, disabled: true %>
             <% if resource.errors[:email].present? %>
               <small class="error"><%= resource.errors[:email].join(", ") %></small>
             <% end %>
@@ -32,7 +33,7 @@
         <div class="row">
           <div class="large-12 columns">
             <%= f.label :password %>
-            <%= f.password_field :password  %>
+            <%= f.password_field :password, disabled: true  %>
             <% if resource.errors[:password].present? %>
               <small class="error"><%= resource.errors[:password].join(", ") %></small>
             <% end %>
@@ -42,7 +43,7 @@
         <div class="row">
           <div class="large-12 columns">
             <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation %>
+            <%= f.password_field :password_confirmation, disabled: true %>
             <% if resource.errors[:password_confirmation].present? %>
               <small class="error"><%= resource.errors[:password_confirmation].join(", ") %></small>
             <% end %>
@@ -51,7 +52,7 @@
 
         <div class="row">
           <div class="columns large-12">
-            <%= f.submit "Sign up", class: "button radius large-12 small-12" %>
+            <%= f.submit "Sign up", class: "button radius large-12 small-12 disabled", disabled: true %>
           </div>
         </div>
 
