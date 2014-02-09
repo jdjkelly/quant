@@ -28,11 +28,7 @@ module DataProvider
     def get_data options={}
       provides_data_for.each do |type|
 
-        begin
-          self.send type, options.slice(:import, :sync)
-        rescue NoMethodError
-          raise Exceptions::DataProviderForMethodNotDefined.new type.to_s
-        end
+        self.send type, options.slice(:import, :sync)
       end
 
       update_attribute :synced_at, Time.now
