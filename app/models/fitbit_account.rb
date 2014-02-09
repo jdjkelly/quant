@@ -95,7 +95,7 @@ class FitbitAccount < ActiveRecord::Base
       user.weights.create(
         value: weight["weight"],
         date: Time.use_zone(time_zone) { Time.zone.parse("#{weight["date"]} #{weight["time"]}") }, #TODO: Timezone?
-        source: "FitbitAccount",
+        source: self.class.to_s,
         meta: {
           logId: weight["logId"],
           response: weight
@@ -105,7 +105,7 @@ class FitbitAccount < ActiveRecord::Base
   end
 
   def process_sleeps sleeps
-    raise ArgumentError "sleeps must be an array" unless sleeps.is_a? Array || sleeeps.nil?
+    raise ArgumentError "sleeps must be an array" unless sleeps.is_a? Array || sleeps.nil?
 
     sleeps.each do |sleep|
       next if user.sleeps.where("meta @> 'logId=>#{sleep[:logId.to_s].to_s}'").first
@@ -113,7 +113,7 @@ class FitbitAccount < ActiveRecord::Base
       user.sleeps.create(
         start: start,
         end: start + sleep["timeInBed"].to_i.minutes,
-        source: "FitbitAccount",
+        source: self.class.to_s,
         meta: {
           logId: sleep["logId"],
           response: sleep
