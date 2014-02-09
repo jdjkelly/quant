@@ -14,6 +14,8 @@ describe OmniauthCallbacksController do
 
       stub_request(:get, /.*wbsapi.withings.net\/measure\?action=getmeas.*/).
         to_return(:status => 200, :body => "{\"status\":0,\"body\":{\"updatetime\":1370730432,\"more\":370,\"measuregrps\":[{\"grpid\":123986552,\"attrib\":0,\"date\":1370691572,\"category\":1,\"measures\":[{\"value\":64400,\"type\":1,\"unit\":-3},{\"value\":54519,\"type\":5,\"unit\":-3},{\"value\":15344,\"type\":6,\"unit\":-3},{\"value\":9881,\"type\":8,\"unit\":-3}]}]}}", :headers => {})
+
+      WithingsAccount.any_instance.stub(:import).and_return(true)
     end
 
     context "when a user is signed in" do
@@ -41,7 +43,7 @@ describe OmniauthCallbacksController do
     end
   end
 
-   describe "GET 'fitbit'" do
+  describe "GET 'fitbit'" do
     before do
       request.env["devise.mapping"] = Devise.mappings[:user]
       request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:fitbit]
@@ -57,6 +59,8 @@ describe OmniauthCallbacksController do
 
       stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/profile.json/).
         to_return(:status => 200, :body => "", :headers => {})
+
+      FitbitAccount.any_instance.stub(:import).and_return(true)
     end
 
     context "when a user is signed in" do
@@ -83,5 +87,32 @@ describe OmniauthCallbacksController do
       end
     end
   end
+
+  describe "GET 'foursquare'" do
+    before do
+      FoursquareAccount.any_instance.stub(:import).and_return(true)
+    end
+    context "when a user is signed in" do
+      it "show create a FoursquareAccount relation" do
+        sign_in user
+        get :foursquare
+        user.foursquare_account.should be_present
+      end
+    end
+
+    context "when a user already has a FoursquareAccount" do
+      it "should set a flash notification" do
+        pending
+      end
+    end
+
+    context "when there is no current user" do
+      it "should redirect to login" do
+        pending
+      end
+    end
+  end
+
+
 
 end
