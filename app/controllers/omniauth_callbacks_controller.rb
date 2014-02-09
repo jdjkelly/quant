@@ -53,7 +53,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         current_user.create_foursquare_account(
           uid: request.env["omniauth.auth"]["uid"],
           oauth_token: request.env["omniauth.auth"]["credentials"]["token"],
-          activated_at: Date.parse(request.env["omniauth.auth"]["info"]["createdAt"].to_s)
+          activated_at: Time.at(request.env["omniauth.auth"]["extra"]["raw_info"]["createdAt"]).utc.to_datetime
         )
 
         flash[:success] = "Foursquare account synchornized"
