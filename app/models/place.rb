@@ -20,5 +20,5 @@ class Place < ActiveRecord::Base
   validates :lat, presence: true, numericality: true
   validates :lng, presence: true, numericality: true
 
-  attr_accessible :date, :lat, :lng
+  attr_accessible :date, :lat, :lng, :response, :source, :meta
 end
