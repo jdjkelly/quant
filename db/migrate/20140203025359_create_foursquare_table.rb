@@ -12,6 +12,7 @@ class CreateFoursquareTable < ActiveRecord::Migration
 
     add_column :places, :meta, :hstore
     add_column :places, :source, :string
+    add_column :places, :response, :json
     add_hstore_index :places, :meta
   end
 end
