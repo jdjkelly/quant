@@ -35,18 +35,6 @@ module Users
       current_weight.bmi
     end
 
-    def has_withings_auth?
-      withings_account
-    end
-
-    def has_fitbit_auth?
-      fitbit_account
-    end
-
-    def has_scale_auth?
-      has_withings_auth?
-    end
-
   protected
 
     def update_weights_bmi

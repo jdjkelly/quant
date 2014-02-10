@@ -4,7 +4,7 @@ describe DashboardController do
 
   describe "routing" do
     it "routes to #index" do
-      # PENDING
+      pending
       #get("/").should route_to("dashboard#index")
     end
   end

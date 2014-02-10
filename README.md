@@ -99,26 +99,27 @@ THE SOFTWARE.
 #### Moods
 
 #### Weights
-Fitbit
-Withings
+* Fitbit
+* Withings
 
 #### Sleeps
-Fitbit
-Withings
-Jawbone
+* Fitbit
+* Withings
+* Jawbone
 
 #### Meals
-myfitnesspal.com (?)
-loseit.com (?)
-Fitbit
+* myfitnesspal.com (?)
+* loseit.com (?)
+* Fitbit
 
 #### Places
-Facebook
-Foursquare
-Twitter
+* Facebook
+* Foursquare
+* Twitter
+* OpenPaths
 
 #### Activities
-Nike+
-Fitbit
-Withings
-Jawbone
+* Nike+
+* Fitbit
+* Withings
+* Jawbone

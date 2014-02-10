@@ -26,7 +26,8 @@
           <li class="has-dropdown"><a href="#">Data providers</a>
             <ul class="dropdown">
                 <%- User.omniauth_providers.each do |provider| %>
-                  <li><%= link_to "Connect #{provider.to_s.titleize}", omniauth_authorize_path(User, provider) %></li>
+
+                  <li><%= link_to raw("Connect #{provider.to_s.titleize}   <span class=\"label success\">connected</span>"), omniauth_authorize_path(User, provider) %></li>
                 <% end -%>
             </ul>
           </li>
