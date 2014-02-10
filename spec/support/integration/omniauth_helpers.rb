@@ -37,4 +37,29 @@ module Integration
       }
     })
   end
+
+  OmniAuth.config.mock_auth[:foursquare] = OmniAuth::AuthHash.new({
+    provider: "foursquare",
+    uid: "152588",
+    info: {
+      first_name: "Test",
+      last_name: "User",
+      email: "test@example.com",
+      image: {
+        prefix: "https://irs3.4sqi.net/img/user/",
+        suffix: "/-IK3N0AMMIZ20ZS3H.jpg"
+      },
+      location: "Toronto, Canada"
+    },
+    credentials: {
+      token: "0",
+      expires: "false"
+    },
+    extra: {
+      raw_info: {
+        createdAt: 1391817305
+      }
+    }
+  })
+
 end
