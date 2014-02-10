@@ -1,7 +1,7 @@
 class FoursquareAccount < ActiveRecord::Base
   include DataProvider
 
-  attr_accessible :uid, :oauth_token
+  attr_accessible :uid, :oauth_token, :user
 
   validates_presence_of :uid, :oauth_token
 
