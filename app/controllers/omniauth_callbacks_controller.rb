@@ -56,7 +56,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           activated_at: Time.at(request.env["omniauth.auth"]["extra"]["raw_info"]["createdAt"]).utc.to_datetime
         )
 
-        flash[:success] = "Foursquare account synchornized"
+        flash[:success] = "Foursquare account synchronized"
       end
       redirect_to dashboard_index_path
     else
