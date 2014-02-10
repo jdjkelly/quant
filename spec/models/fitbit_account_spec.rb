@@ -45,7 +45,7 @@ describe FitbitAccount do
       to_return(status: 200, body: "{\"sleep\":[{\"awakeningsCount\":14,\"duration\":26160000,\"efficiency\":93,\"isMainSleep\":true,\"logId\":98934441,\"minuteData\":[{\"dateTime\":\"00:52:00\",\"value\":\"3\"}],\"minutesAfterWakeup\":0,\"minutesAsleep\":401,\"minutesAwake\":29,\"minutesToFallAsleep\":6,\"startTime\":\"2014-01-22T00:52:00.000\",\"timeInBed\":436}],\"summary\":{\"totalMinutesAsleep\":401,\"totalSleepRecords\":1,\"totalTimeInBed\":436}}")
 
     stub_request(:get, /.*api.fitbit.com\/1\/user\/-\/profile.json/).
-       to_return(:status => 200, :body => "", :headers => {})
+       to_return(:status => 200, :body => "{\"user\":{\"timezone\":\"America/New_York\"}}", :headers => {})
   end
 
   context "with a user" do
@@ -68,39 +68,35 @@ describe FitbitAccount do
     end
 
     describe ".weights" do
-      context "with synced_at stamp" do
-        before do
-          fitbit_account.synced_at = Time.now
+      context "with { sync: true }" do
+        it "requests .weights_since self.synced_at" do
+          FitbitAccount.any_instance.should_receive(:weights_since).with(fitbit_account.synced_at, {})
+          fitbit_account.weights({ sync: true })
         end
-        it "requests weights since synced_at stamp" do
 
-          # FitbitAccount.should_receive(:weights_since).with("02134")
-
-          # fitbit_account.weights({ sync: true })
-
-          pending
-        end
       end
 
       context "with { import: true }" do
-        it "requests all user weights since user activation date, in 30 day blocks" do
-          pending
+        it "requests .weights_since self.actived_at" do
+          FitbitAccount.any_instance.should_receive(:weights_since).with(fitbit_account.activated_at, {})
+          fitbit_account.weights({ import: true })
         end
       end
 
       context "without options" do
-        it "requests weights within last 1 month" do
-          pending
+        it "does not request .weights_since" do
+          FitbitAccount.any_instance.should_not_receive(:weights_since)
+          fitbit_account.weights
+        end
+
+        it "sends weights response to .process_weights" do
+          FitbitAccount.any_instance.should_receive(:process_weights).with([{"bmi"=>31.45, "date"=>"2014-01-11", "logId"=>1389484799000, "time"=>"23:59:59", "weight"=>195}, {"bmi"=>30.81, "date"=>"2014-01-18", "logId"=>1390089599000, "time"=>"23:59:59", "weight"=>191}])
+          fitbit_account.weights
         end
       end
     end
 
     describe ".weights_since" do
-      it "requests no weights if no options provided" do
-        fitbit_account.weights_since()
-        a_request(:any, /.*api.fitbit.com\/1\/user\/-\/body\/log\/weight\/date.*/).should_not have_been_made
-      end
-
       it "requests weights from yesterday + 30 days forward" do
         yesterday = Date.current - 1.day
         yesterday_in_30_days = yesterday + 30.days
@@ -110,30 +106,96 @@ describe FitbitAccount do
     end
 
     describe ".process_weights" do
-      pending
-    end
+      it "persists new weights" do
+        expect {
+           fitbit_account.send(:process_weights, [{"bmi"=>31.45, "date"=>"2014-01-11", "logId"=>1389484799000, "time"=>"23:59:59", "weight"=>195}, {"bmi"=>30.81, "date"=>"2014-01-18", "logId"=>1390089599000, "time"=>"23:59:59", "weight"=>191}])
+        }.to change(Weight, :count).by(2)
+      end
 
-    describe ".sleeps" do
-      it "requests sleeps from Fitbit API" do
-        pending
+      it "raises ArgumentError if no weights sent" do
+        expect {
+          fitbit_account.send(:process_weights)
+        }.to raise_error(ArgumentError)
       end
     end
 
+    describe ".sleeps" do
+      context "with { sync: true }" do
+        it "requests .sleeps_since self.synced_at" do
+          FitbitAccount.any_instance.should_receive(:sleeps_since).with(fitbit_account.synced_at, {sync: true, end_date: Date.current })
+          fitbit_account.sleeps({ sync: true })
+        end
+      end
+
+      context "with { import: true }" do
+        it "requests .sleeps_since self.actived_at" do
+          FitbitAccount.any_instance.should_receive(:sleeps_since).with(fitbit_account.activated_at, {import: true, period: "max"})
+          fitbit_account.sleeps({ import: true })
+        end
+      end
+
+      context "without options" do
+        it "does not request .sleeps_since" do
+          FitbitAccount.any_instance.should_not_receive(:sleeps_since)
+          fitbit_account.sleeps
+        end
+
+        it "sends weights response to .process_sleeps" do
+          FitbitAccount.any_instance.should_receive(:process_sleeps).with([{"awakeningsCount"=>14, "duration"=>26160000, "efficiency"=>93, "isMainSleep"=>true, "logId"=>98934441, "minuteData"=>[{"dateTime"=>"00:52:00", "value"=>"3"}], "minutesAfterWakeup"=>0, "minutesAsleep"=>401, "minutesAwake"=>29, "minutesToFallAsleep"=>6, "startTime"=>"2014-01-22T00:52:00.000", "timeInBed"=>436}])
+          fitbit_account.sleeps
+        end
+      end
+    end
 
     describe ".sleeps_since" do
-      pending
+      it "raises an argument error if neither options[:period] nor options[:end_date] are provided" do
+        expect {
+          fitbit_account.sleeps_since Date.current
+        }.to raise_error(ArgumentError)
+      end
+
+      it "requests sleeps by date range from Fitbit api" do
+        fitbit_account.sleeps_since Date.current - 1.day, { period: "max" }
+        a_request(:any, /.*api.fitbit.com\/1\/user\/-\/sleep\/startTime\/date\/#{(Date.current - 1.day).strftime("%F")}\/.*.json/).should have_been_made
+      end
     end
 
     describe ".process_sleeps" do
-      pending
+      it "persists new sleeps" do
+        expect {
+           fitbit_account.send(:process_sleeps, [{"awakeningsCount"=>14, "duration"=>26160000, "efficiency"=>93, "isMainSleep"=>true, "logId"=>98934441, "minuteData"=>[{"dateTime"=>"00:52:00", "value"=>"3"}], "minutesAfterWakeup"=>0, "minutesAsleep"=>401, "minutesAwake"=>29, "minutesToFallAsleep"=>6, "startTime"=>"2014-01-22T00:52:00.000", "timeInBed"=>436}])
+        }.to change(Sleep, :count).by(1)
+      end
+
+      it "raises ArgumentError if no sleeps sent" do
+        expect {
+          fitbit_account.send(:process_sleeps)
+        }.to raise_error(ArgumentError)
+      end
     end
 
     describe ".time_zone" do
-      pending
+      it "returns a time zone for the client" do
+        expect(
+          fitbit_account.time_zone
+        ).to eq("America/New_York")
+      end
     end
 
     describe ".user_info" do
-      pending
+      it "returns a hash" do
+        expect(
+          fitbit_account.send(:user_info)
+        ).to eq({"timezone"=>"America/New_York"})
+      end
+    end
+
+    describe ".client" do
+      it "returns a FitbitGem authenticated user" do
+        expect(
+          fitbit_account.send(:client).class
+        ).to eq(Fitgem::Client)
+      end
     end
   end
 end

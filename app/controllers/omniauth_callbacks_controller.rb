@@ -19,7 +19,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       redirect_to dashboard_index_path
     else
-      flash[:alert] = "You must be signed in to authenticate your Withings scale"
+      flash[:alert] = "You must be signed in to authenticate your Withings account"
       redirect_to new_user_session_path
     end
   end
@@ -40,7 +40,27 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       end
       redirect_to dashboard_index_path
     else
-      flash[:alert] = "You must be signed in to authenticate your Fitbit"
+      flash[:alert] = "You must be signed in to authenticate your Fitbit account"
+      redirect_to new_user_session_path
+    end
+  end
+
+  def foursquare
+    if user_signed_in?
+      if current_user.has_foursquare_auth?
+        flash[:success] = "You've already synchronized your Foursquare account"
+      else
+        current_user.create_foursquare_account(
+          uid: request.env["omniauth.auth"]["uid"],
+          oauth_token: request.env["omniauth.auth"]["credentials"]["token"],
+          activated_at: Time.at(request.env["omniauth.auth"]["extra"]["raw_info"]["createdAt"]).utc.to_datetime
+        )
+
+        flash[:success] = "Foursquare account synchornized"
+      end
+      redirect_to dashboard_index_path
+    else
+      flash[:alert] = "You must be signed in to authenticate your Foursquare account"
       redirect_to new_user_session_path
     end
   end

@@ -16,7 +16,7 @@
 class FitbitAccount < ActiveRecord::Base
   include DataProvider
 
-  attr_accessible :uid, :oauth_token, :oauth_token_secret
+  attr_accessible :uid, :oauth_token, :oauth_token_secret, :user
 
   validates_presence_of :uid, :oauth_token, :oauth_token_secret
 
@@ -33,11 +33,11 @@ class FitbitAccount < ActiveRecord::Base
 
     # TODO: This needs to be wrapped in an external API rescue so that
     # failures are handled gracefully
-    response = client.body_weight options.except(:sync, :import)
+    response = client.body_weight({ base_date: Date.current, period: "30d" }.merge(options).except(:sync, :import))
     process_weights response["weight"]
   end
 
-  def weights_since date=Date.current, options={}
+  def weights_since date, options={}
     while date < Date.current
       date += 30.days
       weights({ base_date: date, period: "30d" }.merge(options))
@@ -56,11 +56,11 @@ class FitbitAccount < ActiveRecord::Base
     end
   end
 
-  def sleeps_since date=Date.current, options={}
+  def sleeps_since date, options={}
+    raise ArgumentError unless options[:period].present? || options[:end_date].present?
+
     sleeps = client.data_by_time_range("/sleep/startTime", { base_date: date }.merge(options))
-
     sleeps = sleeps["sleep-startTime"].select{|sleep| !sleep["value"].empty?}
-
     sleeps.each do |sleep|
       sleeps({ base_date: Date.parse(sleep["dateTime"]) }.merge(options).except(:sync, :import))
     end
@@ -95,7 +95,7 @@ class FitbitAccount < ActiveRecord::Base
       user.weights.create(
         value: weight["weight"],
         date: Time.use_zone(time_zone) { Time.zone.parse("#{weight["date"]} #{weight["time"]}") }, #TODO: Timezone?
-        source: "FitbitAccount",
+        source: self.class.to_s,
         meta: {
           logId: weight["logId"],
           response: weight
@@ -105,7 +105,7 @@ class FitbitAccount < ActiveRecord::Base
   end
 
   def process_sleeps sleeps
-    raise ArgumentError "sleeps must be an array" unless sleeps.is_a? Array || sleeeps.nil?
+    raise ArgumentError "sleeps must be an array" unless sleeps.is_a? Array || sleeps.nil?
 
     sleeps.each do |sleep|
       next if user.sleeps.where("meta @> 'logId=>#{sleep[:logId.to_s].to_s}'").first
@@ -113,7 +113,7 @@ class FitbitAccount < ActiveRecord::Base
       user.sleeps.create(
         start: start,
         end: start + sleep["timeInBed"].to_i.minutes,
-        source: "FitbitAccount",
+        source: self.class.to_s,
         meta: {
           logId: sleep["logId"],
           response: sleep

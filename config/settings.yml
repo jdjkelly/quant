@@ -1,16 +1,25 @@
 withings_oauth_key: <%= ENV["bi_withings_oauth_key"] %>
 withings_oauth_secret: <%= ENV["bi_withings_oauth_secret"] %>
+
 fitbit_oauth_key: <%= ENV["bi_fitbit_oauth_key"] %>
 fitbit_oauth_secret: <%= ENV["bi_fitbit_oauth_secret"] %>
+
+foursquare_oauth_key: <%= ENV["bi_foursquare_oauth_key"] %>
+foursquare_oauth_secret: <%= ENV["bi_foursquare_oauth_secret"] %>
+
 coveralls_repo_token: <%= ENV["bi_coveralls_repo_token"] %>
+
 smtp_address: <%= ENV["bi_smtp_address"] %>
 smtp_port: <%= ENV["bi_smtp_port"] %>
 smtp_domain: <%= ENV["bi_smtp_domain"] %>
 smtp_user_name: <%= ENV["bi_smtp_user_name"] %>
 smtp_password: <%= ENV["bi_smtp_password"] %>
+
 action_mailer_default_url_options_host: <%= ENV["bi_action_mailer_default_url_options_host"] %>
+
 secret_token: <%= ENV["secret_token"] %>
 secret_key_base: <%= ENV["secret_key_base"] %>
+
 devise_secret_key: <%= ENV["devise_secret_key"] %>
 devise_mailer_sender: <%= ENV["deivse_mailer_sender"] %>
 asset_host: <%= ENV["quant_asset_host"] %>

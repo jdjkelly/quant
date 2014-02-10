@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
-         :omniauthable, omniauth_providers: [:withings, :fitbit]
+         :omniauthable, omniauth_providers: [:withings, :fitbit, :foursquare]
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email,
@@ -54,6 +54,7 @@ class User < ActiveRecord::Base
 
   has_one :withings_account
   has_one :fitbit_account
+  has_one :foursquare_account
 
   def sync_all_provider_data
     # Use try here so as not to raise on nil relations
@@ -68,5 +69,17 @@ class User < ActiveRecord::Base
   # ability blocks as having exceptions when using :all
   def user_id
     @user_id ||= self.id
+  end
+
+  def has_withings_auth?
+    withings_account.present?
+  end
+
+  def has_fitbit_auth?
+    fitbit_account.present?
+  end
+
+  def has_foursquare_auth?
+    foursquare_account.present?
   end
 end
