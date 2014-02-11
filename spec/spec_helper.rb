@@ -12,6 +12,7 @@ Spork.prefork do
   require 'capybara/rspec'
   require 'capybara/rails'
   require 'omniauth'
+  require 'sucker_punch/testing/inline'
 
   OmniAuth.config.test_mode = true
 
@@ -97,9 +98,11 @@ Spork.prefork do
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
     end
+
     config.before(:each) do
       DatabaseCleaner.start
     end
+
     config.after(:each) do
       DatabaseCleaner.clean
     end
