@@ -15,7 +15,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           oauth_token_secret: request.env["omniauth.auth"]["credentials"]["secret"]
         )
 
-        flash[:success] = "Withings scale synchronized"
+        flash[:success] = "Withings scale syncing data ..."
       end
       redirect_to dashboard_index_path
     else
@@ -36,7 +36,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           activated_at: Date.parse(request.env["omniauth.auth"]["info"]["member_since"].to_s)
         )
 
-        flash[:success] = "Fitbit account synchronized"
+        flash[:success] = "Fitbit account syncing data ..."
       end
       redirect_to dashboard_index_path
     else
@@ -56,7 +56,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           activated_at: Time.at(request.env["omniauth.auth"]["extra"]["raw_info"]["createdAt"]).utc.to_datetime
         )
 
-        flash[:success] = "Foursquare account synchronized"
+        flash[:success] = "Foursquare account syncing data ..."
       end
       redirect_to dashboard_index_path
     else
