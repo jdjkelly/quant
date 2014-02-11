@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
     # Use try here so as not to raise on nil relations
     [withings_account, fitbit_account].each do |provider|
       if provider.present?
-        provider.sync
+        DataProviderSync.new.async.perform provider.class, provider.id
       end
     end
   end

@@ -12,7 +12,7 @@ module DataProvider
 
   included do
     belongs_to :user
-    after_create :import
+    after_create :async_import
     attr_accessible :activated_at
 
     def import
@@ -32,6 +32,10 @@ module DataProvider
       end
 
       update_attribute :synced_at, Time.now
+    end
+
+    def async_import
+      DataProviderImport.new.async.perform self.class, self.id
     end
   end
 
