@@ -29,6 +29,9 @@ gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem', github: 'whazzmaster/fitgem' # Version 0.9 wasn't out yet - once it is, we can revert back to rubygems source
 gem 'foursquare2', '~> 1.9.7'
 
+# Processing
+gem 'sucker_punch'
+
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
 gem 'compass-rails', '~> 1.1.3'
