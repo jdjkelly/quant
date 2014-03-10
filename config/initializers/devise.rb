@@ -259,4 +259,6 @@ Devise.setup do |config|
   config.omniauth :fitbit, Settings.fitbit_oauth_key, Settings.fitbit_oauth_secret
 
   config.omniauth :foursquare, Settings.foursquare_oauth_key, Settings.foursquare_oauth_secret
+
+  config.omniauth :jawbone, Settings.jawbone_oauth_key, Settings.jawbone_oauth_secret, scope: "basic_read mood_read"
 end

@@ -25,6 +25,7 @@ gem 'omniauth'
 gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
 gem 'omniauth-fitbit'
 gem 'omniauth-foursquare', '~> 1.0.0'
+gem 'omniauth-jawbone'
 gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem', github: 'whazzmaster/fitgem' # Version 0.9 wasn't out yet - once it is, we can revert back to rubygems source
 gem 'foursquare2', '~> 1.9.7'

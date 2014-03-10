@@ -7,6 +7,9 @@ fitbit_oauth_secret: <%= ENV["bi_fitbit_oauth_secret"] %>
 foursquare_oauth_key: <%= ENV["bi_foursquare_oauth_key"] %>
 foursquare_oauth_secret: <%= ENV["bi_foursquare_oauth_secret"] %>
 
+jawbone_oauth_key: <%= ENV["jawbone_oauth_key"] %>
+jawbone_oauth_secret: <%= ENV["jawbone_oauth_secret"] %>
+
 coveralls_repo_token: <%= ENV["bi_coveralls_repo_token"] %>
 
 smtp_address: <%= ENV["bi_smtp_address"] %>

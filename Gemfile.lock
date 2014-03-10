@@ -237,6 +237,9 @@ GEM
     omniauth-foursquare (1.0.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
+    omniauth-jawbone (1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
@@ -408,6 +411,7 @@ DEPENDENCIES
   omniauth
   omniauth-fitbit
   omniauth-foursquare (~> 1.0.0)
+  omniauth-jawbone
   omniauth-withings!
   parallel_tests
   pg
