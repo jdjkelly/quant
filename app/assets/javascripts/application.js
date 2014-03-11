@@ -15,7 +15,6 @@
 //= require_tree .
 //= require turbolinks
 //= require jquery.turbolinks
-//= require chart
 //= require cal-heatmap
 //= require foundation/foundation
 //= require foundation/foundation.abide

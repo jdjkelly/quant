@@ -1,123 +1,121 @@
-<div class="row">
-  <div class="columns large-3">
-    <h2>Dashboard</h2>
+<nav class="sub-header-nav-bar">
+  <div class="row">
+    <div class="columns large-8">
+      <h3>Dashboard</h3>
+    </div>
   </div>
-</div>
+</nav>
 
 <% if current_user.weights.any? %>
   <div class="row">
-    <div class="columns large-6">
+    <div class="columns large-3">
       <div class="unit-panel">
-        <div class="row">
-          <div class="columns large-6">
-            <h5>Weight</h5>
-            <h1><%= Unit.new(current_user.weight, :kilograms).to_system(:imperial).round(1) %></h1>
-            <h5>Pounds</h5>
-          </div>
-          <div class="columns large-6">
-            <canvas class="chart" data-chart-type="line" data-chart-data="<%= current_user.weights.most_recent(7).map(&:value).reverse %>" width="178" height="102"></canvas>
-          </div>
-        </div>
+        <h1>Weight <small><%= link_to '+', new_weight_path %></small></h1>
+        <hr/>
+        <h2><%= Unit.new(current_user.weight, :kilograms).to_system(:imperial).round(1) %></h2>
+        <h3>Pounds</h3>
+        <small>-0.32 lbs vs. 7 days ago</small>
+        <hr/>
+        <span class="label success">Withings</span>
+        <span class="label success">Fitbit</span>
       </div>
     </div>
 
     <div class="columns large-3">
       <div class="unit-panel">
-        <h5>BMI</h5>
-        <h1>
+        <h1>BMI <small><%= link_to '+', new_weight_path %></small></h1>
+        <hr/>
+        <h2>
           <% if current_user.bmi %>
             <%= current_user.bmi.round(1) %>
           <% else %>
             N/A
           <% end %>
-        </h1>
-        <h5>points</h5>
+        </h2>
+        <h3>points</h3>
+        <small>-0.2 points vs. 7 days ago</small>
+        <hr/>
+        <span class="label success">Withings</span>
+        <span class="label success">Fitbit</span>
       </div>
     </div>
 
     <div class="columns large-3">
       <div class="unit-panel">
-        <h5>HEIGHT</h5>
-        <h1>
-          <% if current_user.height %>
-            <%= current_user.height.round(1) %>
-          <% else %>
-            N/A
-          <% end %>
-        </h1>
-        <h5>centimeters</h5>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="columns large-3">
-      <div class="unit-panel">
-        <h5>Body Fat</h5>
-        <h1>
+        <h1>Body Fat <small><%= link_to '+', new_weight_path %></small></h1>
+        <hr/>
+        <h2>
           <% if current_user.fat_percent %>
             <%= current_user.fat_percent.round(1) %>
           <% else %>
             N/A
           <% end %>
-        </h1>
-        <h5>percent</h5>
+        </h2>
+        <h3>percent</h3>
+        <small>-0.25% vs. 7 days ago</small>
+        <hr/>
+        <span class="label success">Withings</span>
+        <span class="label success">Fitbit</span>
       </div>
     </div>
 
-    <% if current_user.fat_percent %>
-      <div class="columns large-3">
-        <div class="unit-panel">
-          <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.fat_percent.round(1) %>" width="178" height="102"></canvas>
-        </div>
-      </div>
-    <% end %>
-
     <div class="columns large-3">
       <div class="unit-panel">
-        <h5>Lean Mass</h5>
-        <h1>
+        <h1>Lean Mass <small><%= link_to '+', new_weight_path %></small></h1>
+        <hr/>
+        <h2>
           <% if current_user.lean_mass %>
             <%= Unit.new(current_user.lean_mass, :kilograms).to_system(:imperial).round(1) %>
           <% else %>
             N/A
           <% end %>
-        </h1>
-        <h5>pounds</h5>
+        </h2>
+        <h3>pounds</h3>
+        <small>+0.2 lbs vs. 7 days ago</small>
+        <hr/>
+        <span class="label success">Withings</span>
+        <span class="label success">Fitbit</span>
       </div>
     </div>
-
-    <% if current_user.lean_mass %>
-      <div class="columns large-3">
-        <div class="unit-panel">
-          <canvas class="chart" data-chart-type="doughnut" data-chart-data="<%= current_user.lean_mass_percentage.round(1) %>" width="178" height="102"></canvas>
-        </div>
-      </div>
-    <% end %>
   </div>
 <% end %>
 
-<% if current_user.weights.any? %>
+<% if current_user.meals.any? %>
   <div class="row">
-    <div class="columns large-4">
+    <div class="columns large-3">
       <div class="unit-panel">
-        <h5>Calories</h5>
-        <h1><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 %></h1>
-        <h5>Yesterday</h5>
+        <h1>Calories <small><%= link_to '+', new_meal_path %></small></h1>
+        <hr/>
+        <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 %></h2>
+        <h3>Count <small>Yesterday</small></h3>
+        <small>123 above 7 day average</small>
       </div>
     </div>
-    <div class="columns large-4">
+    <div class="columns large-3">
       <div class="unit-panel">
-        <h5>Calories</h5>
-        <h1><%= (current_user.meals_from(3.days.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0) / 3 %></h1>
-        <h5>3 day average</h5>
+        <h1>Carbs <small><%= link_to '+', new_meal_path %></small></h1>
+        <hr/>
+        <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:carbohydrates).inject(:+) || 0 %></h2>
+        <h3>Grams <small>Yesterday</small></h3>
+        <small>10 above prior 7 days</small>
       </div>
     </div>
-    <div class="columns large-4">
+    <div class="columns large-3">
       <div class="unit-panel">
-        <h5>Calories</h5>
-        <h1><%= (current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0) / 7 %></h1>
-        <h5>7 day average</h5>
+        <h1>Fat <small><%= link_to '+', new_meal_path %></small></h1>
+        <hr/>
+        <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:fat).inject(:+) || 0 %></h2>
+        <h3>Grams <small>Yesterday</small></h3>
+        <small>10 above prior 7 days</small>
+      </div>
+    </div>
+    <div class="columns large-3">
+      <div class="unit-panel">
+        <h1>Protein <small><%= link_to '+', new_meal_path %></small></h1>
+        <hr/>
+        <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:protein).inject(:+) || 0 %></h2>
+        <h3>Grams <small>Yesterday</small></h3>
+        <small>10 above prior 7 days</small>
       </div>
     </div>
   </div>

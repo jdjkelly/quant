@@ -25,6 +25,10 @@ class Meal < ActiveRecord::Base
 
   MACRO_NUTRIENTS = %w(carbohydrates fat protein)
 
+  def self.most_recent(count)
+    order("date DESC").limit(count)
+  end
+
   def self.macro_nutrients
     MACRO_NUTRIENTS
   end
@@ -47,6 +51,7 @@ class Meal < ActiveRecord::Base
     return 0 if protein.nil?
     percentage(:protein).round(1)
   end
+
 
   private
 
