@@ -21,14 +21,6 @@ GIT
       ruby-hmac
 
 GIT
-  remote: git://github.com/mattmueller/foundation-rails.git
-  revision: effaea8efbfcc6ec17b553b45d1cc529bc7716e8
-  specs:
-    foundation-rails (5.0.2.0)
-      railties (>= 3.1.0)
-      sass (>= 3.2.0)
-
-GIT
   remote: git://github.com/plataformatec/devise.git
   revision: 01e029fd9b33cd14947954456febba661b49e190
   specs:
@@ -99,6 +91,8 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     builder (3.1.4)
     cancan (1.6.7)
     capybara (1.1.4)
@@ -378,6 +372,7 @@ DEPENDENCIES
   activerecord-postgres-earthdistance
   activerecord-postgres-hstore
   annotate (>= 2.5.0)
+  bootstrap-sass (~> 3.1.1)
   cancan
   capybara (~> 1.1.4)
   coffee-rails
@@ -392,7 +387,6 @@ DEPENDENCIES
   fitgem!
   font-awesome-rails
   foreman
-  foundation-rails!
   foursquare2 (~> 1.9.7)
   fuubar
   growl
