@@ -10,18 +10,16 @@
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
-  <body class="<%= controller_name %> <%= action_name %>">
-    <div id="container" class="container">
-      <header>
-        <%= render 'layouts/navigation' %>
-        <%= render 'layouts/messages' %>
-      </header>
-      <div id="main" role="main">
-        <%= yield %>
-      </div>
-      <footer>
-        <%= render 'layouts/footer' %>
-      </footer>
-    </div> <!--! end of #container -->
+  <body class="<%= controller_name %> <%= action_name %> <% if current_user %>authenticated<% end %>">
+    <header>
+      <%= render 'layouts/navigation' %>
+      <%= render 'layouts/messages' %>
+    </header>
+    <div id="main" role="main">
+      <%= yield %>
+    </div>
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
   </body>
 </html>

@@ -1,78 +1,54 @@
-<div class="row">
-  <div class="columns large-4 push-4">
-    <%= form_for @meal, :url => meal_path(@meal), :html => { :class => "custom" } do |f| %>
+<%= form_for @meal, :url => meal_path(@meal), :html => { :role => "form", class: "transparent-form" } do |f| %>
 
-      <div class="unit-panel">
-        <div class="row">
-          <div class="large-12 columns">
-            <div class="row">
-              <div class="large-12 columns">
-                <%= f.label :calories %>
-                <%= f.text_field :calories %>
-                <% if @meal.errors[:calories].present? %>
-                  <small class="error"><%= @meal.errors[:calories].join(", ") %></small>
-                <% end %>
-              </div>
-            </div>
+  <h3 class="text-center">Add meal</h3>
 
-            <div class="row">
-              <div class="large-12 columns">
-                <%= f.label :fat %>
-                <%= f.text_field :fat %>
-                <% if @meal.errors[:fat].present? %>
-                  <small class="error"><%= @meal.errors[:fat].join(", ") %></small>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="large-12 columns">
-                <%= f.label :carbohydrates %>
-                <%= f.text_field :carbohydrates %>
-                <% if @meal.errors[:carbohydrates].present? %>
-                  <small class="error"><%= @meal.errors[:carbohydrates].join(", ") %></small>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="large-12 columns">
-                <%= f.label :protein %>
-                <%= f.text_field :protein %>
-                <% if @meal.errors[:protein].present? %>
-                  <small class="error"><%= @meal.errors[:protein].join(", ") %></small>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="large-12 columns">
-                <%= f.label :description %>
-                <%= f.text_field :description %>
-                <% if @meal.errors[:description].present? %>
-                  <small class="error"><%= @meal.errors[:description].join(", ") %></small>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="large-12 columns">
-                <%= f.label :date %>
-                <%= date_field("meal", "date", :discard_year => true) %>
-                <% if @meal.errors[:source].present? %>
-                  <small class="error"><%= @meal.errors[:date].join(", ") %></small>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="columns large-12">
-                <%= f.submit class: "button radius large-12 small-12" %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div
+  <div class="form-group">
+    <%= f.label :calories, class: "hidden" %>
+    <%= f.text_field :calories, placeholder: "Calories", autofocus: true, class: "form-control input-xl text-center" %>
+    <% if @meal.errors[:calories].present? %>
+      <small class="error"><%= @meal.errors[:calories].join(", ") %></small>
     <% end %>
   </div>
-</div>
+
+  <div class="form-group">
+    <%= f.label :fat, class: "hidden" %>
+    <%= f.text_field :fat, placeholder: "Fat", class: "form-control input-xl text-center" %>
+    <% if @meal.errors[:fat].present? %>
+      <small class="error"><%= @meal.errors[:fat].join(", ") %></small>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :carbohydrates, class: "hidden" %>
+    <%= f.text_field :carbohydrates, placeholder: "Carbs", class: "form-control input-xl text-center" %>
+    <% if @meal.errors[:carbohydrates].present? %>
+      <small class="error"><%= @meal.errors[:carbohydrates].join(", ") %></small>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :protein, class: "hidden" %>
+    <%= f.text_field :protein, placeholder: "Protein", class: "form-control input-xl text-center" %>
+    <% if @meal.errors[:protein].present? %>
+      <small class="error"><%= @meal.errors[:protein].join(", ") %></small>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, class: "hidden" %>
+    <%= f.text_field :description, placeholder: "Description", class: "form-control input-xl text-center" %>
+    <% if @meal.errors[:description].present? %>
+      <small class="error"><%= @meal.errors[:description].join(", ") %></small>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :date, class: "hidden" %>
+    <%= date_field("meal", "date", :discard_year => true, placeholder: "yyyy-mm-dd", class: "form-control input-xl text-center") %>
+    <% if @meal.errors[:date].present? %>
+      <small class="error"><%= @meal.errors[:date].join(", ") %></small>
+    <% end %>
+  </div>
+
+  <%= f.submit class: "btn btn-default btn-block btn-xl"%>
+<% end %>

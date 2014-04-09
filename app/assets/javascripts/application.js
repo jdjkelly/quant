@@ -19,6 +19,6 @@
 //= require bootstrap
 
 $(document).ready(function() {
-  $(document).foundation()
+  $(document).bootstrap()
   $.setReadyEvent('page:change')
 })
