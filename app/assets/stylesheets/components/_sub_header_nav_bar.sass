@@ -8,9 +8,10 @@ $sub-header-nav-bar-h3-font-color: $white
 
   // Title header for category/resource (i.e. Sleeps)
   h3
-    color: $sub-header-nav-bar-h3-font-color
     float: left
+    color: $sub-header-nav-bar-h3-font-color
     margin-top: 6px
+    margin-right: 6px * 2
 
   // New resource buttons
   .sub-header-nav-bar-button
@@ -31,3 +32,13 @@ $sub-header-nav-bar-h3-font-color: $white
     dd > a
       font-weight: 500
       color: $sub-header-nav-bar-tabs-font-color
+
+  .state-switcher
+    @extend .nav
+    @extend .nav-pills
+
+    a
+      color: $white
+
+    a:hover
+      color: $purple-hard

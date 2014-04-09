@@ -1,81 +1,73 @@
 <nav class="sub-header-nav-bar">
-  <div class="row">
-    <div class="columns large-8">
-      <h3>Meals</h3>
-      <dl class="sub-header-nav-bar-tabs" data-tab>
-        <dd><a href="#summary">Summary</a></dd>
-        <dd class="active"><a href="#raw-data">Raw Data</a></dd>
-      </dl>
-    </div>
-    <div class="columns large-2">
-      <%= link_to 'New Meal', new_meal_path, class: "small sub-header-nav-bar-button expand" %>
-    </div>
-    <div class="columns large-2">
-      <a href="#" class="sub-header-nav-bar-button small expand split success">Data<span></span></a>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-10">
+        <h3>Meals</h3>
+        <ul class="state-switcher">
+          <li class="disabled"><a href="#">Summary</a></li>
+          <li class="active"><a href="#">Raw Data</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-2">
+      <%= link_to 'New Meal', new_meal_path, class: "btn btn-default btn-block" %>
+      </div>
     </div>
   </div>
 </nav>
 
-<div class="row">
-  <div class="columns large-12">
-    <div class="tabs-content">
-      <div class="content summary" id="summary">
-        <p>First panel content goes here...</p>
-      </div>
-      <div class="content active raw-data" id="raw-data">
-        <div class="row">
-          <div class="columns large-12">
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Calories (kcal)</th>
-                  <th>Carbs (g)</th>
-                  <th>Fat (g)</th>
-                  <th>Protein (g)</th>
-                  <th>Carbs (%)</th>
-                  <th>Fat (%)</th>
-                  <th>Protein (%)</th>
-                  <th>API</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-lg-10 col-lg-offset-1">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Calories (kcal)</th>
+              <th>Carbs (g)</th>
+              <th>Fat (g)</th>
+              <th>Protein (g)</th>
+              <th class="hidden-xs">Carbs (%)</th>
+              <th class="hidden-xs">Fat (%)</th>
+              <th class="hidden-xs">Protein (%)</th>
+              <th class="hidden-xs">API</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
 
-            <% @meals_grouped_by_date.keys.each do |key| %>
+          <% @meals_grouped_by_date.keys.each do |key| %>
+            <tr>
+              <td><%= key.to_formatted_s(:day_month_and_year) %></td>
+              <td><strong><%= @meals_grouped_by_date[key].sum(&:calories).round(1) %></strong></td>
+              <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates).round(1) %></strong></td>
+              <td><strong><%= @meals_grouped_by_date[key].sum(&:fat).round(1) %></strong></td>
+              <td><strong><%= @meals_grouped_by_date[key].sum(&:protein).round(1) %></strong></td>
+              <td class="hidden-xs"><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :carbohydrates).round(1) %></strong></td>
+              <td class="hidden-xs"><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :fat).round(1) %></strong></td>
+              <td class="hidden-xs"><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :protein).round(1) %></strong></td>
+              <td class="hidden-xs"></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <% @meals_grouped_by_date[key].each do |meal| %>
               <tr>
-                <td><%= key.to_formatted_s(:day_month_and_year) %></td>
-                <td><strong><%= @meals_grouped_by_date[key].sum(&:calories).round(1) %></strong></td>
-                <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates).round(1) %></strong></td>
-                <td><strong><%= @meals_grouped_by_date[key].sum(&:fat).round(1) %></strong></td>
-                <td><strong><%= @meals_grouped_by_date[key].sum(&:protein).round(1) %></strong></td>
-                <td><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :carbohydrates).round(1) %></strong></td>
-                <td><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :fat).round(1) %></strong></td>
-                <td><strong><%= macro_percent_for_meals(@meals_grouped_by_date[key], :protein).round(1) %></strong></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><%= meal.calories %></td>
+                <td><%= meal.carbohydrates %></td>
+                <td><%= meal.fat %></td>
+                <td><%= meal.protein %></td>
+                <td class="hidden-xs"><%= meal.carbohydrates_percentage %></td>
+                <td class="hidden-xs"><%= meal.fat_percentage %></td>
+                <td class="hidden-xs"><%= meal.protein_percentage %></td>
+                <td class="hidden-xs"><%= link_to 'JSON', meal_path(meal, format: :json) %></td>
+                <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
+                <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
-
-              <% @meals_grouped_by_date[key].each do |meal| %>
-                <tr>
-                  <td></td>
-                  <td><%= meal.calories %></td>
-                  <td><%= meal.carbohydrates %></td>
-                  <td><%= meal.fat %></td>
-                  <td><%= meal.protein %></td>
-                  <td><%= meal.carbohydrates_percentage %></td>
-                  <td><%= meal.fat_percentage %></td>
-                  <td><%= meal.protein_percentage %></td>
-                  <td><%= link_to 'JSON', meal_path(meal, format: :json) %></td>
-                  <td><%= link_to 'Edit', edit_meal_path(meal) %></td>
-                  <td><%= link_to 'Destroy', meal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                </tr>
-              <% end %>
             <% end %>
-            </table>
-          </div>
-        </div>
+          <% end %>
+        </table>
       </div>
     </div>
   </div>
