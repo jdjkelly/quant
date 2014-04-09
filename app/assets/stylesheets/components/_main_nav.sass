@@ -1,0 +1,49 @@
+.main-nav
+  @extend .navbar
+  margin-bottom: 0px
+
+.authenticated .main-nav
+  @extend .navbar-inverse
+  background: $purple
+  color: $white
+
+  .navbar-brand
+    color: inherit
+
+  .navbar-nav
+    .active > a
+      background: inherit
+      &:hover
+        background: inherit
+    > li > a
+      color: inherit
+      &:hover
+        background: inherit
+
+    > .open > .dropdown-toggle, .navbar-nav > .open .dropdown-toggle:hover
+      background: inherit
+
+  .navbar-toggle
+    border-color: $white
+
+    &:hover, &:focus
+      background: $purple-hard
+
+@media (max-width: $screen-sm-min)
+  .authenticated .main-nav
+    .navbar-nav
+      .active > a
+        background: $purple-hard
+      > li > a:hover
+        background: $purple-hard
+
+
+@media (min-width: $screen-sm-min)
+  .authenticated .main-nav
+    .navbar-nav
+      .active > a
+        border-bottom: 5px solid #fff
+        padding-bottom: 10px
+      > li > a:hover
+        border-bottom: 5px solid #fff
+        padding-bottom: 10px

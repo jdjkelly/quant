@@ -1,63 +1,39 @@
-<div class="row">
-  <div class="columns large-4 push-4">
-    <h3 class="text-center">Log in</h2>
-  </div>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => "form", class: "transparent-form"}) do |f| %>
+        <h3 class="text-center">Welcome back</h2>
 
-<div class="row">
-  <div class="columns large-4 push-4">
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "custom" }) do |f| %>
-      <div class="panel">
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :email %>
-            <%= f.email_field :email, :autofocus => true %>
-          </div>
+        <div class="form-group">
+          <%= f.label :email, class: "hidden" %>
+          <%= f.email_field :email, autofocus: true, class: 'form-control input-xl text-center', placeholder: "Email" %>
         </div>
 
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :password %>
-            <%= f.password_field :password %>
-          </div>
+        <div class="form-group">
+          <%= f.label :password, class: "hidden" %>
+          <%= f.password_field :password, class: 'form-control input-xl text-center', placeholder: "Password" %>
         </div>
 
         <% if devise_mapping.rememberable? -%>
-
-          <div class="row">
-            <div class="large-12 columns">
+          <div class="form-group">
+            <div class="checkbox">
               <%= f.check_box :remember_me %>
               <%= f.label :remember_me %>
             </div>
           </div>
         <% end -%>
 
-        <div class="row">
-          <div class="columns large-12">
-            <%= f.submit "Log in", class: "button radius large-12 small-12" %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+        <%= f.submit "Log in", class: "btn btn-default btn-block btn-xl" %>
 
-
-<div class="row">
-  <div class="columns large-12">
-    <p class="text-center">
-      <strong>
-        <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
-          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-        <% end -%>
-      </strong>
-    </p>
-    <p class="text-center">
-      <strong>
-        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-          <%= link_to "Resend confirmation email", new_confirmation_path(resource_name) %>
-        <% end -%>
-      </strong>
-    </p>
+      <% end %>
+    </div>
   </div>
+
+  <p class="text-center">
+    <strong>
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+        <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+      <% end -%>
+    </strong>
+  </p>
 </div>

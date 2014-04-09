@@ -1,72 +1,51 @@
-<div class="row">
-  <div class="columns large-4 push-4">
-    <h3 class="text-center">Sign up <small>coming soon</small></h3>
-  </div>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => "form", class: "transparent-form" }) do |f| %>
 
-<div class="row">
-  <div class="columns large-4 push-4">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "custom" }) do |f| %>
-      <div class="panel">
+          <h3 class="text-center">Sign up <a href="https://www.github.com/jdjkelly/quant"> or host your own</a></h3>
 
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :name %>
-            <%= f.text_field :name, :autofocus => true, disabled: true%>
+          <div class="form-group">
+            <%= f.label :name, class: "hidden"  %>
+            <%= f.text_field :name, placeholder: "Name", autofocus: true, class: "form-control input-xl text-center" %>
             <% if resource.errors[:name].present? %>
               <small class="error"><%= resource.errors[:name].join(", ") %></small>
             <% end %>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :email %>
-            <%= f.email_field :email, disabled: true %>
+          <div class="form-group">
+            <%= f.label :email, class: "hidden" %>
+            <%= f.email_field :email, class: "form-control input-xl text-center", placeholder: "Email" %>
             <% if resource.errors[:email].present? %>
               <small class="error"><%= resource.errors[:email].join(", ") %></small>
             <% end %>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :password %>
-            <%= f.password_field :password, disabled: true  %>
+          <div class="form-group">
+            <%= f.label :password, class: "hidden" %>
+            <%= f.password_field :password, class: "form-control input-xl text-center", placeholder: "Password" %>
             <% if resource.errors[:password].present? %>
               <small class="error"><%= resource.errors[:password].join(", ") %></small>
             <% end %>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, disabled: true %>
+         <div class="form-group">
+            <%= f.label :password_confirmation, class: "hidden" %>
+            <%= f.password_field :password_confirmation, class: "form-control input-xl text-center", placeholder: "Password confirmation" %>
             <% if resource.errors[:password_confirmation].present? %>
               <small class="error"><%= resource.errors[:password_confirmation].join(", ") %></small>
             <% end %>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="columns large-12">
-            <%= f.submit "Sign up", class: "button radius large-12 small-12 disabled", disabled: true %>
-          </div>
-        </div>
+          <%= f.submit "Sign up", class: "btn btn-default btn-block btn-xl"%>
 
-      </div>
-
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="columns large-12">
-    <p class="text-center">
-      <strong>
-        <%= link_to "Can't wait? Contribute on GitHub", "https://github.com/jdjkelly/quantify" %>
-      </strong>
-    </p>
-  </div>
+  <p class="text-center">
+    <strong>
+      <%= link_to "Can't wait? Contribute on GitHub", "https://github.com/jdjkelly/quantify" %>
+    </strong>
+  </p>
 </div>

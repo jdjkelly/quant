@@ -16,15 +16,9 @@
 //= require turbolinks
 //= require jquery.turbolinks
 //= require cal-heatmap
-//= require foundation/foundation
-//= require foundation/foundation.abide
-//= require foundation/foundation.alert
-//= require foundation/foundation.dropdown
-//= require foundation/foundation.tab
-//= require foundation/foundation.tooltip
-//= require foundation/foundation.topbar
+//= require bootstrap
 
 $(document).ready(function() {
-  $(document).foundation()
+  $(document).bootstrap()
   $.setReadyEvent('page:change')
 })

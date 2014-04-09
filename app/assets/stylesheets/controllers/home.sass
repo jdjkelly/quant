@@ -1,18 +1,33 @@
 .home
-  .contain-to-grid .top-bar
+  .navbar
     margin-bottom: 0px
   .hero
-    background: #465262
     padding: 135px 0px
-    margin-bottom: 70px
-    h1
-      color: #eef5fc
-  #main
-    margin-bottom: 70px
+    margin-bottom: 0px
+    min-height: 540px
+    *
+      color: $white
+    &.top
+      background: $purple-soft
+      .btn
+        @include button-variant-inverse($white, $purple-soft, 3px)
+    &.middle
+      background: $purple
+    &.bottom
+      background: $purple-hard
+      .btn
+        @include button-variant-inverse($white, $purple-hard, 3px)
+    &.top, &.bottom, &.middle
+      h1, h2
+        margin-bottom: 30px
+      h4
+        font-weight: 200
+      .btn
+        @include button-size(10px, 30px, 22px, 36px, 6px)
+        font-weight: 100
+        letter-spacing: 1px
   h1
     text-align: center
     margin-bottom: 20px
   h1, h2, h3, h4, h5, p
     color: #465263
-  footer
-    margin-top: 25px

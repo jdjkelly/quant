@@ -1,0 +1,38 @@
+@mixin button-variant-inverse($color, $inverse-color, $border-width) {
+  color: $color;
+  background-color: transparent;
+  border-color: $color;
+  border-width: $border-width;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $inverse-color;
+    background-color: $color;
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      color: $inverse-color;
+      background-color: $color
+    }
+  }
+
+  .badge {
+    color: $color;
+    background-color: $color;
+  }
+}
+

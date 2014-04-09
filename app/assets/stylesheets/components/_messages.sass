@@ -1,0 +1,15 @@
+.messages
+  @extend .alert
+  text-align: center
+  margin-bottom: 0px
+  border: 0px
+  border-radius: 0px
+
+.message-info
+  @include alert-variant($alert-info-text, $alert-info-text, $white)
+
+.message-success
+  @include alert-variant($alert-success-text, $alert-success-text, $white)
+
+.message-danger
+  @include alert-variant($alert-danger-text, $alert-danger-text, $white)

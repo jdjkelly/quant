@@ -70,8 +70,6 @@ module Quantify
       extensions/models
     ).map{|path| File.join(config.root,'app',path)}
 
-
-
     config.generators do |g|
         g.test_framework :rspec, fixture: true
         g.fixture_replacement :factory_girl, dir: 'spec/factories'

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-ruby "2.1.0"
+ruby "2.1.1"
 
 gem 'rails', '4.0.0'
 gem 'rails_config'
@@ -9,7 +9,6 @@ gem 'rails_config'
 # Rails 4.1 upgrade to remove
 gem 'active_model_serializers'
 gem 'protected_attributes'
-gem 'concerning', github: '37signals/concerning'
 
 # Databases
 gem 'activerecord-postgres-hstore'
@@ -34,7 +33,7 @@ gem 'sass-rails',   '~> 4.0.0'
 gem 'compass-rails', '~> 1.1.3'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.0.3'
-gem 'foundation-rails', github: 'mattmueller/foundation-rails'
+gem 'bootstrap-sass', '~> 3.1.1'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails'

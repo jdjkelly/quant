@@ -1,51 +1,53 @@
-<div class="hero">
-  <div class="row">
-    <div class="columns large-12">
-      <h1>
-        Visualize your <strong>quant</strong>ified self.
-      </h1>
-      <div class="row">
-        <div class="large-3 columns push-3">
-          <%= link_to 'Sign up', new_user_registration_path, class: "button radius large large-12" %>
-        </div>
-        <div class="large-3 columns pull-3">
-          <%= link_to 'Log in', new_user_session_path, class: "button radius secondary large large-12" %>
-        </div>
+<div class="hero top text-center">
+  <h1>
+    Visualize your <strong>quant</strong>ified self.
+  </h1>
+  <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-inverse btn-lg" %>
+  </div>
+</div>
+
+<div class="hero middle text-center">
+  <h2>Quant is an open source project that stores your quantified self data</h2>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-md-2">
+        <a href="https://www.github.com/jdjkelly/quant">
+        <%= fa_icon "code-fork", class: "fa-5x" %>
+        <h4>MIT licensed</h4></a>
+      </div>
+
+      <div class="col-md-2">
+        <%= fa_icon "dashboard", class: "fa-5x" %>
+        <h4>Automatic or manual</h4>
+      </div>
+
+      <div class="col-md-2">
+        <%= fa_icon "flask", class: "fa-5x" %>
+        <h4>Data projections</h4>
+      </div>
+
+      <div class="col-md-2">
+        <%= fa_icon "pencil", class: "fa-5x" %>
+        <h4>Annotate events</h4>
+      </div>
+
+      <div class="col-md-2">
+        <%= fa_icon "table", class: "fa-5x" %>
+        <h4>View historical data</h4>
+      </div>
+
+      <div class="col-md-2">
+        <a href="https://www.github.com/jdjkelly/quant">
+        <%= fa_icon "github", class: "fa-5x" %>
+        <h4>Source on Github</h4></a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="row text-center">
-  <div class="large-12 columns">
-    <h2>Analyze all your quantified self data in one place.</h2><h4 class="subheader">Plug in <em>any</em> self-tracking data source for beautiful graphs of your body, brain, and behaviour.</h4>
-  </div>
+<div class="hero bottom text-center">
+  <h2><%= link_to 'Sign up here', new_user_registration_path %>, or host it yourself</h2>
+  <%= link_to 'Star on Github', "https://www.github.com/jdjkelly/quant", class: "btn btn-inverse btn-lg" %>
 </div>
-<hr>
-<div class="row text-center">
-  <div class="medium-4 large-4 columns supporticons">
-
-    <a href="learn/features.html#faster-for-users">
-
-     <%= fa_icon "code-fork", class: "fa-5x" %>
-     <h4>Free as in speech</h4></a>
-     <p>Quant is an open source project.<br/> Our codebase is MIT licensed and publicly available for download. You're free to host your own version, make modifications, and contribute back to the community.</p>
-  </div>
-  <div class="medium-4 large-4 columns supporticons">
-     <a href="learn/features.html#faster-to-code">
-
-     <%= fa_icon "dashboard", class: "fa-5x" %>
-     <h4>Automatic or manual</h4></a>
-     <p>Track personal data from virtually any QS data source. From Fitbit, to Jawbone, Foursquare, and Withings, we've built API integrations for everything. Plus, you'll be able to enter your own data manually if you'd prefer.</p>
-  </div>
-  <div class="medium-4 large-4 columns supporticons">
-     <a href="learn/features.html#faster-to-learn">
-
-     <%= fa_icon "flask", class: "fa-5x" %>
-     <h4>Lies, damned lies, and stats</h4></a>
-     <p>Quant helps you navigate all of the data you've collected by allowing you to slice, rearrange, and order by source, date series, weighted averages, and more. The quantified self movement is about more than just making bar charts, after all. </p>
-  </div>
-</div>
-
 
 
