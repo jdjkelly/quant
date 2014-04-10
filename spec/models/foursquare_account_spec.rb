@@ -1,16 +1,15 @@
 # == Schema Information
 #
-# Table name: fitbit_accounts
+# Table name: foursquare_accounts
 #
-#  id                 :integer          not null, primary key
-#  uid                :string(255)
-#  oauth_token        :string(255)
-#  oauth_token_secret :string(255)
-#  user_id            :integer
-#  created_at         :datetime
-#  updated_at         :datetime
-#  synced_at          :datetime
-#  activated_at       :datetime
+#  id           :integer          not null, primary key
+#  uid          :string(255)
+#  oauth_token  :string(255)
+#  activated_at :datetime
+#  synced_at    :datetime
+#  user_id      :integer
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 require 'spec_helper'

@@ -19,7 +19,7 @@ describe WeightsController do
     {}
   end
 
-  let(:user) {Fabricate(:user)}
+  let(:user) { Fabricate(:user) }
 
   before(:each) do
     sign_in user

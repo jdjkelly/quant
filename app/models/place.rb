@@ -9,6 +9,9 @@
 #  lng        :decimal(, )
 #  created_at :datetime
 #  updated_at :datetime
+#  meta       :hstore
+#  source     :string(255)
+#  response   :json
 #
 
 class Place < ActiveRecord::Base
