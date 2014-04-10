@@ -83,7 +83,7 @@ describe SleepsController do
       end
     end
 
-    context "what a user is is signed in" do
+    context "when a user is signed in" do
       before(:each) do
         sign_in user
       end

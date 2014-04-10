@@ -80,13 +80,13 @@ class WeightsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_weight
-      @weight = Weight.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_weight
+    @weight = Weight.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def weight_params
-      params.require(:weight).permit(:value, :date, :lean_mass, :fat_mass, :fat_percent, :source, :meta)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def weight_params
+    params.require(:weight).permit(:value, :date, :lean_mass, :fat_mass, :fat_percent, :source, :meta)
+  end
 end
