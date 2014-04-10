@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/getquant/fastclick-rails.git
-  revision: 7faee9614fb2991583852730a3ff5fe53f402a91
-  specs:
-    fastclick-rails (1.0.1)
-
-GIT
   remote: git://github.com/jdjkelly/omniauth-withings.git
   revision: 7a982541d7930403c0ef031bf5f3a9bce13b7ccf
   specs:
@@ -383,7 +377,6 @@ DEPENDENCIES
   email_spec
   fabrication
   faker
-  fastclick-rails!
   fitgem
   font-awesome-rails
   foreman
