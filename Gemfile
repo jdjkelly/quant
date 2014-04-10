@@ -3,7 +3,7 @@ source 'https://rails-assets.org'
 
 ruby "2.1.1"
 
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.4'
 gem 'rails_config'
 
 # Rails 4.1 upgrade to remove
@@ -25,7 +25,7 @@ gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
 gem 'omniauth-fitbit'
 gem 'omniauth-foursquare', '~> 1.0.0'
 gem 'withings', github: 'jdjkelly/withings'
-gem 'fitgem', github: 'whazzmaster/fitgem' # Version 0.9 wasn't out yet - once it is, we can revert back to rubygems source
+gem 'fitgem'
 gem 'foursquare2', '~> 1.9.7'
 
 # Assets
@@ -38,8 +38,8 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails'
 gem 'd3-rails'
-gem 'rails-assets-cal-heatmap', '3.3.9'
 gem 'font-awesome-rails'
+gem 'fastclick-rails', github: 'getquant/fastclick-rails'
 
 group :development do
   gem 'rspec-rails'
