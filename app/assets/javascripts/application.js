@@ -15,10 +15,8 @@
 //= require_tree .
 //= require turbolinks
 //= require jquery.turbolinks
-//= require fastclick
 //= require bootstrap
 
 $(document).ready(function() {
-  FastClick.attach(document.body);
   $.setReadyEvent('page:change')
 })

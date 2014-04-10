@@ -39,7 +39,6 @@ gem 'jquery-turbolinks'
 gem 'jquery-rails'
 gem 'd3-rails'
 gem 'font-awesome-rails'
-gem 'fastclick-rails', github: 'getquant/fastclick-rails'
 
 group :development do
   gem 'rspec-rails'
