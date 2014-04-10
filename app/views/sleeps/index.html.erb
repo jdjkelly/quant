@@ -1,30 +1,46 @@
 <nav class="sub-header-nav-bar">
-  <div class="row">
-    <div class="columns large-8">
-      <h3>Sleeps</h3>
-      <dl class="sub-header-nav-bar-tabs" data-tab>
-        <dd><a href="#summary">Summary</a></dd>
-        <dd class="active"><a href="#raw-data">Raw Data</a></dd>
-      </dl>
-    </div>
-    <div class="columns large-2">
-      <%= link_to 'New Sleep', new_sleep_path, class: "small sub-header-nav-bar-button expand" %>
-    </div>
-    <div class="columns large-2">
-      <a href="#" class="sub-header-nav-bar-button small expand split success">Data<span></span></a>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Sleeps</h3>
+      </div>
+      <div class="col-sm-6">
+        <ul class="state-switcher pull-right">
+          <li><%= link_to 'Add Sleep', new_sleep_path %></li>
+          <li class="active"><a href="#">Raw Data</a></li>
+          <li class="disabled"><a href="#">Summary</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
 
-<div class="row">
-  <div class="columns large-12">
-    <div class="tabs-content">
-      <div class="content summary" id="summary">
-        <%= render 'summary' %>
-      </div>
-      <div class="content active raw-data" id="raw-data">
-        <%= render 'raw_data' %>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-lg-10 col-lg-offset-1">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Start</th>
+            <th>End</th>
+            <th>Duration</th>
+            <th class="hidden-xs">API</th>
+            <th class="hidden-xs"></th>
+            <th class="hidden-xs"></th>
+          </tr>
+        </thead>
+
+        <% @sleeps.each do |sleep| %>
+          <tr>
+            <td><%= link_to sleep.start.in_time_zone(current_user.time_zone).to_formatted_s(:short), sleep %></td>
+            <td><%= link_to sleep.end.in_time_zone(current_user.time_zone).to_formatted_s(:short), sleep %></td>
+            <td><%= formatted_duration(sleep) %></td>
+            <td class="hidden-xs"><%= link_to 'JSON', sleep_path(sleep, format: :json) %></td>
+            <td class="hidden-xs"><%= link_to 'Edit', edit_sleep_path(sleep) %></td>
+            <td class="hidden-xs"><%= link_to 'Destroy', sleep_path(sleep), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

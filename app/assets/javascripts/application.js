@@ -15,10 +15,10 @@
 //= require_tree .
 //= require turbolinks
 //= require jquery.turbolinks
-//= require cal-heatmap
+//= require fastclick
 //= require bootstrap
 
 $(document).ready(function() {
-  $(document).bootstrap()
+  FastClick.attach(document.body);
   $.setReadyEvent('page:change')
 })

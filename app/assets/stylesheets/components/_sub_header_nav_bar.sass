@@ -8,10 +8,9 @@ $sub-header-nav-bar-h3-font-color: $white
 
   // Title header for category/resource (i.e. Sleeps)
   h3
-    float: left
+    text-align: center
     color: $sub-header-nav-bar-h3-font-color
     margin-top: 6px
-    margin-right: 6px * 2
 
   // New resource buttons
   .sub-header-nav-bar-button
@@ -36,9 +35,30 @@ $sub-header-nav-bar-h3-font-color: $white
   .state-switcher
     @extend .nav
     @extend .nav-pills
+    @extend .nav-justified
 
-    a
+    > li.active > a, >li.active > a:hover
+      background-color: $purple-hard
+
+    > li > a:hover, > li > a:focus
+      background-color: $purple
       color: $white
 
-    a:hover
-      color: $purple-hard
+    > li > a
+      color: $white
+      padding: 18px 15px
+
+@media (max-width: $screen-xs-max)
+  .sub-header-nav-bar
+    .state-switcher > li a
+      font-size: $font-size-large
+      line-height: $line-height-large
+
+@media (min-width: $screen-sm-min)
+  .sub-header-nav-bar
+    h3
+      text-align: left
+
+    .state-switcher > li > a
+      margin-left: 10px
+      padding: 10px 15px
