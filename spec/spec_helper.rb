@@ -104,6 +104,3 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
 end
-
-load "#{Rails.root}/config/routes.rb"
-Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
