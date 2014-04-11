@@ -6,6 +6,7 @@
 # => synced_at :datetime            Last datetime data was imported from API
 # => activated_at :datetime         First known creation date of account - useful for pulling historical data
 # => user_id :integer               All accounts should belong to a user
+require 'active_support/concern'
 
 module DataProvider
   extend ActiveSupport::Concern
@@ -27,7 +28,6 @@ module DataProvider
 
     def get_data options={}
       provides_data_for.each do |type|
-
         self.send type, options.slice(:import, :sync)
       end
 
