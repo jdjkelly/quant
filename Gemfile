@@ -3,7 +3,7 @@ source 'https://rails-assets.org'
 
 ruby "2.1.1"
 
-gem 'rails', '4.0.4'
+gem 'rails', '4.1.0'
 gem 'rails_config'
 
 # Rails 4.1 upgrade to remove
@@ -26,7 +26,7 @@ gem 'omniauth-fitbit'
 gem 'omniauth-foursquare', '~> 1.0.0'
 gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem'
-gem 'foursquare2', '~> 1.9.7'
+gem 'foursquare2'
 
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
@@ -45,12 +45,14 @@ group :development do
   gem 'guard',            require: false
   gem 'guard-rspec',      require: false
   gem 'guard-bundler',    require: false
+  gem 'guard-livereload', require: false
+  gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'foreman'
   gem 'quiet_assets'
   gem 'pry-rails'
   gem 'thin'
   gem 'ruby_gntp'
-  gem 'guard-livereload', require: false
   gem 'rack-livereload'
   gem 'parallel_tests'
 end
@@ -60,8 +62,7 @@ group :test do
   gem 'rspec'
   gem 'growl'
   gem 'rb-fsevent'
-  gem 'spork-rails', github: 'sporkrb/spork-rails', ref: '3224f84d8c31fcb0894e9a43f6c3ac67e3aa0d71'
-  gem 'guard-spork'
+  gem 'minitest' # https://github.com/thoughtbot/shoulda-matchers/issues/408
   gem 'shoulda-matchers'
   gem 'fabrication'
   gem 'database_cleaner'
