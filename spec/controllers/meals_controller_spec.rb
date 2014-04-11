@@ -47,7 +47,7 @@ describe MealsController do
       end
     end
 
-    context "what a user is is signed in" do
+    context "when user is signed in" do
       before(:each) do
         sign_in user
       end
@@ -74,14 +74,16 @@ describe MealsController do
       end
     end
 
-    context "what a user is is signed in" do
+    context "when a user is signed in" do
       before(:each) do
         sign_in user
       end
 
       it "assigns a new meal as @meal" do
         get :new, {}
-        assigns(:meal).should be_a_new(Meal)
+        expect(
+          assigns(:meal)
+        ).to be_a_new(Meal)
       end
     end
   end

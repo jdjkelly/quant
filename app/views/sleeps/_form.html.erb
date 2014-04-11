@@ -1,6 +1,6 @@
 <div class="row">
   <div class="columns large-4 push-4">
-    <%= form_for @sleep, :url => sleep_path(@sleep), :html => { :class => "custom" } do |f| %>
+    <%= form_for @sleep, html: { role: "form", class: "transparent-form" } do |f| %>
 
       <div class="unit-panel">
         <div class="row">
