@@ -6,6 +6,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Quantify" %>">
     <%= stylesheet_link_tag "application", media: "all" %>
     <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application" %>
     <%= yield(:head) %>
   </head>
   <body class="<%= controller_name %> <%= action_name %> <% if current_user %>authenticated<% end %>">
@@ -19,7 +20,5 @@
     <footer>
       <%= render 'layouts/footer' %>
     </footer>
-
-    <%= javascript_include_tag "application" %>
   </body>
 </html>

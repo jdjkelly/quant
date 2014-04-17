@@ -8,7 +8,7 @@ $sub-header-nav-bar-h3-font-color: $white
 
   // Title header for category/resource (i.e. Sleeps)
   h3
-    text-align: center
+    text-align: left
     color: $sub-header-nav-bar-h3-font-color
     margin-top: 6px
 
@@ -23,19 +23,11 @@ $sub-header-nav-bar-h3-font-color: $white
     $sub-header-nav-bar-tabs-font-color-current: #6b7781
     $sub-header-nav-bar-tabs-font-color: #85909a
 
-    @extend .tabs
-    // @TODO needs to be screen size directive
-    float: left
-    margin-left: 20px
-
-    dd > a
-      font-weight: 500
-      color: $sub-header-nav-bar-tabs-font-color
-
   .state-switcher
     @extend .nav
     @extend .nav-pills
-    @extend .nav-justified
+    text-align: center
+    float: right
 
     > li.active > a, >li.active > a:hover
       background-color: $purple-hard
@@ -46,19 +38,5 @@ $sub-header-nav-bar-h3-font-color: $white
 
     > li > a
       color: $white
-      padding: 18px 15px
-
-@media (max-width: $screen-xs-max)
-  .sub-header-nav-bar
-    .state-switcher > li a
-      font-size: $font-size-large
-      line-height: $line-height-large
-
-@media (min-width: $screen-sm-min)
-  .sub-header-nav-bar
-    h3
-      text-align: left
-
-    .state-switcher > li > a
       margin-left: 10px
       padding: 10px 15px

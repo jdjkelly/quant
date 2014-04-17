@@ -71,4 +71,8 @@ describe Weight do
     end
   end
 
+  describe ".interpolate" do
+    pending
+  end
+
 end

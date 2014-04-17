@@ -16,6 +16,9 @@ gem 'activerecord-postgres-earthdistance'
 gem 'annotate', '>=2.5.0'
 gem 'pg'
 
+# Statistics
+gem 'spliner'
+
 # Authentication & APIs
 gem 'cancan'
 gem 'oauth'
@@ -35,9 +38,8 @@ gem 'coffee-rails'
 gem 'uglifier', '>= 1.0.3'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'turbolinks'
-gem 'jquery-turbolinks'
+gem 'jquery-turbolinks', '~> 1.0.0'
 gem 'jquery-rails'
-gem 'd3-rails'
 gem 'font-awesome-rails'
 
 group :development do
