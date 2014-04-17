@@ -88,9 +88,12 @@ class Weight < ActiveRecord::Base
 
     need_to_be_interpolated_dates = possible_dates - actual_dates.keys
 
-    spline = Spliner::Spliner.new(Hash[actual_dates.map { |k,v| [k, v.first.value] }])
+    bucketizer = Interpolate::Points.new(Hash[actual_dates.map { |k,v| [k, v.first.value] }])
 
-    interpolated_data = spline[need_to_be_interpolated_dates]
+    interpolated_data = need_to_be_interpolated_dates.map do |value|
+      puts value
+      bucket = bucketizer.at(value)
+    end
 
     [need_to_be_interpolated_dates, interpolated_data].transpose.map{|w| Weight.new(date: Time.at(w[0]).to_datetime, value: w[1])}
   end

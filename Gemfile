@@ -17,7 +17,7 @@ gem 'annotate', '>=2.5.0'
 gem 'pg'
 
 # Statistics
-gem 'spliner'
+gem 'interpolate'
 
 # Authentication & APIs
 gem 'cancan'
