@@ -11,11 +11,13 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require d3
-//= require_tree .
-//= require turbolinks
 //= require jquery.turbolinks
+//= require jquery_ujs
+//= require_tree .
 //= require bootstrap
+//= require turbolinks
+
+Turbolinks.enableTransitionCache();
 
 $(document).ready(function() {
   $.setReadyEvent('page:change')

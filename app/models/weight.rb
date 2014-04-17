@@ -74,6 +74,27 @@ class Weight < ActiveRecord::Base
     end
   end
 
+  def self.interpolate(weights=[])
+    return unless weights.present?
+
+    possible_dates = Array.new
+    s, e = weights.first.date, weights.last.date
+    while(s < e - 1.day) do
+      possible_dates << s.to_i.to_f
+      s += 1.day
+    end
+
+    actual_dates = weights.group_by { |w| w.date.at_beginning_of_day.to_i.to_f }
+
+    need_to_be_interpolated_dates = possible_dates - actual_dates.keys
+
+    spline = Spliner::Spliner.new(Hash[actual_dates.map { |k,v| [k, v.first.value] }])
+
+    interpolated_data = spline[need_to_be_interpolated_dates]
+
+    [need_to_be_interpolated_dates, interpolated_data].transpose.map{|w| Weight.new(date: Time.at(w[0]).to_datetime, value: w[1])}
+  end
+
   protected
 
   def calculate_missing_value missing, k, j
