@@ -16,6 +16,10 @@
 </nav>
 
 <div class="container-fluid">
+  <div id="meals-chart"></div>
+</div>
+
+<div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-lg-10 col-lg-offset-1">
         <table class="table">
@@ -70,3 +74,9 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  window.mealCalories = [<% (@meals_grouped_by_date.keys || []).each do |key| %>
+    [<%= Time.parse(key.to_s).to_i * 1000 %>, <%= @meals_grouped_by_date[key].sum(&:calories).round(1) %>],
+  <% end %>];
+</script>
