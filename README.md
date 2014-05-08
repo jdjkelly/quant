@@ -1,8 +1,8 @@
-# Quantify
+# Quant
 
 ### What is this?
 
-![Quantify.io demo](http://i.imgur.com/C1HSK5q.png)
+![Quant demo](http://i.imgur.com/x5AlmuK.png)
 
 An open source Rails API to track "quantified self" data.
 
@@ -19,6 +19,52 @@ This project includes a Rails + Postgres RESTful API to store your data.
 ### Status
 
 [ ![Codeship Status for jdjkelly/quantify](https://www.codeship.io/projects/09ef6f10-81d4-0130-00e5-12313d26400d/status?branch=master)](https://www.codeship.io/projects/2416)
+
+### Roadmap
+
+#### Spring 2014
+* CRUD interface for weights, meals, sleeps, moods, and places
+* Basic summary graphs/charts for above
+* Summary dashboard
+* Working integration with Fitbit, Withings, Jawbone
+** Easily add/remove services
+** Single button click -> update all data/sync sources
+* User onboarding process/wizard
+* Documentation/developer guide on README
+
+#### Summer 2014
+* API server - Ember client app split (rebuild UI)
+* Webhook support for integrations (auto updates)
+* Docker image
+
+### To Do
+* Validation on birthday field
+* add https://github.com/scottwater/detect_timezone_rails
+* index on meals#date
+
+### API Integrations
+
+#### Moods
+?
+
+#### Weights
+* Withings
+* Jawbone (future)
+* Fitbit (future)
+
+#### Sleeps
+* Fitbit (future)
+* Withings
+* Jawbone (future)
+
+#### Meals
+* Fitbit (future)
+* Withings (future)
+* Jawbone (future)
+
+#### Places
+* Foursquare
+* OpenPaths (future)
 
 ### License
 
@@ -43,83 +89,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-### Roadmap
-
-
-
-#### /weights
-* id              :integer          not null, primary key
-* bmi             :float
-* value           :float
-* lean_mass       :float
-* fat_mass        :float
-* fat_percent     :float
-* date            :datetime
-
-#### /users
-* name
-* height
-* age
-* birthday
-
-#### /workouts
-?
-
-#### /sleep
-* start (datetime)
-* end (datetime)
-
-#### /nutrition
-* date
-* calories
-* carbs (g)
-* fats (g)
-* protein (g)
-* start
-* end
-
-
-### To Do
-* Tests for Withings Omniauth (omniauths_callback_controller_spec, withings_account_controller_spec)
-* Tests for user#has_withings_auth?, user#has_scale_auth?, user#update_bmi_for_user
-* Add active model serializers
-* Add basic add/edit UI for place/weight
-* Validation on birthday field
-* Add Strong Params
-* Generic "data update" methods on login/forced - basically the sync feature
-* Only include the Foundation JS that is being used
-* check rails 4 version of devise
-* add https://github.com/scottwater/detect_timezone_rails
-* index on meals#date
-
-### API Integrations
-
-#### Moods
-
-#### Weights
-* Fitbit
-* Withings
-
-#### Sleeps
-* Fitbit
-* Withings
-* Jawbone
-
-#### Meals
-* myfitnesspal.com (?)
-* loseit.com (?)
-* Fitbit
-
-#### Places
-* Facebook
-* Foursquare
-* Twitter
-* OpenPaths
-
-#### Activities
-* Nike+
-* Fitbit
-* Withings
-* Jawbone
