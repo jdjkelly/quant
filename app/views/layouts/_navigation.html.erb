@@ -32,7 +32,13 @@
             </a>
             <ul class="dropdown-menu">
               <%- User.omniauth_providers.each do |provider| %>
-                <li><%= link_to raw("Connect #{provider.to_s.titleize}   <span class=\"label label-success\">connected</span>"), omniauth_authorize_path(User, provider) %></li>
+                <li>
+                  <% if current_user.send("has_#{provider}_auth?".to_sym) %>
+                    <%= link_to raw("Connect #{provider.to_s.titleize} <span class=\"label label-primary\">connected</span>") %>
+                  <% else %>
+                    <%= link_to raw("#{provider.to_s.titleize}"), omniauth_authorize_path(User, provider) %>
+                  <% end %>
+                </li>
               <% end -%>
             </ul>
           </li>
