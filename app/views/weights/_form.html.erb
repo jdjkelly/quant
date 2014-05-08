@@ -1,65 +1,42 @@
-<div class="row">
-  <div class="columns large-4 push-4">
-    <%= form_for @weight, html: { role: "form", class: "transparent-form" } do |f| %>
+<%= form_for @weight, html: { role: "form", class: "transparent-form" } do |f| %>
 
-      <div class="unit-panel">
+  <h3 class="text-center">Add weight</h3>
 
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :value %>
-            <%= f.text_field :value %>
-            <% if @weight.errors[:value].present? %>
-              <small class="error"><%= @weight.errors[:value].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :fat_percent %>
-            <%= f.text_field :fat_percent %>
-            <% if @weight.errors[:fat_percent].present? %>
-              <small class="error"><%= @weight.errors[:fat_percent].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :lean_mass %>
-            <%= f.text_field :lean_mass %>
-            <% if @weight.errors[:lean_mass].present? %>
-              <small class="error"><%= @weight.errors[:lean_mass].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :source %>
-            <%= f.text_field :source %>
-            <% if @weight.errors[:source].present? %>
-              <small class="error"><%= @weight.errors[:source].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <%= f.label :date %>
-            <%= datetime_local_field("weight", "date", :discard_year => true) %>
-            <% if @weight.errors[:source].present? %>
-              <small class="error"><%= @weight.errors[:date].join(", ") %></small>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="columns large-12">
-            <%= f.submit class: "button radius large-12 small-12" %>
-          </div>
-        </div>
-      </div>
+  <%= content_tag :div, class: [("has-error" if @weight.errors[:value].present?), "form-group"] do %>
+    <% if @weight.errors[:value].present? %>
+      <%= f.label :value, class: "control-label" do %>Value <%= @weight.errors[:value].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :value, class: "hidden" %>
     <% end %>
-  </div>
-</div>
+    <%= f.text_field :value, placeholder: "Value", autofocus: true, class: "form-control input-xl text-center" %>
+  <% end %>
+
+  <%= content_tag :div, class: [("has-error" if @weight.errors[:fat_percent].present?), "form-group"] do %>
+    <% if @weight.errors[:fat_percent].present? %>
+      <%= f.label :fat_percent, class: "control-label" do %>Fat % <%= @weight.errors[:fat_percent].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :fat_percent, class: "hidden" %>
+    <% end %>
+    <%= f.text_field :fat_percent, placeholder: "Fat %", autofocus: true, class: "form-control input-xl text-center" %>
+  <% end %>
+
+  <%= content_tag :div, class: [("has-error" if @weight.errors[:lean_mass].present?), "form-group"] do %>
+    <% if @weight.errors[:lean_mass].present? %>
+      <%= f.label :lean_mass, class: "control-label" do %>Lean mass <%= @weight.errors[:lean_mass].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :lean_mass, class: "hidden" %>
+    <% end %>
+    <%= f.text_field :lean_mass, placeholder: "Lean mass", autofocus: true, class: "form-control input-xl text-center" %>
+  <% end %>
+
+  <%= content_tag :div, class: [("has-error" if @weight.errors[:date].present?), "form-group"] do %>
+    <% if @weight.errors[:date].present? %>
+      <%= f.label :date, class: "control-label" do %>Date <%= @weight.errors[:date].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :date, class: "hidden" %>
+    <% end %>
+    <%= datetime_local_field("weight", "date", :discard_year => true, placeholder: "mm-dd", class: "form-control input-xl text-center") %>
+  <% end %>
+
+  <%= f.submit class: "btn btn-default btn-block btn-xl"%>
+<% end %>

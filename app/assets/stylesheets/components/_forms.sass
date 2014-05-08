@@ -1,13 +1,6 @@
 form
   .field_with_errors
-    input
-      @extend .error
-      // background: $input-bg-color
-      @include border-radius($border-radius $border-radius 0px 0px)
-
-      &:focus
-        // background: $input-bg-color
-        // border-color: $alert-color
+    @extend .has-error
 
   small.error
     @include border-radius(0px 0px $border-radius $border-radius)

@@ -14,6 +14,8 @@
   </div>
 </nav>
 
+<div id="map"></div>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-lg-10 col-lg-offset-1">
@@ -43,3 +45,11 @@
     </div>
   </div>
 </div>
+
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+
+<script>
+  window.Places = [<% @places.each do |place| %>
+    [<%= place.lat %>,<%= place.lng %>],
+  <% end %>]
+</script>

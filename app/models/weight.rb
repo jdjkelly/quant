@@ -28,6 +28,9 @@ class Weight < ActiveRecord::Base
   belongs_to :user
 
   validates :value, presence: true, numericality: true
+  validates :lean_mass, numericality: true, allow_nil: true
+  validates :fat_mass, numericality: true, allow_nil: true
+  validates :fat_percent, numericality: true, allow_nil: true
   validates :date, presence: true
 
   before_save :calculate_all_known_values
@@ -77,14 +80,14 @@ class Weight < ActiveRecord::Base
   def self.interpolate(weights=[])
     return unless weights.present?
 
-    possible_dates = Array.new
-    s, e = weights.first.date, weights.last.date
-    while(s < e - 1.day) do
-      possible_dates << s.to_i.to_f
-      s += 1.day
+    possible_dates, start_date, end_date = [], weights.first.date.at_beginning_of_day, weights.last.date.at_beginning_of_day
+
+    while(start_date < end_date - 1.day) do
+      possible_dates.push start_date.to_f
+      start_date += 1.day
     end
 
-    actual_dates = weights.group_by { |w| w.date.at_beginning_of_day.to_i.to_f }
+    actual_dates = weights.group_by { |w| w.date.at_beginning_of_day.to_f }
 
     need_to_be_interpolated_dates = possible_dates - actual_dates.keys
 

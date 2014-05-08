@@ -15,11 +15,7 @@
 </nav>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-12 col-lg-10 col-lg-offset-1">
-      <div id="weights-chart"></div>
-    </div>
-  </div>
+  <div id="weights-chart"></div>
 </div>
 
 <div class="container-fluid">
@@ -62,10 +58,14 @@
 
 <script type="text/javascript">
   window.weights = [<% (@weights || []).each do |weight| %>
-    [<%= weight.date.to_i %> * 1000, <%= weight.value.round(1) %>],
+    [<%= weight.date.at_beginning_of_day.to_i %> * 1000, <%= weight.value.round(1) %>],
   <% end %>];
 
   window.interpolatedWeights = [<% (@interpolated_weights || []).each do |weight| %>
-    [<%= weight.date.to_i %> * 1000, <%= weight.value.round(1) %>],
+    [<%= weight.date.at_beginning_of_day.to_i %> * 1000, <%= weight.value.round(1) %>],
+  <% end %>];
+
+  window.allWeights = [<% (@all_weights || []).each do |weight| %>
+    [<%= weight.date.at_beginning_of_day.to_i %> * 1000, <%= weight.value.round(1) %>],
   <% end %>];
 </script>

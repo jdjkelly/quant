@@ -2,21 +2,24 @@
 
   <h3 class="text-center">Add meal</h3>
 
-  <div class="form-group">
-    <%= f.label :calories, class: "hidden" %>
-    <%= f.text_field :calories, placeholder: "Calories", autofocus: true, class: "form-control input-xl text-center" %>
+  <%= content_tag :div, class: [("has-error" if @meal.errors[:calories].present?), "form-group"] do %>
     <% if @meal.errors[:calories].present? %>
-      <small class="error"><%= @meal.errors[:calories].join(", ") %></small>
+      <%= f.label :calories, class: "control-label" do %>Calories <%= @meal.errors[:calories].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :calories, class: "hidden" %>
     <% end %>
-  </div>
+    <%= f.text_field :calories, placeholder: "Calories", autofocus: true, class: "form-control input-xl text-center" %>
+  <% end %>
 
-  <div class="form-group">
-    <%= f.label :fat, class: "hidden" %>
-    <%= f.text_field :fat, placeholder: "Fat", class: "form-control input-xl text-center" %>
+  <%= content_tag :div, class: [("has-error" if @meal.errors[:fat].present?), "form-group"] do %>
     <% if @meal.errors[:fat].present? %>
-      <small class="error"><%= @meal.errors[:fat].join(", ") %></small>
+      <%= f.label :fat, class: "control-label" do %>Fat <%= @meal.errors[:fat].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :fat, class: "hidden" %>
     <% end %>
-  </div>
+    <%= f.text_field :fat, placeholder: "Fat", autofocus: true, class: "form-control input-xl text-center" %>
+  <% end %>
+
 
   <div class="form-group">
     <%= f.label :carbohydrates, class: "hidden" %>

@@ -22,6 +22,9 @@ require 'spec_helper'
 describe Weight do
   it { should validate_presence_of :value }
   it { should validate_numericality_of :value }
+  it { should validate_numericality_of :lean_mass }
+  it { should validate_numericality_of :fat_mass }
+  it { should validate_numericality_of :fat_percent }
   it { should belong_to(:user) }
   it { should validate_presence_of :date }
 

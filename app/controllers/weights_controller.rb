@@ -8,8 +8,6 @@ class WeightsController < ApplicationController
   def index
     @weights = current_user.weights.order("date DESC")
 
-    @interpolated_weights = Weight.interpolate(@weights.reverse)
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @weights }

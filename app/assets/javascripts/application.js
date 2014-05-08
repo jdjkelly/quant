@@ -13,7 +13,12 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+
+//= require vendor/jquery.flot
+//= require vendor/leaflet
+
 //= require_tree .
+
 //= require bootstrap
 //= require turbolinks
 
