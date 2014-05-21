@@ -23,7 +23,7 @@ This project includes a Rails + Postgres RESTful API to store your data.
 ### Roadmap
 
 #### Spring 2014 (June)
-* CRUD interface for weights, meals, sleeps, moods, and places
+* CRUD interface for weights, meals, sleeps, and places
 * Basic summary graphs/charts for above
 * Summary dashboard
 * Working integration with Fitbit, Withings, Jawbone
@@ -43,9 +43,6 @@ This project includes a Rails + Postgres RESTful API to store your data.
 * index on meals#date
 
 ### API Integrations
-
-#### Moods
-?
 
 #### Weights
 * Withings

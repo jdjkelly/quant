@@ -25,7 +25,6 @@
 class User < ActiveRecord::Base
   include Users::Meals
   include Users::Weights
-  include Users::Moods
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -49,7 +48,6 @@ class User < ActiveRecord::Base
   has_many :weights
   has_many :places
   has_many :meals
-  has_many :moods
   has_many :sleeps
 
   has_one :withings_account

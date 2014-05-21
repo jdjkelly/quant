@@ -180,40 +180,6 @@ ALTER SEQUENCE meals_id_seq OWNED BY meals.id;
 
 
 --
--- Name: moods; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE moods (
-    id integer NOT NULL,
-    date timestamp without time zone,
-    user_id integer,
-    rating numeric,
-    description text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: moods_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE moods_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: moods_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE moods_id_seq OWNED BY moods.id;
-
-
---
 -- Name: places; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -472,13 +438,6 @@ ALTER TABLE ONLY meals ALTER COLUMN id SET DEFAULT nextval('meals_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY moods ALTER COLUMN id SET DEFAULT nextval('moods_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY places ALTER COLUMN id SET DEFAULT nextval('places_id_seq'::regclass);
 
 
@@ -547,14 +506,6 @@ ALTER TABLE ONLY places
 
 ALTER TABLE ONLY meals
     ADD CONSTRAINT meals_pkey PRIMARY KEY (id);
-
-
---
--- Name: moods_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY moods
-    ADD CONSTRAINT moods_pkey PRIMARY KEY (id);
 
 
 --
@@ -789,3 +740,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140126060623');
 INSERT INTO schema_migrations (version) VALUES ('20140126060624');
 
 INSERT INTO schema_migrations (version) VALUES ('20140203025359');
+
+INSERT INTO schema_migrations (version) VALUES ('20140521021713');
+

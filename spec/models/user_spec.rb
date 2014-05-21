@@ -29,7 +29,6 @@ describe User do
   it { should have_many(:meals) }
   it { should have_many(:places) }
   it { should have_many(:sleeps) }
-  it { should have_many(:moods) }
 
   it { should have_one(:withings_account) }
   it { should have_one(:fitbit_account) }
