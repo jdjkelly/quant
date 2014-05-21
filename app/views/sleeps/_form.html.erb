@@ -1,38 +1,24 @@
-<div class="row">
-  <div class="columns large-4 push-4">
-    <%= form_for @sleep, html: { role: "form", class: "transparent-form" } do |f| %>
+<%= form_for @sleep, html: { role: "form", class: "transparent-form" } do |f| %>
 
-      <div class="unit-panel">
-        <div class="row">
-          <div class="large-12 columns">
-            <div class="row">
-              <div class="large-12 columns">
-                <%= f.label :start %>
-                <%= f.datetime_local_field :start %>
-                <% if @sleep.errors[:start].present? %>
-                  <small class="error"><%= @sleep.errors[:start].join(", ") %></small>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="large-12 columns">
-                <%= f.label :end %>
-                <%= f.datetime_local_field :end %>
-                <% if @sleep.errors[:end].present? %>
-                  <small class="error"><%= @sleep.errors[:end].join(", ") %></small>
-                <% end %>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="columns large-12">
-                <%= f.submit class: "button radius large-12 small-12" %>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div
+  <h3 class="text-center">Add sleep</h3>
+  
+  <%= content_tag :div, class: [("has-error" if @sleep.errors[:start].present?), "form-group"] do %>
+    <% if @sleep.errors[:start].present? %>
+      <%= f.label :start, class: "control-label" do %>Date <%= @sleep.errors[:start].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :start, class: "hidden" %>
     <% end %>
-  </div>
-</div>
+    <%= datetime_local_field("sleep", "start", :discard_year => true, placeholder: "yyyy-mm-dd", class: "form-control input-xl text-center") %>
+  <% end %>
+  
+  <%= content_tag :div, class: [("has-error" if @sleep.errors[:end].present?), "form-group"] do %>
+    <% if @sleep.errors[:end].present? %>
+      <%= f.label :end, class: "control-label" do %>Date <%= @sleep.errors[:end].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :end, class: "hidden" %>
+    <% end %>
+    <%= datetime_local_field("sleep", "end", :discard_year => true, placeholder: "yyyy-mm-dd", class: "form-control input-xl text-center") %>
+  <% end %>
+  
+  <%= f.submit class: "btn btn-default btn-block btn-xl"%>
+<% end %>

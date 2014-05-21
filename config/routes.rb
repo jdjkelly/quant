@@ -18,7 +18,6 @@ Quantify::Application.routes.draw do
   resources :places
   resources :weights
   resources :meals
-  resources :moods
   resources :sleeps
 
   # The priority is based upon order of creation:

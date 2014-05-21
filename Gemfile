@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-ruby "2.1.1"
+ruby "2.1.2"
 
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.1'
 gem 'rails_config'
 
 # Rails 4.1 upgrade to remove
@@ -81,9 +81,6 @@ end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
 
 # Use unicorn as the app server
 gem 'unicorn'

@@ -22,8 +22,8 @@ This project includes a Rails + Postgres RESTful API to store your data.
 
 ### Roadmap
 
-#### Spring 2014
-* CRUD interface for weights, meals, sleeps, moods, and places
+#### Spring 2014 (June)
+* CRUD interface for weights, meals, sleeps, and places
 * Basic summary graphs/charts for above
 * Summary dashboard
 * Working integration with Fitbit, Withings, Jawbone
@@ -32,7 +32,7 @@ This project includes a Rails + Postgres RESTful API to store your data.
 * User onboarding process/wizard
 * Documentation/developer guide on README
 
-#### Summer 2014
+#### Summer 2014 (July)
 * API server - Ember client app split (rebuild UI)
 * Webhook support for integrations (auto updates)
 * Docker image
@@ -43,9 +43,6 @@ This project includes a Rails + Postgres RESTful API to store your data.
 * index on meals#date
 
 ### API Integrations
-
-#### Moods
-?
 
 #### Weights
 * Withings
