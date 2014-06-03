@@ -20,6 +20,7 @@
 #  name                   :string(255)
 #  height                 :float
 #  time_zone              :string(255)      default("UTC")
+#  sex                    :char(1)
 #
 
 class User < ActiveRecord::Base
@@ -38,7 +39,8 @@ class User < ActiveRecord::Base
     :remember_me,
     :name,
     :height,
-    :time_zone
+    :time_zone,
+    :sex
 
   validates_numericality_of :height, allow_nil: true
   validates_presence_of :name
