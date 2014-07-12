@@ -143,6 +143,41 @@ ALTER SEQUENCE foursquare_accounts_id_seq OWNED BY foursquare_accounts.id;
 
 
 --
+-- Name: journal_entries; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE journal_entries (
+    id integer NOT NULL,
+    recorded_at timestamp without time zone,
+    feelings character varying(255),
+    happiness integer,
+    strategies character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    user_id integer
+);
+
+
+--
+-- Name: journal_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE journal_entries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: journal_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE journal_entries_id_seq OWNED BY journal_entries.id;
+
+
+--
 -- Name: meals; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -431,6 +466,13 @@ ALTER TABLE ONLY foursquare_accounts ALTER COLUMN id SET DEFAULT nextval('foursq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY journal_entries ALTER COLUMN id SET DEFAULT nextval('journal_entries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY meals ALTER COLUMN id SET DEFAULT nextval('meals_id_seq'::regclass);
 
 
@@ -490,6 +532,14 @@ ALTER TABLE ONLY fitbit_accounts
 
 ALTER TABLE ONLY foursquare_accounts
     ADD CONSTRAINT foursquare_accounts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: journal_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY journal_entries
+    ADD CONSTRAINT journal_entries_pkey PRIMARY KEY (id);
 
 
 --
@@ -742,4 +792,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140126060624');
 INSERT INTO schema_migrations (version) VALUES ('20140203025359');
 
 INSERT INTO schema_migrations (version) VALUES ('20140521021713');
+
+INSERT INTO schema_migrations (version) VALUES ('20140712150021');
+
+INSERT INTO schema_migrations (version) VALUES ('20140712154647');
 

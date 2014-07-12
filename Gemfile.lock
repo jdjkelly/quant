@@ -17,27 +17,27 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
-    actionmailer (4.1.1)
-      actionpack (= 4.1.1)
-      actionview (= 4.1.1)
+    actionmailer (4.1.4)
+      actionpack (= 4.1.4)
+      actionview (= 4.1.4)
       mail (~> 2.5.4)
-    actionpack (4.1.1)
-      actionview (= 4.1.1)
-      activesupport (= 4.1.1)
+    actionpack (4.1.4)
+      actionview (= 4.1.4)
+      activesupport (= 4.1.4)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    actionview (4.1.1)
-      activesupport (= 4.1.1)
+    actionview (4.1.4)
+      activesupport (= 4.1.4)
       builder (~> 3.1)
       erubis (~> 2.7.0)
     active_model_serializers (0.8.1)
       activemodel (>= 3.0)
-    activemodel (4.1.1)
-      activesupport (= 4.1.1)
+    activemodel (4.1.4)
+      activesupport (= 4.1.4)
       builder (~> 3.1)
-    activerecord (4.1.1)
-      activemodel (= 4.1.1)
-      activesupport (= 4.1.1)
+    activerecord (4.1.4)
+      activemodel (= 4.1.4)
+      activesupport (= 4.1.4)
       arel (~> 5.0.0)
     activerecord-postgres-earthdistance (0.3.1)
       pg
@@ -47,7 +47,7 @@ GEM
       activerecord (>= 3.1)
       pg-hstore (>= 1.1.5)
       rake
-    activesupport (4.1.1)
+    activesupport (4.1.4)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -59,6 +59,11 @@ GEM
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
     builder (3.2.2)
@@ -79,6 +84,8 @@ GEM
       ffi (~> 1.0, >= 1.0.11)
     chunky_png (1.3.0)
     coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -97,6 +104,9 @@ GEM
       safe_yaml (~> 1.0.0)
     daemons (1.1.9)
     database_cleaner (1.2.0)
+    debug_inspector (0.0.2)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -161,7 +171,7 @@ GEM
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    i18n (0.6.9)
+    i18n (0.6.11)
     interpolate (0.3.0)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
@@ -187,8 +197,8 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.3)
-    minitest (5.3.4)
-    multi_json (1.10.0)
+    minitest (5.4.0)
+    multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     newrelic_rpm (3.7.3.204)
@@ -225,7 +235,7 @@ GEM
       parallel
     pg (0.17.1)
     pg-hstore (1.2.0)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     protected_attributes (1.0.7)
       activemodel (>= 4.0.1, < 5.0)
     pry (0.9.12.6)
@@ -241,15 +251,15 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.1.1)
-      actionmailer (= 4.1.1)
-      actionpack (= 4.1.1)
-      actionview (= 4.1.1)
-      activemodel (= 4.1.1)
-      activerecord (= 4.1.1)
-      activesupport (= 4.1.1)
+    rails (4.1.4)
+      actionmailer (= 4.1.4)
+      actionpack (= 4.1.4)
+      actionview (= 4.1.4)
+      activemodel (= 4.1.4)
+      activerecord (= 4.1.4)
+      activesupport (= 4.1.4)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.1.1)
+      railties (= 4.1.4)
       sprockets-rails (~> 2.0)
     rails_12factor (0.0.2)
       rails_serve_static_assets
@@ -258,9 +268,9 @@ GEM
       activesupport (>= 3.0)
     rails_serve_static_assets (0.0.2)
     rails_stdout_logging (0.0.3)
-    railties (4.1.1)
-      actionpack (= 4.1.1)
-      activesupport (= 4.1.1)
+    railties (4.1.4)
+      actionpack (= 4.1.4)
+      activesupport (= 4.1.4)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
@@ -315,12 +325,14 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
+    symmetric-encryption (3.6.0)
+      coercible (>= 1.0.0)
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     timers (1.1.0)
     treetop (1.4.15)
@@ -328,7 +340,7 @@ GEM
       polyglot (>= 0.3.1)
     turbolinks (2.2.2)
       coffee-rails
-    tzinfo (1.1.0)
+    tzinfo (1.2.1)
       thread_safe (~> 0.1)
     uglifier (2.5.0)
       execjs (>= 0.3.0)
@@ -354,6 +366,8 @@ DEPENDENCIES
   activerecord-postgres-earthdistance
   activerecord-postgres-hstore
   annotate (>= 2.5.0)
+  better_errors
+  binding_of_caller
   bootstrap-sass (~> 3.1.1)
   cancan
   capybara (~> 1.1.4)
@@ -390,7 +404,7 @@ DEPENDENCIES
   pry-rails
   quiet_assets
   rack-livereload
-  rails (= 4.1.1)
+  rails (= 4.1.4)
   rails_12factor
   rails_config
   rb-fsevent
@@ -401,6 +415,7 @@ DEPENDENCIES
   shoulda-matchers
   spring
   spring-commands-rspec
+  symmetric-encryption
   thin
   turbolinks
   uglifier (>= 1.0.3)
