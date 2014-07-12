@@ -22,7 +22,7 @@ gem 'interpolate'
 # Authentication & APIs
 gem 'cancan'
 gem 'oauth'
-gem 'devise', github: 'plataformatec/devise'
+gem 'devise', '~> 3.2.4'
 gem 'omniauth'
 gem 'omniauth-withings', github: 'jdjkelly/omniauth-withings'
 gem 'omniauth-fitbit'
