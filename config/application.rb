@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module Quantify
   class Application < Rails::Application
-    VERSION = "0.0.11"
+    VERSION = "0.0.12"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -43,7 +43,7 @@ module Quantify
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password, :password_confirmation]
+    config.filter_parameters += [:password, :password_confirmation, :feelings, :happiness, :strategies]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -63,7 +63,7 @@ module Quantify
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
+    config.assets.version = VERSION
 
     config.autoload_paths += %W(
       models
@@ -72,7 +72,7 @@ module Quantify
 
     config.generators do |g|
         g.test_framework :rspec, fixture: true
-        g.fixture_replacement :factory_girl, dir: 'spec/factories'
+        g.fixture_replacement :fabraction, dir: 'spec/fabricators'
         g.view_specs false
         g.helper_specs false
         g.stylesheets = false

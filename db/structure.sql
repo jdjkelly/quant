@@ -148,13 +148,15 @@ ALTER SEQUENCE foursquare_accounts_id_seq OWNED BY foursquare_accounts.id;
 
 CREATE TABLE journal_entries (
     id integer NOT NULL,
-    recorded_at timestamp without time zone,
-    feelings character varying(255),
+    feelings text,
     happiness integer,
-    strategies character varying(255),
+    strategies text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    user_id integer
+    user_id integer,
+    encrypted_happiness character varying(255),
+    encrypted_strategies text,
+    encrypted_feelings text
 );
 
 
@@ -796,4 +798,8 @@ INSERT INTO schema_migrations (version) VALUES ('20140521021713');
 INSERT INTO schema_migrations (version) VALUES ('20140712150021');
 
 INSERT INTO schema_migrations (version) VALUES ('20140712154647');
+
+INSERT INTO schema_migrations (version) VALUES ('20140712190721');
+
+INSERT INTO schema_migrations (version) VALUES ('20140712220030');
 

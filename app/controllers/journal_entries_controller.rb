@@ -6,7 +6,7 @@ class JournalEntriesController < ApplicationController
   # GET /journal_entries
   # GET /journal_entries.json
   def index
-    @journal_entries = current_user.journal_entries.order("recorded_at DESC")
+    @journal_entries = current_user.journal_entries
 
     respond_to do |format|
       format.html # show.html.erb
