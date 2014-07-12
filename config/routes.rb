@@ -1,5 +1,7 @@
 Quantify::Application.routes.draw do
 
+  resources :journal_entries
+
   authenticated :user do
     get '/', to: "dashboard#index"
   end

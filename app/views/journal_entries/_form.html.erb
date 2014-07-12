@@ -1,0 +1,33 @@
+<%= form_for @journal_entry, html: { role: "form", class: "transparent-form" } do |f| %>
+
+  <h3 class="text-center">Add journal entry</h3>
+  
+  <%= content_tag :div, class: [("has-error" if @journal_entry.errors[:happiness].present?), "form-group"] do %>
+    <% if @journal_entry.errors[:happiness].present? %>
+      <%= f.label :happiness, class: "control-label" do %>happiness <%= @journal_entry.errors[:happiness].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :happiness, class: "hidden" %>
+    <% end %>
+    <%= f.text_field :happiness, placeholder: "happiness", autofocus: true, class: "form-control input-xl text-center" %>
+  <% end %>
+  
+  <%= content_tag :div, class: [("has-error" if @journal_entry.errors[:feelings].present?), "form-group"] do %>
+    <% if @journal_entry.errors[:feelings].present? %>
+      <%= f.label :feelings, class: "control-label" do %>feelings <%= @journal_entry.errors[:feelings].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :feelings, class: "hidden" %>
+    <% end %>
+    <%= f.text_area :feelings, placeholder: "feelings", class: "form-control input-xl text-center" %>
+  <% end %>
+  
+  <%= content_tag :div, class: [("has-error" if @journal_entry.errors[:strategies].present?), "form-group"] do %>
+    <% if @journal_entry.errors[:strategies].present? %>
+      <%= f.label :strategies, class: "control-label" do %>strategies <%= @journal_entry.errors[:strategies].join(", ") %><% end %>
+    <% else %>
+      <%= f.label :strategies, class: "hidden" %>
+    <% end %>
+    <%= f.text_area :strategies, placeholder: "strategies", class: "form-control input-xl text-center" %>
+  <% end %>
+  
+  <%= f.submit class: "btn btn-default btn-block btn-xl"%>
+<% end %>
