@@ -1,0 +1,47 @@
+<nav class="sub-header-nav-bar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 col-xs-3">
+        <h3>Journal Entries</h3>
+      </div>
+      <div class="col-sm-6 col-xs-9">
+        <ul class="state-switcher">
+          <li><%= link_to 'Add journal entry', new_journal_entry_path %></li>
+          <li class="active"><a href="#">Summary</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-lg-10 col-lg-offset-1">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Created At</th>
+            <th>Happiness</th>
+            <th>Feelings</th>
+            <th>Strategies</th>
+            <th class="hidden-xs">API</th>
+            <th class="hidden-xs"></th>
+            <th class="hidden-xs"></th>
+          </tr>
+        </thead>
+
+        <% @journal_entries.each do |journal_entry| %>
+          <tr>
+            <td><%= link_to journal_entry.created_at.in_time_zone(current_user.time_zone).to_formatted_s(:short), journal_entry %></td>
+            <td><%= journal_entry.happiness %></td>
+            <td><%= journal_entry.feelings %></td>
+            <td><%= journal_entry.strategies %></td>
+            <td class="hidden-xs"><%= link_to 'JSON', journal_entry_path(journal_entry, format: :json) %></td>
+            <td class="hidden-xs"><%= link_to 'Edit', edit_journal_entry_path(journal_entry) %></td>
+            <td class="hidden-xs"><%= link_to 'Destroy', journal_entry_path(journal_entry), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

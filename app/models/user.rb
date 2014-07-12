@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   has_many :places
   has_many :meals
   has_many :sleeps
+  has_many :journal_entries
 
   has_one :withings_account
   has_one :fitbit_account
