@@ -1,24 +1,8 @@
-<nav class="sub-header-nav-bar">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-6 col-xs-3">
-        <h3>Weights</h3>
-      </div>
-      <div class="col-sm-6 col-xs-9">
-        <ul class="state-switcher">
-          <li><%= link_to 'Add Weight', new_weight_path %></li>
-          <li class="active"><a href="#">Summary</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
+<%= render 'nav', { resource: :weight, location: :index} %>
 
 <div class="container-fluid">
-  <div id="weights-chart"></div>
-</div>
+  <%= render 'cards' %>
 
-<div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-lg-10 col-lg-offset-1">
       <table class="table">
@@ -55,17 +39,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript">
-  window.weights = [<% (@weights || []).each do |weight| %>
-    [<%= weight.date.at_beginning_of_day.to_i %> * 1000, <%= weight.value.round(1) %>],
-  <% end %>];
-
-  window.interpolatedWeights = [<% (@interpolated_weights || []).each do |weight| %>
-    [<%= weight.date.at_beginning_of_day.to_i %> * 1000, <%= weight.value.round(1) %>],
-  <% end %>];
-
-  window.allWeights = [<% (@all_weights || []).each do |weight| %>
-    [<%= weight.date.at_beginning_of_day.to_i %> * 1000, <%= weight.value.round(1) %>],
-  <% end %>];
-</script>

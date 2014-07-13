@@ -26,6 +26,10 @@ $grey-hard: #939AA4;
 
 $border-radius: 3px;
 
+body {
+  background: $grey-soft
+}
+
 @import "compass/css3/border-radius";
 @import "compass/css3/transition";
 @import "compass/css3/opacity";

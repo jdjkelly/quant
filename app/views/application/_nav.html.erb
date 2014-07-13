@@ -1,0 +1,21 @@
+<nav class="sub-header-nav-bar">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6 col-xs-3">
+        <h3><%= resource.to_s.pluralize.humanize  %></h3>
+      </div>
+      <div class="col-sm-6 col-xs-9">
+        <ul class="state-switcher">
+          <li>
+            <% if location == :index %>
+              <%= link_to "Add #{resource.to_s}", "new_#{resource.to_s}".to_sym %>
+            <% else %>
+              <%= link_to "Back to list", resource.to_s.pluralize.to_sym %>
+            <% end %>
+          </li>
+          <li class="active"><a href="#">Summary</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

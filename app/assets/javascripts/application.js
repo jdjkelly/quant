@@ -14,7 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 
-//= require vendor/jquery.flot
+//= require vendor/jquery-ui-1.11.0.custom/jquery-ui.min
 //= require vendor/leaflet
 
 //= require_tree .
