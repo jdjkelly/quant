@@ -21,5 +21,5 @@ secret_token: <%= ENV["secret_token"] %>
 secret_key_base: <%= ENV["secret_key_base"] %>
 
 devise_secret_key: <%= ENV["devise_secret_key"] %>
-devise_mailer_sender: <%= ENV["deivse_mailer_sender"] %>
+devise_mailer_sender: <%= ENV["devise_mailer_sender"] %>
 asset_host: <%= ENV["quant_asset_host"] %>

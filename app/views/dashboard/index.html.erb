@@ -89,11 +89,14 @@
         </div>
       </div>
     </div>
+  <% else %>
+    <h1>No weight cards available</h1>
   <% end %>
 </div>
 
-<% if current_user.meals.any? %>
-  <div class="container-fluid">
+
+<div class="container-fluid">
+  <% if current_user.meals.any? %>
     <div class="row">
       <div class="col-md-3 col-sm-6">
         <div class="unit-panel">
@@ -140,5 +143,7 @@
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% else %>
+    <h1>No meal cards available</h1>
+  <% end %>
+</div>

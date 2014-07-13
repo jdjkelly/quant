@@ -3,7 +3,7 @@ source 'https://rails-assets.org'
 
 ruby "2.1.2"
 
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.4'
 gem 'rails_config'
 
 # Rails 4.1 upgrade to remove
@@ -30,6 +30,7 @@ gem 'omniauth-foursquare', '~> 1.0.0'
 gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem'
 gem 'foursquare2'
+gem 'symmetric-encryption'
 
 # Assets
 gem 'sass-rails',   '~> 4.0.0'
@@ -57,6 +58,8 @@ group :development do
   gem 'ruby_gntp'
   gem 'rack-livereload'
   gem 'parallel_tests'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

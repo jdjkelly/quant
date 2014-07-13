@@ -1,49 +1,49 @@
-<div class="row">
-  <div class="columns large-6 push-3">
-    <h2>Edit account</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <h2>Edit your account</h2>
+      
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div><%= f.label :email %><br />
+        <%= f.email_field :email, :autofocus => true %></div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div><%= f.label :name %><br />
+        <%= f.text_field :name %></div>
+
+        <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, :autocomplete => "off" %></div>
+
+        <div><%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation %></div>
+
+        <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password %></div>
+
+        <div><%= f.label :height %> <i></i><br />
+        <%= f.text_field :height %></div>
+
+        <%= f.collection_select :time_zone, ActiveSupport::TimeZone.all, :name, :to_s %>
+
+        <%= f.submit "Update" %>
+      <% end %>
+
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="columns large-6 push-3">
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-    <%= devise_error_messages! %>
 
-    <div><%= f.label :email %><br />
-    <%= f.email_field :email, :autofocus => true %></div>
+  <div class="row">
+    <div class="columns large-6 push-3">
+      <h3>Cancel my account</h3>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
+      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
 
-    <div><%= f.label :name %><br />
-    <%= f.text_field :name %></div>
-
-    <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, :autocomplete => "off" %></div>
-
-    <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
-
-    <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password %></div>
-
-    <div><%= f.label :height %> <i></i><br />
-    <%= f.text_field :height %></div>
-
-    <%= f.collection_select :time_zone, ActiveSupport::TimeZone.all, :name, :to_s %>
-
-    <div><%= f.submit "Update" %></div>
-  <% end %>
-
-</div>
-
-<div class="row">
-  <div class="columns large-6 push-3">
-    <h3>Cancel my account</h3>
-
-    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-    <%= link_to "Back", :back %>
+      <%= link_to "Back", :back %>
+    </div>
   </div>
 </div>
