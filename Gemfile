@@ -31,6 +31,8 @@ gem 'withings', github: 'jdjkelly/withings'
 gem 'fitgem'
 gem 'foursquare2'
 gem 'symmetric-encryption'
+gem 'doorkeeper'
+gem 'rest-client'
 
 # Assets
 gem 'sass-rails',   '~> 4.0.0'

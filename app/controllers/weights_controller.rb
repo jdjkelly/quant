@@ -1,6 +1,14 @@
 class WeightsController < ApplicationController
+  doorkeeper_for :all, 
+    if: -> { request.format.to_s == "application/json" }
+
   before_action :authenticate_user!
+  
   before_action :set_weight, only: [:show, :edit, :update, :destroy]
+  
+  skip_before_filter :authenticate_user!,
+    if: -> { request.format.to_s == "application/json" }
+
   load_and_authorize_resource
 
   # GET /weights

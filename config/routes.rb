@@ -1,5 +1,6 @@
 Quantify::Application.routes.draw do
 
+  use_doorkeeper
   resources :journal_entries
 
   authenticated :user do

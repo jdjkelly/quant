@@ -31,6 +31,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:withings, :fitbit, :foursquare]
 
+
+  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email,
     :password,
