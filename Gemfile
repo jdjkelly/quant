@@ -16,9 +16,6 @@ gem 'activerecord-postgres-earthdistance'
 gem 'annotate', '>=2.5.0'
 gem 'pg'
 
-# Statistics
-gem 'interpolate'
-
 # Authentication & APIs
 gem 'cancan'
 gem 'oauth'
