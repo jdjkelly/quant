@@ -60,7 +60,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 1.1.4'
+  gem 'capybara'
   gem 'rspec'
   gem 'growl'
   gem 'rb-fsevent'
