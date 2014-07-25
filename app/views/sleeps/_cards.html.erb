@@ -8,7 +8,7 @@
       <h3>Hours</h3>
       <small>
         <strong>
-          <%= average_duration({start: 14.days.ago.at_beginning_of_day, end: 7.days.ago.at_beginning_of_day}) / 1.hour %>  
+          <%= (average_duration({start: 14.days.ago.at_beginning_of_day, end: 7.days.ago.at_beginning_of_day}) / 1.hour).round(1) %>  
         </strong>
         14 day avg
       </small>  

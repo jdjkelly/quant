@@ -5,7 +5,7 @@
         <h1>Calories <small><%= link_to '+', new_meal_path %></small></h1>
         <hr/>
         <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 %></h2>
-        <h3>Count <small>Yesterday</small></h3>
+        <h3>Count <small>Today</small></h3>
         <small>
           <strong>
             <%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 %> Cal
@@ -18,7 +18,7 @@
         <h1>Carbs <small><%= link_to '+', new_meal_path %></small></h1>
         <hr/>
         <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:carbohydrates).inject(:+) || 0 %></h2>
-        <h3>Grams <small>Yesterday</small></h3>
+        <h3>Grams <small>Today</small></h3>
         <small>
           <strong>
             <%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:carbohydrates).inject(:+) || 0 %> G
@@ -31,7 +31,7 @@
         <h1>Fat <small><%= link_to '+', new_meal_path %></small></h1>
         <hr/>
         <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:fat).inject(:+) || 0 %></h2>
-        <h3>Grams <small>Yesterday</small></h3>
+        <h3>Grams <small>Today</small></h3>
         <small>
           <strong>
             <%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:fat).inject(:+) || 0 %> G
@@ -44,7 +44,7 @@
         <h1>Protein <small><%= link_to '+', new_meal_path %></small></h1>
         <hr/>
         <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:protein).inject(:+) || 0 %></h2>
-        <h3>Grams <small>Yesterday</small></h3>
+        <h3>Grams <small>Today</small></h3>
         <small>
           <strong>
             <%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:protein).inject(:+) || 0 %> G                   </strong>
