@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module Quantify
   class Application < Rails::Application
-    VERSION = "0.0.12"
+    VERSION = "0.0.13"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
