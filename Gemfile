@@ -16,9 +16,6 @@ gem 'activerecord-postgres-earthdistance'
 gem 'annotate', '>=2.5.0'
 gem 'pg'
 
-# Statistics
-gem 'interpolate'
-
 # Authentication & APIs
 gem 'cancan'
 gem 'oauth'
@@ -63,7 +60,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 1.1.4'
+  gem 'capybara'
   gem 'rspec'
   gem 'growl'
   gem 'rb-fsevent'

@@ -2,12 +2,17 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
       <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :role => "form", class: "transparent-form"}) do |f| %>
-      <h3 class="text-center">Forgotten password?</h3>
+      <h3 class="text-center">Password recovery</h3>
 
-      <%= devise_error_messages! %>
 
       <div class="form-group">
         <%= f.label :email, class: "hidden" %>
+        
+        <% if resource.errors %>
+          <%= f.label :email, class: "control-label" do %>
+            <%= resource.errors.full_messages.join(',') %>
+          <% end %>
+        <% end %>
         <%= f.email_field :email, autofocus: true, class: 'form-control input-xl text-center', placeholder: "Email" %>
       </div>
 

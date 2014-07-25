@@ -1,0 +1,66 @@
+<% if current_user.sleeps.any? %>
+  <div class="row">
+    <%= render layout: 'components/unit_panel' do %>
+      <h1>Duration <small>7 day avg</small> <small><%= link_to '+', new_sleep_path %></small></h1>
+      <hr/>
+      <h2><%= average_duration / 1.hour %></h2>
+      
+      <h3>Hours</h3>
+      <small>
+        <strong>
+          <%= average_duration({start: 14.days.ago.at_beginning_of_day, end: 7.days.ago.at_beginning_of_day}) / 1.hour %>  
+        </strong>
+        14 day avg
+      </small>  
+    <% end %>
+
+    <%= render layout: 'components/unit_panel' do %>
+      <h1>
+        Earliest start <small>Net 7 days <%= link_to '+', new_sleep_path %></small>
+      </h1>
+      <hr/>
+      <h2>
+        N/A
+      </h2>
+      <h3>AM</h3>
+      <small>
+        <strong>
+          N/A AM
+        </strong>
+        Latest end
+      </small>
+    <% end %>
+
+    <%= render layout: 'components/unit_panel' do %>
+      <h1>Recording streak <small><%= link_to '+', new_sleep_path %></small></h1>
+      <hr/>
+      <h2>
+        N/A
+      </h2>
+      <h3>days</h3>
+      <small>
+        <strong>
+          N/A days
+        </strong>
+        Longest streak
+      </small>
+    <% end %>
+
+    <%= render layout: 'components/unit_panel' do %>
+      <h1>Healthy Sleeps <small>14 day avg <%= link_to '+', new_sleep_path %></small></h1>
+      <hr/>
+      <h2>
+        N/A
+      </h2>
+      <h3>Percent</h3>
+      <small>
+        <strong>
+          N/A %
+        </strong>
+        28 days avg
+      </small>
+    <% end %>
+  </div>
+<% else %>
+  <h1>No sleep cards available</h1>
+<% end %>

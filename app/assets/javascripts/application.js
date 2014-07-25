@@ -15,7 +15,6 @@
 //= require jquery_ujs
 
 //= require vendor/jquery-ui-1.11.0.custom/jquery-ui.min
-//= require vendor/leaflet
 
 //= require_tree .
 

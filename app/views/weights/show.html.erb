@@ -8,10 +8,10 @@
         <div class="panel-body">
           <h1>Weight <small><%= link_to 'Edit', edit_weight_path(@weight) %></small></h1>
           <hr/>
-          <h2><%= Unit.new(@weight.value, :kilograms).to_system(:imperial).round(1) %></h2>
-          <h3>Pounds</h3>
-          <small><%= @weight.created_at.to_s %></small>
-          <hr/>
+          <h2><%= @weight.value.round(1) %></h2>
+          <h3>Kilograms</h3>
+          <small><%= @weight.date.to_formatted_s(:short) %></small>
+         <hr/>
 
           <span class="label label-primary">
             <% if @weight.source %>

@@ -1,0 +1,58 @@
+<% if current_user.meals.any? %>
+    <div class="row">
+      
+      <%= render layout: 'components/unit_panel' do %>
+        <h1>Calories <small><%= link_to '+', new_meal_path %></small></h1>
+        <hr/>
+        <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 %></h2>
+        <h3>Count <small>Yesterday</small></h3>
+        <small>
+          <strong>
+            <%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:calories).inject(:+) || 0 %> Cal
+          </strong>
+          7 day avg
+        </small>
+      <% end %>
+
+      <%= render layout: 'components/unit_panel' do %>
+        <h1>Carbs <small><%= link_to '+', new_meal_path %></small></h1>
+        <hr/>
+        <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:carbohydrates).inject(:+) || 0 %></h2>
+        <h3>Grams <small>Yesterday</small></h3>
+        <small>
+          <strong>
+            <%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:carbohydrates).inject(:+) || 0 %> G
+          </strong>
+          7 day avg
+        </small>
+      <% end %>
+
+      <%= render layout: 'components/unit_panel' do %>
+        <h1>Fat <small><%= link_to '+', new_meal_path %></small></h1>
+        <hr/>
+        <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:fat).inject(:+) || 0 %></h2>
+        <h3>Grams <small>Yesterday</small></h3>
+        <small>
+          <strong>
+            <%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:fat).inject(:+) || 0 %> G
+          </strong>
+          7 day avg
+        </small>
+      <% end %>
+
+      <%= render layout: 'components/unit_panel' do %>
+        <h1>Protein <small><%= link_to '+', new_meal_path %></small></h1>
+        <hr/>
+        <h2><%= current_user.meals_from(1.day.ago.at_beginning_of_day).map(&:protein).inject(:+) || 0 %></h2>
+        <h3>Grams <small>Yesterday</small></h3>
+        <small>
+          <strong>
+            <%= current_user.meals_from(7.days.ago.at_beginning_of_day).map(&:protein).inject(:+) || 0 %> G                   </strong>
+          7 day avg
+        </small>
+      <% end %>      
+
+    </div>
+<% else %>
+  <h1>No meal cards available</h1>
+<% end %>

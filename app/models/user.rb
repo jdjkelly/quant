@@ -25,6 +25,7 @@
 class User < ActiveRecord::Base
   include Users::Meals
   include Users::Weights
+  include Users::Sleeps
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

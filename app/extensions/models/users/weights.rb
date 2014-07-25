@@ -1,41 +1,33 @@
 module Users
   module Weights
 
-    def current_weight
-      self.weights.current
+    def current_weight opts={}
+      self.weights.current(:value, opts)
     end
 
-    def weight
-      return unless current_weight
-      current_weight.value
+    alias_method :weight, :current_weight
+
+    def fat_mass opts={}
+      self.weights.current(:fat_mass, opts)
     end
 
-    def fat_mass
-      return unless current_weight
-      current_weight.fat_mass
+    def fat_percent opts={}
+      self.weights.current(:fat_percent, opts)
     end
 
-    def fat_percent
-      return unless current_weight
-      current_weight.fat_percent
-    end
-
-    def lean_mass
-      return unless current_weight
-      current_weight.lean_mass
+    def lean_mass opts={}
+      self.weights.current(:lean_mass, opts)
     end
 
     def lean_mass_percentage
-      return unless current_weight
-      current_weight.lean_mass / weight * 100
+      lean_mass / weight * 100
     end
 
-    def bmi
-      return unless current_weight
-      current_weight.bmi
+    def bmi opts={}
+      self.weights.current(:bmi, opts)
     end
 
-  protected
+    protected
 
     def update_weights_bmi
       Weight.update_bmi_for_user(id)

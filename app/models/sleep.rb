@@ -19,6 +19,10 @@ class Sleep < ActiveRecord::Base
   validate :ends_after_start
 
   belongs_to :user
+  
+  def duration
+    self.end - self.start 
+  end
 
   private
 

@@ -15,7 +15,7 @@
 </nav>
 
 <div class="container-fluid">
-  <div id="meals-chart"></div>
+  <%= render 'cards' %>
 </div>
 
 <div class="container-fluid">
@@ -40,7 +40,7 @@
 
           <% @meals_grouped_by_date.keys.each do |key| %>
             <tr>
-              <td><strong><%= key.to_formatted_s(:day_month_and_year) %></strong></td>
+              <td><strong><%= key.to_formatted_s(:short) %></strong></td>
               <td><strong><%= @meals_grouped_by_date[key].sum(&:calories).round(1) %></strong></td>
               <td><strong><%= @meals_grouped_by_date[key].sum(&:carbohydrates).round(1) %></strong></td>
               <td><strong><%= @meals_grouped_by_date[key].sum(&:fat).round(1) %></strong></td>
