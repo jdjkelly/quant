@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-ruby "2.1.2"
+ruby '2.1.2'
 
 gem 'rails', '4.1.4'
 gem 'rails_config'
@@ -15,9 +15,6 @@ gem 'activerecord-postgres-hstore'
 gem 'activerecord-postgres-earthdistance'
 gem 'annotate', '>=2.5.0'
 gem 'pg'
-
-# Statistics
-gem 'interpolate'
 
 # Authentication & APIs
 gem 'cancan'
@@ -63,7 +60,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 1.1.4'
+  gem 'capybara'
   gem 'rspec'
   gem 'growl'
   gem 'rb-fsevent'

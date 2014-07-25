@@ -13,12 +13,12 @@ describe Users::Weights do
       end
     end
 
-    it "returns the last recorded Weight" do
-      user.current_weight.should eq(user.weights.order("date DESC").first)
+    it "returns a 7 day average from the last recorded Weight" do
+      user.current_weight.should eq(user.weights.current(:value))
     end
 
     it "returns the same value as #current" do
-      user.current_weight.should eq(user.weights.current)
+      user.current_weight.should eq(user.weights.current(:value))
     end
 
     context "when the user has a height" do

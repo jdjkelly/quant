@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%= render "nav", { resource: :weight, location: :show } %>
 
-div class="container">
+<div class="container">
   <div class="row">
 
     <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
@@ -11,7 +11,7 @@ div class="container">
           <h2><%= @weight.value.round(1) %></h2>
           <h3>Kilograms</h3>
           <small><%= @weight.date.to_formatted_s(:short) %></small>
-          <hr/>
+         <hr/>
 
           <span class="label label-primary">
             <% if @weight.source %>
@@ -26,6 +26,3 @@ div class="container">
   </div>
 </div>
 
-
-<%= link_to 'Edit', edit_weight_path(@weight) %> |
-<%= link_to 'Back', weights_path %>

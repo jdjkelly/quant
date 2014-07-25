@@ -34,7 +34,7 @@
 
     <%= render layout: 'components/unit_panel' do %>
       <h1>Body Fat <small>7 day avg</small> <small><%= link_to '+', new_weight_path %></small></h1>
-      <hr/>
+     <hr/>
       <h2>
         <% if current_user.fat_percent %>
           <%= current_user.fat_percent.round(1) %>

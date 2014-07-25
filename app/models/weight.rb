@@ -38,7 +38,7 @@ class Weight < ActiveRecord::Base
   def self.current(val, opts={})
     return unless val.present?
 
-    opts = {
+   opts = {
       period: 7.days,
       start: Date.today
     }.merge(opts)
@@ -52,7 +52,7 @@ class Weight < ActiveRecord::Base
     }).average(val)
   end
 
-  def self.most_recent(count)
+  def self.most_recent(count=1)
     order("date DESC").limit(count)
   end
 
@@ -88,30 +88,6 @@ class Weight < ActiveRecord::Base
     User.find(id).weights.each do |weight|
       weight.save #executes callbacks that update the bmi
     end
-  end
-
-  def self.interpolate(weights=[])
-    return unless weights.present?
-
-    possible_dates, start_date, end_date = [], weights.first.date.at_beginning_of_day, weights.last.date.at_beginning_of_day
-
-    while(start_date < end_date - 1.day) do
-      possible_dates.push start_date.to_f
-      start_date += 1.day
-    end
-
-    actual_dates = weights.group_by { |w| w.date.at_beginning_of_day.to_f }
-
-    need_to_be_interpolated_dates = possible_dates - actual_dates.keys
-
-    bucketizer = Interpolate::Points.new(Hash[actual_dates.map { |k,v| [k, v.first.value] }])
-
-    interpolated_data = need_to_be_interpolated_dates.map do |value|
-      puts value
-      bucket = bucketizer.at(value)
-    end
-
-    [need_to_be_interpolated_dates, interpolated_data].transpose.map{|w| Weight.new(date: Time.at(w[0]).to_datetime, value: w[1])}
   end
 
   protected
