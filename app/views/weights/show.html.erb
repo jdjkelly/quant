@@ -1,5 +1,31 @@
 <p id="notice"><%= notice %></p>
 
+div class="container">
+  <div class="row">
+
+    <div class="col-md-4 col-sm-4 col-md-offset-4 col-sm-offset-4">
+      <div class="unit-panel">
+        <div class="panel-body">
+          <h1>Weight <small><%= link_to 'Edit', edit_weight_path(@weight) %></small></h1>
+          <hr/>
+          <h2><%= @weight.value.round(1) %></h2>
+          <h3>Kilograms</h3>
+          <small><%= @weight.date.to_formatted_s(:short) %></small>
+          <hr/>
+
+          <span class="label label-primary">
+            <% if @weight.source %>
+              <%= @weight.source.humanize %>
+            <% else %>
+              Self reported
+            <% end %>  
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <%= link_to 'Edit', edit_weight_path(@weight) %> |
 <%= link_to 'Back', weights_path %>

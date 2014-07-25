@@ -1,7 +1,5 @@
 <%= form_for @weight, html: { role: "form", class: "transparent-form" } do |f| %>
 
-  <h3 class="text-center">Add weight</h3>
-
   <%= content_tag :div, class: [("has-error" if @weight.errors[:value].present?), "form-group"] do %>
     <% if @weight.errors[:value].present? %>
       <%= f.label :value, class: "control-label" do %>Value <%= @weight.errors[:value].join(", ") %><% end %>

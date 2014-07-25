@@ -1,10 +1,8 @@
 <%= form_for @sleep, html: { role: "form", class: "transparent-form" } do |f| %>
-
-  <h3 class="text-center">Add sleep</h3>
   
   <%= content_tag :div, class: [("has-error" if @sleep.errors[:start].present?), "form-group"] do %>
     <% if @sleep.errors[:start].present? %>
-      <%= f.label :start, class: "control-label" do %>Date <%= @sleep.errors[:start].join(", ") %><% end %>
+      <%= f.label :start, class: "control-label" do %>Start time <%= @sleep.errors[:start].join(", ") %><% end %>
     <% else %>
       <%= f.label :start, class: "hidden" %>
     <% end %>
@@ -13,7 +11,7 @@
   
   <%= content_tag :div, class: [("has-error" if @sleep.errors[:end].present?), "form-group"] do %>
     <% if @sleep.errors[:end].present? %>
-      <%= f.label :end, class: "control-label" do %>Date <%= @sleep.errors[:end].join(", ") %><% end %>
+      <%= f.label :end, class: "control-label" do %>End time <%= @sleep.errors[:end].join(", ") %><% end %>
     <% else %>
       <%= f.label :end, class: "hidden" %>
     <% end %>

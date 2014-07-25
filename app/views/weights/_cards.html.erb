@@ -1,0 +1,75 @@
+<% if current_user.weights.any? %>
+  <div class="row">
+    <%= render layout: 'components/unit_panel' do %>
+      <h1>Weight <small>7 day avg</small> <small><%= link_to '+', new_weight_path %></small></h1>
+      <hr/>
+      <h2><%= current_user.weight.try(:round, 1) || 0.0 %></h2>
+      <h3>Kilograms</h3>
+      <small>
+        <strong>
+          <%= current_user.weight({start: Date.current - 7.days}).try(:round, 1) || 0.0 %> KG
+        </strong>
+        7 days ago
+      </small>  
+    <% end %>
+
+    <%= render layout: 'components/unit_panel' do %>
+      <h1>BMI <small>7 day avg</small> <small><%= link_to '+', new_weight_path %></small></h1>
+      <hr/>
+      <h2>
+        <% if current_user.bmi %>
+          <%= current_user.bmi.round(1) %>
+        <% else %>
+          N/A
+        <% end %>
+      </h2>
+      <h3>points</h3>
+      <small>
+        <strong>
+          <%= current_user.bmi({start: Date.current - 7.days}).try(:round, 1) || 0.0 %>
+        </strong>
+        7 days ago
+      </small>
+    <% end %>
+
+    <%= render layout: 'components/unit_panel' do %>
+      <h1>Body Fat <small>7 day avg</small> <small><%= link_to '+', new_weight_path %></small></h1>
+      <hr/>
+      <h2>
+        <% if current_user.fat_percent %>
+          <%= current_user.fat_percent.round(1) %>
+        <% else %>
+          N/A
+        <% end %>
+      </h2>
+      <h3>percent</h3>
+      <small>
+        <strong>
+          <%= current_user.fat_percent({start: Date.current - 7.days}).try(:round, 1) || 0.0 %>%
+        </strong>
+        7 days ago
+      </small>
+    <% end %>
+
+    <%= render layout: 'components/unit_panel' do %>
+      <h1>Lean Mass <small>7 day avg</small> <small><%= link_to '+', new_weight_path %></small></h1>
+      <hr/>
+      <h2>
+        <% if current_user.lean_mass %>
+          <%= Unit.new(current_user.lean_mass, :kilograms).to_system(:metric).round(1) %>
+        <% else %>
+          N/A
+        <% end %>
+      </h2>
+      <h3>Kilograms</h3>
+      <small>
+        <strong>
+          <%= Unit.new(current_user.lean_mass({start: Date.current - 7.days}), :kilograms).to_system(:metric).try(:round, 1) || 0.0 %> KG
+        </strong>
+        7 days ago
+      </small>
+    <% end %>
+  </div>
+<% else %>
+  <h1>No weight cards available</h1>
+<% end %>

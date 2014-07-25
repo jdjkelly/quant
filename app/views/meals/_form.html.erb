@@ -1,7 +1,5 @@
 <%= form_for @meal, html: { role: "form", class: "transparent-form" } do |f| %>
 
-  <h3 class="text-center">Add meal</h3>
-
   <%= content_tag :div, class: [("has-error" if @meal.errors[:calories].present?), "form-group"] do %>
     <% if @meal.errors[:calories].present? %>
       <%= f.label :calories, class: "control-label" do %>Calories <%= @meal.errors[:calories].join(", ") %><% end %>

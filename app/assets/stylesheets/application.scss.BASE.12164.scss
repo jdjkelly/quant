@@ -24,12 +24,10 @@ $grey-soft: #EDEFF2;
 $grey: #EDEFF2;
 $grey-hard: #939AA4;
 
-$body: #e4e8ed;
-
 $border-radius: 3px;
 
 body {
-  background: $body;
+  background: $grey-soft
 }
 
 @import "compass/css3/border-radius";

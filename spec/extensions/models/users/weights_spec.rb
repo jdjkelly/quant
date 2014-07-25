@@ -22,8 +22,11 @@ describe Users::Weights do
     end
 
     context "when the user has a height" do
+      before do
+        user.update_attribute(:height, 100)
+      end
       it "returns valid bmi" do
-        user.bmi.should eq(100.0)
+        user.bmi.to_f.should eq(1.0)
       end
     end
   end

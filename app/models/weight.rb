@@ -35,8 +35,21 @@ class Weight < ActiveRecord::Base
 
   before_save :calculate_all_known_values
 
-  def self.current
-    order("date DESC").first
+  def self.current(val, opts={})
+    return unless val.present?
+
+    opts = {
+      period: 7.days,
+      start: Date.today
+    }.merge(opts)
+
+    start = where("date >= ?", opts[:start]).order("date DESC").limit(1).first
+
+    return unless start.present? && start = start.date
+
+    records = select(val).where({
+      date: (start - opts[:period])..start
+    }).average(val)
   end
 
   def self.most_recent(count)
