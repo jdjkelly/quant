@@ -254,38 +254,6 @@ ALTER SEQUENCE places_id_seq OWNED BY places.id;
 
 
 --
--- Name: post_things; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE post_things (
-    id integer NOT NULL,
-    title character varying(255),
-    date timestamp without time zone,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: post_things_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE post_things_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: post_things_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE post_things_id_seq OWNED BY post_things.id;
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -489,13 +457,6 @@ ALTER TABLE ONLY places ALTER COLUMN id SET DEFAULT nextval('places_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY post_things ALTER COLUMN id SET DEFAULT nextval('post_things_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY sleeps ALTER COLUMN id SET DEFAULT nextval('sleeps_id_seq'::regclass);
 
 
@@ -558,14 +519,6 @@ ALTER TABLE ONLY places
 
 ALTER TABLE ONLY meals
     ADD CONSTRAINT meals_pkey PRIMARY KEY (id);
-
-
---
--- Name: post_things_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY post_things
-    ADD CONSTRAINT post_things_pkey PRIMARY KEY (id);
 
 
 --
@@ -779,15 +732,11 @@ INSERT INTO schema_migrations (version) VALUES ('20140109041557');
 
 INSERT INTO schema_migrations (version) VALUES ('20140110125408');
 
-INSERT INTO schema_migrations (version) VALUES ('20140113150329');
-
 INSERT INTO schema_migrations (version) VALUES ('20140118211647');
 
 INSERT INTO schema_migrations (version) VALUES ('20140124014335');
 
 INSERT INTO schema_migrations (version) VALUES ('20140125175905');
-
-INSERT INTO schema_migrations (version) VALUES ('20140126060623');
 
 INSERT INTO schema_migrations (version) VALUES ('20140126060624');
 

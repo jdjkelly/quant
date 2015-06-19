@@ -17,7 +17,8 @@ development:
   encoding: unicode
   database: quantify_development
   pool: 5
-  username: quantify
+  # username: quantify
+  username: postgres
   password:
   host: localhost
 
